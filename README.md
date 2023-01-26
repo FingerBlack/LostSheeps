@@ -1,7 +1,5 @@
-# Sokoban
+# LostSheeps
 
-### Team Member
+## Version 0.1
 
-Songlin Lyu
-
-123
+  (Mission allocation)&(some Initiation)
