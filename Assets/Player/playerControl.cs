@@ -22,5 +22,21 @@ public class playerControl : MonoBehaviour
         vertInput = Input.GetAxis("Vertical");
         transform.Translate(horiSpeed * Time.deltaTime * Vector2.right * horiInput);
         transform.Translate(vertSpeed * Time.deltaTime * Vector2.up * vertInput);
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+       
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("enter collision");
+
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log("in collision");
+
     }
 }
