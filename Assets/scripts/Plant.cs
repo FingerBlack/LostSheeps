@@ -32,6 +32,8 @@ public class Plant : MonoBehaviour
 
                 GameObject obj = Instantiate(bullet, transform, false);
                 obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y + bulletOffset, obj.transform.position.z);;
+
+                Debug.Log("Shoot");
                 // bullets should update itself?
             }
         }

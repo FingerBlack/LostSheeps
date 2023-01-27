@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7508354389917465132}
   - component: {fileID: 7508354389917465135}
   - component: {fileID: 7508354389917465133}
+  - component: {fileID: -3156955647522088208}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -100,3 +101,29 @@ MonoBehaviour:
   HP: 100
   Player: {fileID: 0}
   movementSpeed: 0.05
+--- !u!61 &-3156955647522088208
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7508354389917465134}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02256316, y: 0.4569143}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.4589755, y: 0.08081279}
+    oldSize: {x: 0.55, y: 1.0899999}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55, y: 1.0899999}
+  m_EdgeRadius: 0
