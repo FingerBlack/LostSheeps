@@ -24,7 +24,7 @@ public partial class @PlayerMove : IInputActionCollection2, IDisposable
     ""name"": ""PlayerMove"",
     ""maps"": [
         {
-            ""name"": ""Box"",
+            ""name"": ""Player"",
             ""id"": ""fe773ca3-78b3-4f51-898b-1580db77c77b"",
             ""actions"": [
                 {
@@ -41,7 +41,7 @@ public partial class @PlayerMove : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""26681e99-6def-4cf7-a054-5b2ca963921b"",
-                    ""path"": """",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -109,9 +109,9 @@ public partial class @PlayerMove : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Box
-        m_Box = asset.FindActionMap("Box", throwIfNotFound: true);
-        m_Box_Move = m_Box.FindAction("Move", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -168,29 +168,29 @@ public partial class @PlayerMove : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Box
-    private readonly InputActionMap m_Box;
-    private IBoxActions m_BoxActionsCallbackInterface;
-    private readonly InputAction m_Box_Move;
-    public struct BoxActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Move;
+    public struct PlayerActions
     {
         private @PlayerMove m_Wrapper;
-        public BoxActions(@PlayerMove wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Move => m_Wrapper.m_Box_Move;
-        public InputActionMap Get() { return m_Wrapper.m_Box; }
+        public PlayerActions(@PlayerMove wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_Player_Move;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(BoxActions set) { return set.Get(); }
-        public void SetCallbacks(IBoxActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_BoxActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Move.started -= m_Wrapper.m_BoxActionsCallbackInterface.OnMove;
-                @Move.performed -= m_Wrapper.m_BoxActionsCallbackInterface.OnMove;
-                @Move.canceled -= m_Wrapper.m_BoxActionsCallbackInterface.OnMove;
+                @Move.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMove;
             }
-            m_Wrapper.m_BoxActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Move.started += instance.OnMove;
@@ -199,8 +199,8 @@ public partial class @PlayerMove : IInputActionCollection2, IDisposable
             }
         }
     }
-    public BoxActions @Box => new BoxActions(this);
-    public interface IBoxActions
+    public PlayerActions @Player => new PlayerActions(this);
+    public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
     }

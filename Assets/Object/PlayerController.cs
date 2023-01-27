@@ -1,54 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 
 {
+    [SerializeField] private int speed = 5;
+    private Vector2 movement;
+    private Rigidbody2D rb;
     
-    private Tilemap groundTilemap;
 
-    private PlayerMove controls;
+    private void OnMove(InputValue value)
+    {
+        movement = value.Get<Vector2>();
+    }
+    
+
+    
 
     private void Awake()
     {
-        controls = new PlayerMove();
+        rb = GetComponent<Rigidbody2D>();
         
         
 
     }
-    private void OnEnable()
-    {controls.Enable();
-
-    }
     
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-    
-    void Start()
-    {controls.Box.Move.performed += ctx =>
-        {
-            transform.Translate(ctx.ReadValue<Vector2>());
-
-        };
-
-    }
-    
-    private void Move(Vector2 direction)
-    {
-        
-            transform.position += (Vector3)direction;
-    }
-    private bool CanMove (Vector2 direction)
-
-    {
-        return true;
-    }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        rb.MovePosition(rb.position + movement *speed* Time.fixedDeltaTime);
     }
 }

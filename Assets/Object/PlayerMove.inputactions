@@ -1,8 +1,8 @@
 {
-    "name": "BoxMove",
+    "name": "PlayerMove",
     "maps": [
         {
-            "name": "Box",
+            "name": "Player",
             "id": "fe773ca3-78b3-4f51-898b-1580db77c77b",
             "actions": [
                 {
@@ -19,7 +19,7 @@
                 {
                     "name": "",
                     "id": "26681e99-6def-4cf7-a054-5b2ca963921b",
-                    "path": "",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
