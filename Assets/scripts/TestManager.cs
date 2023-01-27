@@ -15,7 +15,7 @@ public class TestManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // sample test input to move box
+        // sample test input to move box, w a s d for 4 directions
         if(Input.GetKeyDown(KeyCode.W))
         {
             testBox.GetComponent<Box>().Move(Vector3Int.up);
@@ -36,6 +36,7 @@ public class TestManager : MonoBehaviour
             testBox.GetComponent<Box>().Move(Vector3Int.right);
         }
 
+        // sample test to create a box on target position
         if(Input.GetKeyDown(KeyCode.Q))
         {
             Instantiate(boxPrefab, new Vector3(1.2f, -3.7f, 0), Quaternion.identity);

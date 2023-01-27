@@ -6,6 +6,7 @@ public class Box : MonoBehaviour
 {
     private Grid floorGrid;
     public bool isMoving = false;
+    public float timeToMove = 0.2f;
     public LayerMask blockLayer;
     Vector3Int origCellPos;
     // Vector3 origCellCenterWorldPos;
@@ -41,7 +42,9 @@ public class Box : MonoBehaviour
     // this is the move function exposed to other class
     public void Move(Vector3Int direction)
     {
-        QuickMove(direction);
+        // 2 different type of move effect, QuickMove moves in 1 frame, SlowMove moves continuously
+        // QuickMove(direction);
+        StartCoroutine(SlowMove(direction));
     }
     // use translate to move box in 1 frame
     private void QuickMove(Vector3Int direction)
@@ -58,6 +61,32 @@ public class Box : MonoBehaviour
             Debug.Log(targetPos);
             // Debug.Log(Physics2D.OverlapBox(targetPos, new Vector2(0.4f, 0.2f), 0f, blockLayer));
             // Debug.Log("Something in target area!");
+        }
+    }
+
+    // use IEnumerator to move continuously to target position
+    private IEnumerator SlowMove(Vector3Int direction)
+    {
+        Vector3Int targetCellPos = origCellPos + direction;
+        Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
+
+        if(!Physics2D.OverlapBox(targetPos, new Vector2(0.3f, 0.1f), 0f, blockLayer))
+        {
+            isMoving = true;
+
+            float elapsedTime = 0;
+            Vector3 origPos = transform.position;
+
+            while(elapsedTime < timeToMove){
+                transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.position = targetPos;
+            origCellPos = targetCellPos;
+
+            isMoving = false;
         }
     }
 
