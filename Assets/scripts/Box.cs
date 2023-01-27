@@ -38,8 +38,13 @@ public class Box : MonoBehaviour
         
     }
 
+    // this is the move function exposed to other class
+    public void Move(Vector3Int direction)
+    {
+        QuickMove(direction);
+    }
     // use translate to move box in 1 frame
-    public void QuickMove(Vector3Int direction)
+    private void QuickMove(Vector3Int direction)
     {
         Debug.Log("Start Move");
         Vector3Int targetCellPos = origCellPos + direction;

@@ -18,22 +18,22 @@ public class TestManager : MonoBehaviour
         // sample test input to move box
         if(Input.GetKeyDown(KeyCode.W))
         {
-            testBox.GetComponent<Box>().QuickMove(Vector3Int.up);
+            testBox.GetComponent<Box>().Move(Vector3Int.up);
         }
 
         if(Input.GetKeyDown(KeyCode.A))
         {
-            testBox.GetComponent<Box>().QuickMove(Vector3Int.left);
+            testBox.GetComponent<Box>().Move(Vector3Int.left);
         }
 
         if(Input.GetKeyDown(KeyCode.S))
         {
-            testBox.GetComponent<Box>().QuickMove(Vector3Int.down);
+            testBox.GetComponent<Box>().Move(Vector3Int.down);
         }
 
         if(Input.GetKeyDown(KeyCode.D))
         {
-            testBox.GetComponent<Box>().QuickMove(Vector3Int.right);
+            testBox.GetComponent<Box>().Move(Vector3Int.right);
         }
 
         if(Input.GetKeyDown(KeyCode.Q))
