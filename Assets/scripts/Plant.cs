@@ -11,7 +11,7 @@ public class Plant : MonoBehaviour
     private float shootTimer = 0.0f;
     public float shootPeriod = 1.0f;
 
-    private float bulletOffset = 1.0f;
+    private Vector3 bulletOffset = new Vector3(0.5f, 1.0f, 0.0f);
 
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,8 @@ public class Plant : MonoBehaviour
             {
                 shootTimer -= shootPeriod;
 
-                GameObject obj = Instantiate(bullet, transform, false);
-                obj.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y + bulletOffset, obj.transform.position.z);;
+                GameObject obj = Instantiate(bullet, transform);
+                obj.transform.position += bulletOffset;
 
                 Debug.Log("Shoot");
                 // bullets should update itself?
@@ -46,7 +46,7 @@ public class Plant : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        // if no target and a new enemy appear inside the range, target it 
+        // if no target and a new enemy appear inside the range, target on it 
         if(target==null && collider.TryGetComponent<Enemy>(out Enemy enemy))
         {
             target = enemy;
