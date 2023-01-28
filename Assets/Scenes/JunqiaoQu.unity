@@ -1028,6 +1028,7 @@ GameObject:
   - component: {fileID: 249045389}
   - component: {fileID: 249045390}
   - component: {fileID: 249045391}
+  - component: {fileID: 249045392}
   m_Layer: 0
   m_Name: box
   m_TagString: Untagged
@@ -1179,6 +1180,20 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &249045392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 249045386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77e1680f2b8fddd44b139ea57d0a4b99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundTilemap: {fileID: 1826899884}
+  colTilemap: {fileID: 151529429}
 --- !u!1 &1008157997
 GameObject:
   m_ObjectHideFlags: 0
@@ -10175,3 +10190,8 @@ TilemapCollider2D:
   m_Offset: {x: 0, y: 0}
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0.00001
+--- !u!1839735485 &1826899884 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 3652853212029718968, guid: c478d788ad8f59a4c898077bfe49dfa4, type: 3}
+  m_PrefabInstance: {fileID: 1826899877}
+  m_PrefabAsset: {fileID: 0}
