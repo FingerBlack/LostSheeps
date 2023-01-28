@@ -635,7 +635,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press R to build Box
+  m_text: 'Press Q to build Box
 
 '
   m_isRightToLeft: 0
