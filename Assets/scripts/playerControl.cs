@@ -13,9 +13,11 @@ public class playerControl : MonoBehaviour
     public float vertSpeed = 5;
     public float dX;
     public float dY;
-
+    public float HP;
+    private GameObject ColliderDetect;
+    private ColliderDetect colliderdetect;
     // 0 up; 1 up-right; 2 right; 3 down-right; 4 down; 5 down-left; 6 left; 7 up-left;
-    public int playerDirection = 2;
+    public string playerDirection;
 
     //tilemap var
     public Vector2 playerPos;
@@ -29,8 +31,18 @@ public class playerControl : MonoBehaviour
     // Start is called before the first frame update
 
     void Start()
-    {
-        
+    {       
+        HP=100;
+        ColliderDetect=GameObject.Find("/Player/ColliderDetect");
+        colliderdetect=ColliderDetect.GetComponent<ColliderDetect>();
+        playerPos.x = transform.position.x;
+        playerPos.y = transform.position.y;
+        playerGridPos = map.WorldToCell(playerPos);
+        playerDirection = "South";
+        targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
+        Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
+        ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.14f,WorldtargetGridPos.z);
+        colliderdetect.direction=playerDirection;
     }
 
     // Update is called once per frame
@@ -39,6 +51,9 @@ public class playerControl : MonoBehaviour
 
 
         //movement
+        if(HP<0){
+            Destroy(gameObject);
+        }
         horiInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
         dX = horiSpeed * Time.deltaTime  * horiInput;
@@ -57,57 +72,41 @@ public class playerControl : MonoBehaviour
 
         //facing direction;
         if (dX > 0)
-        {
-            if(dY > 0)
-            {
-                playerDirection = 1;
-                targetrGridPos = playerGridPos + new Vector3Int(1,1,0);
-}
-            else if(dY == 0)
-            {
-                playerDirection = 2;
-                targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
-            }
-            else
-            {
-                playerDirection = 3;
-                targetrGridPos = playerGridPos + new Vector3Int(1, -1, 0);
-            }
+        {   
+
+            playerDirection = "East";
+            targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
+            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
+            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.22f,WorldtargetGridPos.y+0.13f,WorldtargetGridPos.z);
+            colliderdetect.direction=playerDirection;
         }
-        else if(dX == 0)
+        else if(dX < 0)
         {
-            if (dY > 0)
-            {
-                playerDirection = 0;
-                targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
-            }
-            else if (dY == 0)
-            {
-                // no change
-            }
-            else
-            {
-                playerDirection = 4;
-                targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
-            }
+
+            playerDirection = "West";
+            targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
+            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
+            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.30f,WorldtargetGridPos.y+0.13f,WorldtargetGridPos.z);
+            colliderdetect.direction=playerDirection;
         }
-        else
+        else if(dY>0)
         {
-            if (dY > 0)
-            {
-                playerDirection = 7;
-                targetrGridPos = playerGridPos + new Vector3Int(-1, 1, 0);
-            }
-            else if (dY == 0)
-            {
-                playerDirection = 6;
-                targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
-            }
-            else
-            {
-                playerDirection = 5;
-                targetrGridPos = playerGridPos + new Vector3Int(-1, -1, 0);
-            }
+            playerDirection = "North";
+            targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
+            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
+            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.08f,WorldtargetGridPos.z);
+            colliderdetect.direction=playerDirection;
+        }else if(dY<0){
+            playerDirection = "South";
+            targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
+            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
+            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.14f,WorldtargetGridPos.z);
+            colliderdetect.direction=playerDirection;
+        }else{
+            //playerDirection = "None";
+            targetrGridPos = playerGridPos;
+            //ColliderDetect.transform.position=transform.position;
+            colliderdetect.direction=playerDirection;
         }
 
 

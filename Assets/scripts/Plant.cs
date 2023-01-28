@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    private Enemy target;
+    public Enemy target;
 
     public GameObject bullet;
 
@@ -30,10 +30,16 @@ public class Plant : MonoBehaviour
             {
                 shootTimer -= shootPeriod;
 
-                GameObject obj = Instantiate(bullet, transform);
-                obj.transform.position += bulletOffset;
+                GameObject obj = Instantiate(bullet, transform.position+new Vector3(0f, 1.0f, 0.0f),Quaternion.identity,GameObject.Find("/Bullets").transform);
+                Bullet BulletComponent=obj.GetComponent<Bullet>();
+                // target.transform.position+=new Vector3(0f,-1f,0f);
+                Vector3 direction=( target.transform.position- transform.position+new Vector3(0f,-1f,0f));
+                
+                BulletComponent.TargetPos=transform.position + direction.normalized * 1000.0f;    
+                BulletComponent.speed=5;
+                //obj.transform.position += bulletOffset;
 
-                Debug.Log("Shoot");
+                //Debug.Log("Shoot");
                 // bullets should update itself?
             }
         }
@@ -47,9 +53,18 @@ public class Plant : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
         // if no target and a new enemy appear inside the range, target on it 
-        if(target==null && collider.TryGetComponent<Enemy>(out Enemy enemy))
+        //Debug.Log(collider.name);
+        if(collider.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
         {
-            target = enemy;
+            if(target==null){
+                target=enemy;
+                return;
+            }
+
+            float Dis1=Vector3.Distance(transform.position,enemy.transform.position);
+            float Dis2=Vector3.Distance(transform.position,target.transform.position);
+            if(Dis1<Dis2)
+                target = enemy;
             Debug.Log("target");
         }
     }
