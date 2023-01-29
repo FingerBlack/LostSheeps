@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
+    public GameObject instructions;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +16,7 @@ public class CanvasManager : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            GetComponent<Canvas>().enabled=false;
+            instructions.SetActive(false);
             GameObject.Find("Main Camera").GetComponent<cameraControl>().enabled=true;
         }
     }
