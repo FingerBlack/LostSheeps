@@ -52,6 +52,8 @@ public class ColliderDetect : MonoBehaviour
                     // box.playerDirection=direction;
                     // box.action="move";
                     continue;
+                } else{
+                    
                 }
 
             }
