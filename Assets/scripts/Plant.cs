@@ -22,10 +22,11 @@ public class Plant : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target)
+        if (target)
         {
             // shoot every period of time
             shootTimer += Time.deltaTime;
+            Debug.Log(Time.deltaTime);
             if(shootTimer > shootPeriod)
             {
                 shootTimer -= shootPeriod;
@@ -36,7 +37,7 @@ public class Plant : MonoBehaviour
                 Vector3 direction=( target.transform.position- transform.position+new Vector3(0f,-1f,0f));
                 
                 BulletComponent.TargetPos=transform.position + direction.normalized * 1000.0f;    
-                BulletComponent.speed=5;
+                BulletComponent.speed=40;
                 //obj.transform.position += bulletOffset;
 
                 //Debug.Log("Shoot");

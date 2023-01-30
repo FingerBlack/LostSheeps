@@ -59,7 +59,7 @@ public class ColliderDetect : MonoBehaviour
 
         }
         if(!isOccupied&&Input.GetKeyDown(KeyCode.Q)){
-                GameObject obj=Instantiate(bbox,transform.position,Quaternion.identity,GameObject.Find("/Boxes").transform);
+                //GameObject obj=Instantiate(bbox,transform.position,Quaternion.identity,GameObject.Find("/Boxes").transform);
             }
     }
     // void OnTriggerStay2D(Collider2D Other){

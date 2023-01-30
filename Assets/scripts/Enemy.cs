@@ -7,11 +7,11 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     public float HP=100f;
     public GameObject Player;
-    public float movementSpeed=0.05f;
+    public float movementSpeed=2.0f;
     void Start()
     {
         HP=100;
-        movementSpeed=0.5f;
+        //movementSpeed=2.0f;
         Player=GameObject.Find("/Player");
     }
 

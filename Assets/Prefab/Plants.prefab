@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   bullet: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
-  shootPeriod: 1
+  shootPeriod: 0.05
 --- !u!58 &3063727829339186518
 CircleCollider2D:
   m_ObjectHideFlags: 0
