@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   Player: {fileID: 2853620171554428226, guid: f96194af8ea9d054aadcb2d07f160550, type: 3}
-  movementSpeed: 0.15
+  movementSpeed: 2
 --- !u!61 &1558840483417937310
 BoxCollider2D:
   m_ObjectHideFlags: 0

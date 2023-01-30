@@ -9,7 +9,7 @@ public class ScoreText : MonoBehaviour
 
     public static void getCoin(){
         ++score;
-        if(score == 5)
+        if(score >= 5)
             GameObject.Find("ScoreText").GetComponent<TMPro.TextMeshProUGUI>().text = "you win";
         else
             GameObject.Find("ScoreText").GetComponent<TMPro.TextMeshProUGUI>().text = "score: " + score.ToString();
