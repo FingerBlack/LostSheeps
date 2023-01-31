@@ -85,7 +85,7 @@ public class Box : MonoBehaviour
     // use IEnumerator to move continuously to target position
     private IEnumerator SlowMove(Vector3Int direction)
     {
-        Vector3Int targetCellPos = origCellPos + direction;
+        Vector3Int targetCellPos = origCellPos + 3 * direction;
         Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
         ContactFilter2D filter = new ContactFilter2D().NoFilter();
         List<Collider2D> results = new List<Collider2D>();
