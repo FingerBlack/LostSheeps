@@ -3,115 +3,230 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class playerControl : MonoBehaviour
+public class PlayerControl : MonoBehaviour
 {
     //======================================== variables ============================================================
-    //movement var
+    // Dont Initiat the Value here plz.
+    private Grid floorGrid; // Grid Map
+    public GameObject plant;
+    public GameObject pea;  // Plant Kind
+    public GameObject cherry;  // Plant Kind
+    public GameObject horiBox;
+    public GameObject vertBox;
+    
+    public int peaNumber;
+    public int cherryNumber;
     public float horiInput;
     public float vertInput;
-    public float horiSpeed = 5;
-    public float vertSpeed = 5;
+    public float horiDis;
+    public float vertDis;
+    public float horiSpeed;
+    public float vertSpeed;
     public float dX;
     public float dY;
     public float HP;
-    private GameObject ColliderDetect;
-    private ColliderDetect colliderdetect;
-    // 0 up; 1 up-right; 2 right; 3 down-right; 4 down; 5 down-left; 6 left; 7 up-left;
-    public string playerDirection;
+    public float timeToMove;
+    public string action;
+    public bool isMoving;
+    private ContactFilter2D filter; // Collider Detect Tools.
+    private List<Collider2D> results;// Collider Detect Tools.
+    
+    public Vector3Int playerDirection; // 0 up; 1 up-right; 2 right; 3 down-right; 4 down; 5 down-left; 6 left; 7 up-left;
 
-    //tilemap var
-    public Vector2 playerPos;
+
     public Vector3Int playerGridPos;
     public Vector3Int targetrGridPos;
-    public Tilemap map;
+    public Vector3 targetWorldPos;
 
 
     //=============================================================================================================
-
     // Start is called before the first frame update
-
     void Start()
-    {       
-        HP=100;
-        ColliderDetect=GameObject.Find("/Player/ColliderDetect");
-        colliderdetect=ColliderDetect.GetComponent<ColliderDetect>();
-        playerPos.x = transform.position.x;
-        playerPos.y = transform.position.y;
-        playerGridPos = map.WorldToCell(playerPos);
-        playerDirection = "South";
-        targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
-        Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
-        ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.14f,WorldtargetGridPos.z);
-        colliderdetect.direction=playerDirection;
+    {      
+        isMoving=false;
+        action="None";
+        timeToMove=0.2f;
+        peaNumber=3; //initiate the peaNumber.
+        cherryNumber=2; ////initiate the cherryNumber.
+        horiSpeed =5f; //Remember to Set the Speed on Start 
+        vertSpeed =2.5f;  //Remember to Set the Speed on Start 
+        filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
+        results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+        
+        pea=Resources.Load("Prefabs/Pea") as GameObject; //Load Plant pea
+        cherry=Resources.Load("Prefabs/Cherry") as GameObject; //Load Plant cherry
+        plant=pea;   
+        HP=10000f; // Set HP 
+        floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map
+        playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in GridSpace
+        transform.position=floorGrid.GetCellCenterWorld(playerGridPos);
+        playerDirection = new Vector3Int(0, -1, 0); //Set default direction
+        dX=0f; //initiate the direction
+        dY=-1f; //initiate the direction
+        targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0); //initiate the target position in Grid Space
+        targetWorldPos=floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
     }
-
+    //=============================================================================================================
     // Update is called once per frame
     void Update()
-    {
-
-
-        //movement
-        if(HP<0){
-            Destroy(gameObject);
-        }
+    {   
+        // Movement Input
         horiInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
-        dX = horiSpeed * Time.deltaTime  * horiInput;
-        dY = vertSpeed * Time.deltaTime  * vertInput;
-        transform.Translate(dX * Vector2.right);
-        transform.Translate(dY * Vector2.up);
-
-        //player position to grid
-        playerPos.x = transform.position.x;
-        playerPos.y = transform.position.y;
-        playerGridPos = map.WorldToCell(playerPos);
-
-        //lock rotation
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-
-
-        //facing direction;
-        if (dX > 0)
+        horiSpeed =5f; //Remember to Set the Speed on Start 
+        vertSpeed =2.5f;  //Remember to Set the Speed on Start 
+    //=============================================================================================================
+    // Hp
+        if(HP<0){
+            Destroy(gameObject); 
+        }
+    //=============================================================================================================
+    // Facing direction;
+        if (horiInput > 0) 
         {   
 
-            playerDirection = "East";
+            playerDirection = new Vector3Int(1, 0, 0);
             targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
-            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
-            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.22f,WorldtargetGridPos.y+0.13f,WorldtargetGridPos.z);
-            colliderdetect.direction=playerDirection;
+            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); // Set the target position in grid space;
+            
         }
-        else if(dX < 0)
+        else if(horiInput < 0)
         {
 
-            playerDirection = "West";
+            playerDirection =new Vector3Int(-1, 0, 0);
             targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
-            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
-            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.30f,WorldtargetGridPos.y+0.13f,WorldtargetGridPos.z);
-            colliderdetect.direction=playerDirection;
+            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+
         }
-        else if(dY>0)
+        else if(vertInput>0)
         {
-            playerDirection = "North";
+            playerDirection =new Vector3Int(0, 1, 0);
             targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
-            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
-            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.08f,WorldtargetGridPos.z);
-            colliderdetect.direction=playerDirection;
-        }else if(dY<0){
-            playerDirection = "South";
+            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+            
+        }else if(vertInput<0){
+            playerDirection =new Vector3Int(0, -1, 0);
             targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
-            Vector3 WorldtargetGridPos=map.CellToWorld(targetrGridPos);
-            ColliderDetect.transform.position=new Vector3(WorldtargetGridPos.x+0.27f,WorldtargetGridPos.y+0.14f,WorldtargetGridPos.z);
-            colliderdetect.direction=playerDirection;
-        }else{
-            //playerDirection = "None";
-            targetrGridPos = playerGridPos;
-            //ColliderDetect.transform.position=transform.position;
-            colliderdetect.direction=playerDirection;
+            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+
         }
 
+    //=============================================================================================================
+    // All Input setting are here, learn these code and expand these codes in the future.
+    //=============================================================================================================
+        
 
+        playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in Grid Space
 
+        if(horiInput!=0){
+            if(!isMoving){
+                StartCoroutine(SlowMove(new Vector3Int(horiInput>0?1:-1,0,0)));
+                action="None";
+            }   
+            //}            
+        }else
+        if(vertInput!=0){
+            if(!isMoving){
+                StartCoroutine(SlowMove(new Vector3Int(0,vertInput>0?1:-1,0)));
+                action="None";
+            }             
+        }
+
+        
+        //=============================================================================================================
+        // Other Input
+        if(Input.GetKeyDown(KeyCode.F)){  // Whatif press the F.
+            
+            Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
+            foreach( Collider2D result in results)
+            {
+                if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                    box.direction=playerDirection;
+                    box.action="move";
+                }
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.E)){ // Whatif press the E.
+            Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
+            foreach( Collider2D result in results)
+            {
+                if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                    if(box.transform.childCount==0){
+                        if(plant==pea&&peaNumber>0){
+                            GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
+                            peaNumber-=1;
+                        }
+                        if(plant==cherry&&cherryNumber>0){
+                            GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
+                            cherryNumber-=1;
+                        }
+                    }
+                }
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha1)){  //Whatif press the #1.
+            plant=pea;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){ //Whatif press the #2.
+            plant=cherry;
+
+        }
+        //=============================================================================================================
+        // Collider for detect seeds.
+        //=============================================================================================================
+        Physics2D.OverlapCircle(transform.position, 0.2f,filter, results);
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<PeaSeed>(out PeaSeed peaSeed)){
+                peaNumber+=1;
+                Destroy(result.gameObject);
+            }
+            if(result.gameObject.TryGetComponent<CherrySeed>(out CherrySeed cherrySeed)){
+                cherryNumber+=1;
+                Destroy(result.gameObject);
+            }
+        }
     }
-
- 
+    private IEnumerator SlowMove(Vector3Int direction)
+    {
+        Vector3Int targetCellPos = playerGridPos + direction;
+        Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
+        ContactFilter2D filter = new ContactFilter2D().NoFilter();
+        List<Collider2D> results = new List<Collider2D>();
+        Physics2D.OverlapCircle(targetPos, 0.1f,filter,results);
+        bool isOccupied=false;
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                isOccupied=true;
+                break;
+            }else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+                isOccupied=true;
+                break;
+            }                
+        }
+        if(!isOccupied){
+            isMoving = true;
+            float elapsedTime = 0;
+            Vector3 origPos = transform.position;
+            while(elapsedTime < timeToMove){
+                transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }            
+            transform.position = targetPos;
+            playerGridPos = targetCellPos;
+            isMoving = false;    
+        }     
+    }
+    private GameObject GetBox(Vector3 position){
+        Physics2D.OverlapCircle(position, 0.1f,filter, results);
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                return result.gameObject;
+            }
+        }
+        return null;
+    }
 }

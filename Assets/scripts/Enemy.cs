@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float HP=100f;
+    //======================================== variables ============================================================
+    // Dont Initiat the Value here plz.
+    public float HP;
     public GameObject Player;
-    public float movementSpeed=0.05f;
+    public float movementSpeed;
+    public float Damage;
+    //=============================================================================================================
+    // Start is called before the first frame update
     void Start()
     {
-        HP=100;
+        HP=100f;
+        Damage=10f;
         movementSpeed=0.5f;
-        Player=GameObject.Find("/Player");
+        Player=GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -24,7 +29,7 @@ public class Enemy : MonoBehaviour
         }
         float distance=Vector3.Distance(transform.position,Player.transform.position);
         if(distance<0.25f){
-            Player.GetComponent<playerControl>().HP-=10;
+            Player.GetComponent<PlayerControl>().HP-=Damage;
 
         }
 

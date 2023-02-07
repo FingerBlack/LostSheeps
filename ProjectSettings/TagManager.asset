@@ -11,11 +11,11 @@ TagManager:
   - Plants
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Box
+  - Enemy
+  - Bullet
+  - Player
+  - Resource
   - 
   - 
   - 

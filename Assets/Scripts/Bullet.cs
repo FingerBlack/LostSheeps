@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
+    //======================================== variables ============================================================
+    // Dont Initiat the Value here plz.
     public Vector3 TargetPos;
-    public float speed=1.0f;
-    public float MaintainTime=10000.0f;
-    public float TimeCount=0.0f;
+    public float speed;
+    public float MaintainTime; 
+    public float TimeCount;
+    private ContactFilter2D filter; // Collider Detect Tools.
+    private List<Collider2D> results;// Collider Detect Tools.
+    //=============================================================================================================
     void Start()
-    {
+    {   
+        filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
+        results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+        // speed=1f;
         TimeCount=0;
         MaintainTime=10f;
+        TimeCount=0f;
     }
 
     // Update is called once per frame
@@ -23,16 +31,14 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
         gameObject.transform.position=Vector3.MoveTowards(gameObject.transform.position,TargetPos,speed*Time.deltaTime);
-
-    }
-    void OnTriggerEnter2D(Collider2D col)
-    {   
-        Debug.Log(col);
-        if( col.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
-        {   
-
-            enemy.HP-=10f;
-            Destroy(gameObject);
+        Physics2D.OverlapCircle(transform.position, 0.02f,filter, results);
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+                enemy.HP-=10f;
+                Destroy(gameObject);
+            }
         }
     }
+
 }
