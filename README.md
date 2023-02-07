@@ -13,3 +13,21 @@ Mission Allocation:
 5.  Junqiao is in charge of **tilemap**. 
 6. Ching-Chih is in charge of **plant aiming** and **shooting**.
 
+## Version 1.0
+
+Description： Prototype explore
+
+Mission Allocation:	
+
+1.  David is in charge of **prototype 2**.
+2.  Songlin is in charge of **prototype 1**. 
+3. Ching-Chih is in charge of **prototype 2**.
+
+## Version 2.0
+
+Description： Prototype complete.
+
+Mission Allocation:	
+
+1. Jishuang is in charge of prototype completion.
+2. Junqiao is in charge of analytic graph.
