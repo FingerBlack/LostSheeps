@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public GameObject Player;
     public float movementSpeed;
     public float Damage;
+
     //=============================================================================================================
     // Start is called before the first frame update
     void Start()
@@ -23,7 +24,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position=Vector3.MoveTowards(transform.position,Player.transform.position,movementSpeed*Time.deltaTime);
+        movementSpeed=0.5f;
+
         if(HP<0){
             Destroy(gameObject);
         }
@@ -33,6 +35,6 @@ public class Enemy : MonoBehaviour
 
         }
 
-
+        transform.position=Vector3.MoveTowards(transform.position,Player.transform.position,movementSpeed*Time.deltaTime);
     }
 }

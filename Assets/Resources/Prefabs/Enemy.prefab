@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1558840483417937307}
   - component: {fileID: 1558840483417937305}
   - component: {fileID: -3003414465236750935}
+  - component: {fileID: -6005611735911755579}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -102,6 +103,10 @@ MonoBehaviour:
   Player: {fileID: 2853620171554428226, guid: f96194af8ea9d054aadcb2d07f160550, type: 3}
   movementSpeed: 0.15
   Damage: 0
+  targetWorldPos: {x: 0, y: 0, z: 0}
+  isMoving: 0
+  timeToMove: 0
+  enemyGridPos: {x: 0, y: 0, z: 0}
 --- !u!61 &-3003414465236750935
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -115,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.02256316, y: 0.4569143}
+  m_Offset: {x: 0.017283082, y: 0.085198045}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.4589755, y: 0.08081279}
@@ -126,5 +131,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.55, y: 1.0899999}
+  m_Size: {x: 0.33668554, y: 0.31277508}
   m_EdgeRadius: 0
+--- !u!50 &-6005611735911755579
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558840483417937306}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

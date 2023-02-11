@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 772589750350014204}
   - component: {fileID: 772589750350014205}
   - component: {fileID: 7916194214287243875}
-  m_Layer: 9
+  - component: {fileID: 2069881922}
+  m_Layer: 6
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 772589750350014207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.85, y: -0.8, z: 0}
-  m_LocalScale: {x: 1, y: 1.0000001, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -111,3 +112,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.49321473, y: 0.24109638}
   m_EdgeRadius: 0
+--- !u!114 &2069881922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772589750350014207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7951685669a2ac24f99e503451a08355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isMoving: 0
+  timeToMove: 0.2
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerDirection: 
+  action: 
+  stand: 0
+  HP: 0
+  direction: {x: 0, y: 0, z: 0}

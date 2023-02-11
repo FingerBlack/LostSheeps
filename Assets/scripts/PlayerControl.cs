@@ -135,7 +135,7 @@ public class PlayerControl : MonoBehaviour
         
         //=============================================================================================================
         // Other Input
-        if(Input.GetKeyDown(KeyCode.F)){  // Whatif press the F.
+        if(Input.GetKeyDown(KeyCode.Space)){  // Whatif press the F.
             
             Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
             foreach( Collider2D result in results)
@@ -203,7 +203,10 @@ public class PlayerControl : MonoBehaviour
             }else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
                 isOccupied=true;
                 break;
-            }                
+            }else if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
+                isOccupied=true;
+                break;
+            }             
         }
         if(!isOccupied){
             isMoving = true;
