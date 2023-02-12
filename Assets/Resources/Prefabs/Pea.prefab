@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6041141550217836440}
   - component: {fileID: 4324241771857938124}
-  - component: {fileID: 7987251118026107430}
+  - component: {fileID: 8662156184172846642}
+  - component: {fileID: 132628568942274173}
+  - component: {fileID: 8258778286809169966}
   m_Layer: 3
   m_Name: Pea
   m_TagString: Untagged
@@ -25,8 +27,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2275785657272671411}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.10404762}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1035902723, guid: df5ca7bd6b4293841b563aba803e2ce2, type: 3}
+  m_Sprite: {fileID: -657407940, guid: 10b02c747f69c7c40ba9d32e8783a320, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +87,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!114 &7987251118026107430
+--- !u!58 &8662156184172846642
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275785657272671411}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.025032103, y: 0.60580194}
+  serializedVersion: 2
+  m_Radius: 5
+--- !u!50 &132628568942274173
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2275785657272671411}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &8258778286809169966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,14 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2275785657272671411}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 066c67ae2635fdc4492d41ebb9e1cd93, type: 3}
+  m_Script: {fileID: 11500000, guid: d31d779ce7f9a2946b85aa0405407b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  map: {fileID: 0}
-  bullet: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
-  shootPeriod: 1
-  targetRange: 0
-  bulletSpeed: 0
-  HP: 0
-  gridPosition: {x: 0, y: 0, z: 0}
+  ifmove: 0
+  speed: 0
