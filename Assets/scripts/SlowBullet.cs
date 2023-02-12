@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SlowBullet : MonoBehaviour
+{
+    //======================================== variables ============================================================
+    // Dont Initiat the Value here plz.
+    public Vector3 TargetPos;
+    public float speed;
+    public float MaintainTime;
+    public float TimeCount;
+    private ContactFilter2D filter; // Collider Detect Tools.
+    private List<Collider2D> results;// Collider Detect Tools.
+    //=============================================================================================================
+    void Start()
+    {
+        filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
+        results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+        // speed=1f;
+        TimeCount = 0;
+        MaintainTime = 10f;
+        TimeCount = 0f;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        TimeCount += Time.deltaTime;
+        if (TimeCount > MaintainTime)
+        {
+            Destroy(gameObject);
+        }
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, TargetPos, speed * Time.deltaTime);
+        Physics2D.OverlapCircle(transform.position, 0.02f, filter, results);
+        foreach (Collider2D result in results)
+        {
+            if (result.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
+            {
+                enemy.HP -= 1f;
+                enemy.isSlowed = 1;
+                enemy.slowedTime = 0;
+                Destroy(gameObject);
+            }
+        }
+    }
+}
