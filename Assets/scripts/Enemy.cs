@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public GameObject Player;
     public float movementSpeed;
     public float Damage;
+    public int isSlowed;
 
     //=============================================================================================================
     // Start is called before the first frame update
@@ -19,12 +20,21 @@ public class Enemy : MonoBehaviour
         Damage=10f;
         movementSpeed=0.5f;
         Player=GameObject.Find("Player");
+        isSlowed = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        movementSpeed=0.5f;
+        if (isSlowed==1)
+        {
+            movementSpeed = 0.3f;
+        }
+        else
+        {
+            movementSpeed = 0.7f;
+        }
+
 
         if(HP<=0){
             Destroy(gameObject);
