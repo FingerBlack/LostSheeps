@@ -16,11 +16,12 @@ public class PlantPea : MonoBehaviour
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
     private float shootTimer;
-    public float shootPeriod;
+    public float basicShootPeriod;
     public float targetRange;
     public float bulletSpeed;
     public float HP;
     public Vector3Int gridPosition;
+    public float bulletPeriodBuff;
     private Vector3 bulletOffset = new Vector3(0.5f, 1.0f, 0.0f);
     //=============================================================================================================
 
@@ -28,12 +29,13 @@ public class PlantPea : MonoBehaviour
     void Start()
     {
         HP=50f;
+        bulletPeriodBuff=0f;
         target = null;
         map = GameObject.Find("Grid").GetComponent<Grid>();
         gridPosition=map.WorldToCell(transform.position);
         targetRange=5f;
         bulletSpeed=6f;
-        shootPeriod=1.0f;
+        basicShootPeriod=1.0f;
         shootTimer=0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
@@ -51,7 +53,7 @@ public class PlantPea : MonoBehaviour
 
             // shoot every period of time
             shootTimer += Time.deltaTime;
-            if(shootTimer > shootPeriod)
+            if(shootTimer > basicShootPeriod/(1f+bulletPeriodBuff))
             {
                 shootTimer =0f;
 
