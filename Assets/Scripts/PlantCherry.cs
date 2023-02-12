@@ -23,10 +23,12 @@ public class PlantCherry : MonoBehaviour
     void Start()
     {   
         target=null;
+        map = GameObject.Find("Grid").GetComponent<Grid>();
         speed=1f;
-        StartCoroutine(CheckNeighbors());
+        
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+        StartCoroutine(CheckNeighbors());
     }
 
     // Update is called once per frame
