@@ -22,8 +22,8 @@ public class PlantCherry : MonoBehaviour
             if(dis<0.1f){
                 target.GetComponent<Box>().HP=100f;
                 target.transform.GetChild(0).gameObject.GetComponent<PlantPea>().HP+=100f;
-                target.transform.GetChild(0).gameObject.GetComponent<PlantPea>().shootPeriod/=1.1f;
-                target.transform.GetChild(0).gameObject.GetComponent<PlantPea>().bulletSpeed*=2f;
+                target.transform.GetChild(0).gameObject.GetComponent<PlantPea>().shootPeriod/=1.3f;
+                //target.transform.GetChild(0).gameObject.GetComponent<PlantPea>().bulletSpeed*=2f;
                 Destroy(transform.parent.gameObject);
             }
             transform.parent.position=Vector3.MoveTowards(transform.parent.position,target.transform.position,speed*Time.deltaTime);

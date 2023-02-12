@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        HP=100f;
+        HP=5f;
         Damage=10f;
         movementSpeed=0.5f;
         Player=GameObject.Find("Player");
@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     {
         movementSpeed=0.5f;
 
-        if(HP<0){
+        if(HP<=0){
             Destroy(gameObject);
         }
         float distance=Vector3.Distance(transform.position,Player.transform.position);

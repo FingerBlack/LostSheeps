@@ -32,7 +32,7 @@ public class PlantPea : MonoBehaviour
         map = GameObject.Find("Grid").GetComponent<Grid>();
         gridPosition=map.WorldToCell(transform.position);
         targetRange=5f;
-        bulletSpeed=5f;
+        bulletSpeed=6f;
         shootPeriod=1.0f;
         shootTimer=0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
