@@ -39,6 +39,7 @@ public class SlowBullet : MonoBehaviour
             {
                 enemy.HP -= 1f;
                 enemy.isSlowed = 1;
+                enemy.slowedTime = 0;
                 Destroy(gameObject);
             }
         }

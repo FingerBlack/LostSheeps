@@ -47,6 +47,8 @@ public class PlantPea : MonoBehaviour
         
         if(target)
         {
+
+
             // shoot every period of time
             shootTimer += Time.deltaTime;
             if(shootTimer > shootPeriod)
@@ -59,7 +61,15 @@ public class PlantPea : MonoBehaviour
                 BulletComponent.TargetPos=transform.position + direction.normalized * 1000.0f;    
                 BulletComponent.speed=bulletSpeed;
             }
+
+            Vector3 currEnemyPos = target.transform.position - transform.position;
+            float enemyDist = currEnemyPos.magnitude;
+            if (enemyDist > targetRange)
+            {
+                target = null;
+            }
         }
+
     }
 
     private IEnumerator CheckNeighbors(){   

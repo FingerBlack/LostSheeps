@@ -84,6 +84,12 @@ public class FourShotTurret : MonoBehaviour
                 }
 
             }
+            Vector3 currEnemyPos = target.transform.position - transform.position;
+            float enemyDist = currEnemyPos.magnitude;
+            if (enemyDist > targetRange)
+            {
+                target = null;
+            }
         }
     }
 
