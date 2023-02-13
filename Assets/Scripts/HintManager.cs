@@ -6,6 +6,7 @@ public class HintManager : MonoBehaviour
 {
     public GameObject hintE;
     public GameObject hintSpace;
+    public GameObject enemies;
     private bool touchedE;
     private bool touchedSpace;
     private bool inArea;
@@ -33,7 +34,13 @@ public class HintManager : MonoBehaviour
         if(inArea && touchedE && !touchedSpace && Input.GetKeyDown(KeyCode.Space)){
             hintSpace.SetActive(false);
             touchedSpace = true;
+            // SceneChanger.SampleScene();
         }
+
+        if(enemies.transform.childCount == 0){
+            SceneChanger.SampleScene();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
