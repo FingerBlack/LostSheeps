@@ -58,7 +58,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
         float distance=Vector3.Distance(transform.position,Player.transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if(distance<0.2f){
             Player.GetComponent<PlayerControl>().HP-=Damage;
 
