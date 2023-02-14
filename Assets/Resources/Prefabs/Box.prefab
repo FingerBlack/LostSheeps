@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 850f3a768e891714e97f39711a43e865, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   playerDirection: 
   action: 
   stand: 0
+  HP: 0
   direction: {x: 0, y: 0, z: 0}
 --- !u!61 &7916194214287243875
 BoxCollider2D:
@@ -123,8 +124,8 @@ BoxCollider2D:
   m_Offset: {x: -0.0034908652, y: 0.008590341}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5103183, y: 0.14353591}
-    oldSize: {x: 0.55, y: 0.78}
+    pivot: {x: 0.51031494, y: 0.26558992}
+    oldSize: {x: 0.51, y: 0.93999994}
     newSize: {x: 0.55, y: 0.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

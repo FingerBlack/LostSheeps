@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9014a6b9008924a428a8d999aa477db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 100
+  HP: 5
   Player: {fileID: 2853620171554428226, guid: f96194af8ea9d054aadcb2d07f160550, type: 3}
-  movementSpeed: 0.15
+  movementSpeed: 2.5
   Damage: 0
   isSlowed: 0
   slowDuration: 0

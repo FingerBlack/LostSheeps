@@ -136,7 +136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c67ae2635fdc4492d41ebb9e1cd93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetEnemy: {fileID: 0}
   target: {fileID: 0}
+  speed: 0
   map: {fileID: 0}
   bullet: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
   up: {fileID: 0}
@@ -149,3 +151,6 @@ MonoBehaviour:
   HP: 0
   gridPosition: {x: 0, y: 0, z: 0}
   bulletPeriodBuff: 0
+  transferGameObject1: {fileID: 843791430447272641, guid: b2c61bca4024f1f4c95ffbb0b39fed6a, type: 3}
+  transferGameObject2: {fileID: 8539321876677869035, guid: 9d9b2ef713f3ad6438b8188194a528e6, type: 3}
+  transferGameObject3: {fileID: 3120475935882253227, guid: 4327e2a796077b94db8479dd00a9eb43, type: 3}

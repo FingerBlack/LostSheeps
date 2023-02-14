@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 615248339775926302}
   - component: {fileID: 67338227597826687}
-  - component: {fileID: 7336813598808121855}
-  - component: {fileID: 2031265012529142192}
   - component: {fileID: -1190459763295666205}
   - component: {fileID: 5291997973203631361}
   m_Layer: 3
@@ -88,43 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!58 &7336813598808121855
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620004806310802612}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.025032103, y: 0.60580194}
-  serializedVersion: 2
-  m_Radius: 5
---- !u!50 &2031265012529142192
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8620004806310802612}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &-1190459763295666205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,6 +111,9 @@ MonoBehaviour:
   upLeft: {fileID: 0}
   downLeft: {fileID: 0}
   gridPosition: {x: 0, y: 0, z: 0}
+  transferGameObject1: {fileID: 6647284001720093297, guid: 56aedc5a954874f4b892ff1fbb452adb, type: 3}
+  transferGameObject2: {fileID: 8539321876677869035, guid: 9d9b2ef713f3ad6438b8188194a528e6, type: 3}
+  transferGameObject3: {fileID: 3120475935882253227, guid: 4327e2a796077b94db8479dd00a9eb43, type: 3}
 --- !u!114 &5291997973203631361
 MonoBehaviour:
   m_ObjectHideFlags: 0
