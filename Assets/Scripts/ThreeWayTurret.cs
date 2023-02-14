@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TureeWayTurret : MonoBehaviour
+public class ThreeWayTurret : MonoBehaviour
 {
     //======================================== variables ============================================================
     // Dont Initiat the Value here plz.
