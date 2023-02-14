@@ -79,7 +79,7 @@ public class PlayerControl : MonoBehaviour
                           //=============================================================================================================
                           // Hp
         if (HP < 0) {
-            User user = new User();
+            User user = CameraControl.user;
             Debug.Log(user.userID);
 
             DeathData data = new DeathData(user.userID, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
