@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Proyecto26;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -75,9 +76,17 @@ public class PlayerControl : MonoBehaviour
         vertInput = Input.GetAxis("Vertical");
         horiSpeed =5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
-    //=============================================================================================================
-    // Hp
-        if(HP<0){
+                          //=============================================================================================================
+                          // Hp
+        if (HP < 0) {
+            User user = CameraControl.user;
+            Debug.Log(user.userID);
+
+            DeathData data = new DeathData(user.userID, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            
+            RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "deathData/" + System.Guid.NewGuid().ToString()+ ".json", data);
+
             Destroy(gameObject); 
         }
     //=============================================================================================================
