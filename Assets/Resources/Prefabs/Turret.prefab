@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 850f3a768e891714e97f39711a43e865, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,8 +143,9 @@ MonoBehaviour:
   down: {fileID: 0}
   left: {fileID: 0}
   right: {fileID: 0}
-  shootPeriod: 1
+  basicShootPeriod: 0
   targetRange: 2
   bulletSpeed: 10
   HP: 0
   gridPosition: {x: 0, y: 0, z: 0}
+  bulletPeriodBuff: 0

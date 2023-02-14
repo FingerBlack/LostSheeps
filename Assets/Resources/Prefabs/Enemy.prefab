@@ -55,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 850f3a768e891714e97f39711a43e865, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,10 +103,9 @@ MonoBehaviour:
   Player: {fileID: 2853620171554428226, guid: f96194af8ea9d054aadcb2d07f160550, type: 3}
   movementSpeed: 0.15
   Damage: 0
-  targetWorldPos: {x: 0, y: 0, z: 0}
-  isMoving: 0
-  timeToMove: 0
-  enemyGridPos: {x: 0, y: 0, z: 0}
+  isSlowed: 0
+  slowDuration: 0
+  slowedTime: 0
 --- !u!61 &-3003414465236750935
 BoxCollider2D:
   m_ObjectHideFlags: 0
