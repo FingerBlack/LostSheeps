@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-
+using Proyecto26;
 public class PlayerControl : MonoBehaviour
 {
     //======================================== variables ============================================================
@@ -84,6 +84,14 @@ public class PlayerControl : MonoBehaviour
         if(HP<0){
             transform.eulerAngles=new Vector3(0, 0, 90f);
             canvasManager.ifRestart=true;
+            
+            User user = CameraControl.user;
+            Debug.Log(user.userID);
+
+            DeathData data = new DeathData(user.userID, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            
+            RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "deathData/" + System.Guid.NewGuid().ToString()+ ".json", data);
         }
     //=============================================================================================================
     // Facing direction;
