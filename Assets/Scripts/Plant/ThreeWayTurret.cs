@@ -34,7 +34,7 @@ public class ThreeWayTurret : MonoBehaviour
         map = GameObject.Find("Grid").GetComponent<Grid>();
         gridPosition = map.WorldToCell(transform.position);
         targetRange = 5f;
-        bulletSpeed = 6f;
+        bulletSpeed = 10f;
         shootPeriod = 1.0f;
 
         shootTimer = 0f;

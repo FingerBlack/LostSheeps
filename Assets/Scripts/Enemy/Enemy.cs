@@ -14,18 +14,22 @@ public class Enemy : MonoBehaviour
     public float slowDuration;
     public float slowedTime;
     public CanvasManager canvasManager;
+    private float notSlowedSPeed;
+    private float slowedSPeed;
     //=============================================================================================================
     // Start is called before the first frame update
     void Start()
     {
         // HP=5f;
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
-        Damage=10f;
+        Damage=40f;
         //movementSpeed;
         Player=GameObject.Find("Player");
         isSlowed = 0;
         slowDuration = 5;
         slowedTime = 0;
+        notSlowedSPeed = 2.0f;
+        slowedSPeed = 0.2f;
     }
 
     // Update is called once per frame
@@ -38,7 +42,7 @@ public class Enemy : MonoBehaviour
         {
             if(slowedTime < slowDuration)
             {
-                movementSpeed = 0.1f;
+                movementSpeed = slowedSPeed;
                 slowedTime += Time.deltaTime;
             }
             else
@@ -49,7 +53,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            movementSpeed = 0.7f;
+            movementSpeed = notSlowedSPeed;
 
         }
 
@@ -59,7 +63,7 @@ public class Enemy : MonoBehaviour
         }
         float distance=Vector3.Distance(transform.position,Player.transform.position);
         //Debug.Log(distance);
-        if(distance<0.2f){
+        if(distance<0.4f){
             Player.GetComponent<PlayerControl>().HP-=Damage;
 
         }

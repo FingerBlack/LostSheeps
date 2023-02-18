@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     public float timeToMove;
     public string action;
     public bool isMoving;
+
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
     
