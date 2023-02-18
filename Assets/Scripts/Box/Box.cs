@@ -44,7 +44,11 @@ public class Box : MonoBehaviour
             if(result.gameObject.TryGetComponent<Box>(out Box box)){
                 isOccupied=true;
                 break;
-            }else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+            }else if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
+                isOccupied=true;
+                break;
+            }
+            else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
                 isOccupied=true;
                 break;
             }                

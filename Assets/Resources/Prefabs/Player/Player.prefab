@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plant: {fileID: 6461190085339717502, guid: b550f455b1b335844b07b52c63bde891, type: 3}
-  pea: {fileID: 0}
-  cherry: {fileID: 0}
+  pea: {fileID: 6461190085339717502, guid: b550f455b1b335844b07b52c63bde891, type: 3}
+  cherry: {fileID: 8620004806310802612, guid: e7324baca9fe6a7439ca7c3c0258b4e4, type: 3}
   horiBox: {fileID: 0}
   vertBox: {fileID: 0}
   peaNumber: 0
