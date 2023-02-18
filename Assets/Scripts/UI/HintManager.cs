@@ -38,9 +38,9 @@ public class HintManager : MonoBehaviour
             // SceneChanger.SampleScene();
         }
 
-        if(enemies.transform.childCount == 0){
-            canvasManager.ifEnd=true;
-        }
+//        if(enemies.transform.childCount == 0){
+//            canvasManager.ifEnd=true;
+//        }
 
     }
 
