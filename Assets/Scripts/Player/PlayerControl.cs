@@ -47,8 +47,8 @@ public class PlayerControl : MonoBehaviour
         isMoving=false;
         action="None";
         timeToMove=0.2f;
-        peaNumber=3; //initiate the peaNumber.
-        cherryNumber=2; ////initiate the cherryNumber.
+        peaNumber=0; //initiate the peaNumber.
+        cherryNumber=0; ////initiate the cherryNumber.
         horiSpeed =5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
@@ -57,7 +57,7 @@ public class PlayerControl : MonoBehaviour
         pea=Resources.Load("Prefabs/Plant/Turret") as GameObject; //Load Plant pea
         cherry=Resources.Load("Prefabs/Cherry/Radar") as GameObject; //Load Plant cherry
         plant=pea;   
-        HP=10000f; // Set HP 
+        HP=1000f; // Set HP 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in GridSpace
         transform.position=floorGrid.GetCellCenterWorld(playerGridPos);
