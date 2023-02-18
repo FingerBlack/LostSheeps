@@ -21,7 +21,9 @@ public class CanvasManager : MonoBehaviour
     public bool ifEnd; 
     public bool ifRestart; 
     public bool ifTimeCount; 
+    public float timeNeed;
     private Button startButton;
+
     void Start()
     {   
         timeCount=0f;
@@ -45,7 +47,7 @@ public class CanvasManager : MonoBehaviour
     void Update()
     {   
         
-        if(timeCount>299.5f){
+        if(timeCount>timeNeed-0.2f){
             ifEnd=true;
         }
         if(ifStart){
@@ -86,7 +88,7 @@ public class CanvasManager : MonoBehaviour
         TMP_Text uiDisplay = ui.GetComponent<TMP_Text>();
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
-        uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Timer: "+TimeSpan.FromSeconds(300f-timeCount).ToString(@"mm\:ss")
+        uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Timer: "+TimeSpan.FromSeconds(timeNeed-timeCount).ToString(@"mm\:ss")
         +"      Turrent Component: "+playerControl.peaNumber.ToString()
         +"      Radar Component: "+playerControl.cherryNumber.ToString();
     }
