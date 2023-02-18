@@ -25,9 +25,9 @@ public class ButtonFloor : MonoBehaviour
             if(result.gameObject.TryGetComponent<Box>(out Box box)){
                 wallsList.SetActive(false);
             }
-            if(result.gameObject.TryGetComponent<PlayerControl>(out PlayerControl playerControl)){
-                wallsList.SetActive(false);
-            }
+//            if(result.gameObject.TryGetComponent<PlayerControl>(out PlayerControl playerControl)){
+//                wallsList.SetActive(false);
+//            }
             // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
             //     wall.direction=playerDirection;
             //     wall.action="move";
