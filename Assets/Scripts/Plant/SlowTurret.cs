@@ -34,7 +34,7 @@ public class SlowTurret : MonoBehaviour
         map = GameObject.Find("Grid").GetComponent<Grid>();
         gridPosition = map.WorldToCell(transform.position);
         targetRange = 10f;
-        bulletSpeed = 6f;
+        bulletSpeed = 10f;
         shootPeriod = 1.0f;
         shootTimer = 0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.

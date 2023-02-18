@@ -28,6 +28,7 @@ public class CanvasManager : MonoBehaviour
     {   
         //timeNeed=300f;
         timeCount=0f;
+        //set timeNeed
         ifTimeCount=false;
         ifStart=false;
         ifEnd=false;
