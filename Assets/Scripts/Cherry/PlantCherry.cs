@@ -40,12 +40,29 @@ public class PlantCherry : MonoBehaviour
         transfer=0;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
-        StartCoroutine(CheckNeighbors());
+        CheckNeighbors();
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        gridPosition=map.WorldToCell(transform.position);
+        upRight = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,1,0)));
+        downRight = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,-1,0)));
+        upLeft = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,1,0)));
+        downLeft = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,-1,0)));
+        up = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,1,0)));
+        down = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,-1,0)));
+        left = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,0,0)));
+        right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
+        AddBuff(upRight);
+        AddBuff(downRight);
+        AddBuff(upLeft);
+        AddBuff(downLeft);
+        AddBuff(up);
+        AddBuff(down);
+        AddBuff(left);
+        AddBuff(right);
         if(target){
             float dis=Vector3.Distance(transform.parent.transform.position,target.transform.position);
             // if(dis<0.1f){
@@ -159,6 +176,9 @@ public class PlantCherry : MonoBehaviour
 
         targetObject1=neighbor1;
         targetObject2=neighbor2;
+        
+        
+        //Debug.Log("0.3");
         if(check1==1){
             neighbor1.transform.GetChild(0).gameObject.GetComponent<PlantCherry>().target=transform.parent.gameObject;
         }else if(check1==2){
@@ -172,34 +192,20 @@ public class PlantCherry : MonoBehaviour
         return 1;
     }
 
-    private IEnumerator CheckNeighbors(){   
+
+    public bool CheckNeighbors(){   
         
-        while(true){
-            gridPosition=map.WorldToCell(transform.position);
-            upRight = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,1,0)));
-            downRight = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,-1,0)));
-            upLeft = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,1,0)));
-            downLeft = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,-1,0)));
-            up = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,1,0)));
-            down = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,-1,0)));
-            left = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,0,0)));
-            right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
-            AddBuff(upRight);
-            AddBuff(downRight);
-            AddBuff(upLeft);
-            AddBuff(downLeft);
-            AddBuff(up);
-            AddBuff(down);
-            AddBuff(left);
-            AddBuff(right);
-            if(!target&&transfer==0&&!boxComponent.isMoving){
-                if(_Check_Neighbors_Combine(up,down)==0){
-                    _Check_Neighbors_Combine(left,right);
+        
+        if(!target&&transfer==0){
+            if(_Check_Neighbors_Combine(up,down)==0){
+                if(_Check_Neighbors_Combine(left,right)==0){
+                    return false;
                 }
+                
             }
-            
-            yield return null; 
         }
+        return true;
+        
     }
     private GameObject GetBox(Vector3 position){
         Physics2D.OverlapCircle(position, 0.1f,filter, results);

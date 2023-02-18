@@ -63,7 +63,11 @@ public class PlantPea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-
+        gridPosition=map.WorldToCell(transform.position);
+        up = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,1,0)));
+        down = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,-1,0)));
+        left = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,0,0)));
+        right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
         if(target){
             float dis=Vector3.Distance(transform.parent.transform.position,target.transform.position);
             // if(dis<0.1f){
@@ -186,25 +190,21 @@ public class PlantPea : MonoBehaviour
         }
         return 1;
     }
-    private bool CheckNeighbors(){   
+    public bool CheckNeighbors(){   
         
-        while(true){
-            gridPosition=map.WorldToCell(transform.position);
-            up = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,1,0)));
-            down = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,-1,0)));
-            left = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,0,0)));
-            right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
-            if(!target&&transfer==0&&!boxComponent.isMoving){
-                if(_Check_Neighbors_Combine(up,down)==0){
-                    if(_Check_Neighbors_Combine(up,down)==0){
-                        return false;
-                    }
-                    
-                }
-            }
+        
 
-            return true;
+        if(!target&&transfer==0){
+            if(_Check_Neighbors_Combine(up,down)==0){
+                if(_Check_Neighbors_Combine(left,right)==0){
+                    return false;
+                }
+                
+            }
         }
+
+        return true;
+        
     }
     private IEnumerator TargetEnemy(){   
         while(true){
