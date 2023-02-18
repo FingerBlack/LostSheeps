@@ -80,7 +80,7 @@ public class CanvasManager : MonoBehaviour
         +"      Radar Component: "+playerControl.cherryNumber.ToString();
     }
     void OnClick(){
-        Debug.Log("Press the Button");
+        //Debug.Log("Press the Button");
         homePanel.SetActive(false);
         valuePanel.SetActive(true);
         cardPanel.SetActive(true);

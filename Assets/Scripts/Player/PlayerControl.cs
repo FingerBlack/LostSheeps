@@ -157,10 +157,10 @@ public class PlayerControl : MonoBehaviour
                     box.direction=playerDirection;
                     box.action="move";
                 }
-                if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
-                    wall.direction=playerDirection;
-                    wall.action="move";
-                }
+                // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
+                //     wall.direction=playerDirection;
+                //     wall.action="move";
+                // }
             }
         }
         if(Input.GetKeyDown(KeyCode.E)){ // Whatif press the E.
