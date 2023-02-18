@@ -14,9 +14,18 @@ public class Box : MonoBehaviour
     public float HP;
     public Vector3Int direction;
     private Vector3Int origCellPos;
+    private GameObject plant;
+    private string plantKind;
     void Start()
     { 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>();
+        plant=transform.GetChild(0).gameObject;
+        if(plant.TryGetComponent<PlantPea>(out PlantPea plantPea)){
+            plantKind="PlantPea";
+        }else if(plant.TryGetComponent<PlantCherry>(out PlantCherry plantCherry)){
+            plantKind="PlantCherry";   
+        }
+
         origCellPos = floorGrid.WorldToCell(transform.position);
         transform.position = floorGrid.GetCellCenterWorld(origCellPos);
     }
@@ -64,6 +73,10 @@ public class Box : MonoBehaviour
             }            
             transform.position = targetPos;
             origCellPos = targetCellPos;
+            if(plantKind=="PlantPea"){
+                 PlantPea plantPea=plant.GetComponent<PlantPea>().CheckNeighbors();
+                 plantPea.check
+            }
             isMoving = false;    
         }     
     }

@@ -57,13 +57,13 @@ public class PlantPea : MonoBehaviour
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
         StartCoroutine(TargetEnemy());
-        StartCoroutine(CheckNeighbors());
+        
     }
 
     // Update is called once per frame
     void Update()
     {   
-        
+
         if(target){
             float dis=Vector3.Distance(transform.parent.transform.position,target.transform.position);
             // if(dis<0.1f){
@@ -186,7 +186,7 @@ public class PlantPea : MonoBehaviour
         }
         return 1;
     }
-    private IEnumerator CheckNeighbors(){   
+    private bool CheckNeighbors(){   
         
         while(true){
             gridPosition=map.WorldToCell(transform.position);
@@ -196,11 +196,14 @@ public class PlantPea : MonoBehaviour
             right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
             if(!target&&transfer==0&&!boxComponent.isMoving){
                 if(_Check_Neighbors_Combine(up,down)==0){
-                    _Check_Neighbors_Combine(left,right);
+                    if(_Check_Neighbors_Combine(up,down)==0){
+                        return false;
+                    }
+                    
                 }
             }
 
-            yield return null; 
+            return true;
         }
     }
     private IEnumerator TargetEnemy(){   
