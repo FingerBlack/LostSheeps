@@ -14,15 +14,18 @@ public class CanvasManager : MonoBehaviour
     public GameObject cardPanel1;
     public GameObject nextLevel;
     public GameObject restart;
+    public GameObject occupiedFloors;
     public float timeCount;
     private PlayerControl playerControl;
     public bool ifStart;
     public bool ifEnd; 
     public bool ifRestart; 
+    public bool ifTimeCount; 
     private Button startButton;
     void Start()
     {   
         timeCount=0f;
+        ifTimeCount=false;
         ifStart=false;
         ifEnd=false;
         homePanel=transform.GetChild(0).gameObject;
@@ -35,16 +38,24 @@ public class CanvasManager : MonoBehaviour
         nextLevel=transform.GetChild(4).gameObject;
         restart=transform.GetChild(5).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
+        occupiedFloors=GameObject.Find("OccupiedFloors");
     }
 
     // Update is called once per frame
     void Update()
     {   
+        
         if(timeCount>299.5f){
             ifEnd=true;
         }
-        if(ifStart)
-            timeCount+=Time.deltaTime;
+        if(ifStart){
+            foreach(Transform i in occupiedFloors.transform){
+                if(i.gameObject.GetComponent<OccupiedFloor>().isOccupied){
+                    timeCount+=Time.deltaTime;
+                    break;
+                }
+            }
+        }
         if(ifEnd){
             ifStart=false;
             nextLevel.SetActive(true);

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 185573754, guid: 91180792b88a4a84fbc8b71c8add140a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -119,6 +119,7 @@ MonoBehaviour:
   action: 
   isMoving: 0
   playerDirection: {x: 0, y: 0, z: 0}
+  canvasManager: {fileID: 0}
   playerGridPos: {x: 0, y: 0, z: 0}
   targetrGridPos: {x: 0, y: 0, z: 0}
   targetWorldPos: {x: 0, y: 0, z: 0}
@@ -135,7 +136,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03146872, y: 0.07281256}
+  m_Offset: {x: 0.008846089, y: 0.12258227}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.47009832, y: 0.04324177}
@@ -146,7 +147,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8969591, y: 0.51588774}
+  m_Size: {x: 0.35401723, y: 0.34395626}
   m_EdgeRadius: 0
 --- !u!50 &2853620171554428228
 Rigidbody2D:
