@@ -64,11 +64,11 @@ public class Enemy2 : MonoBehaviour
 
         if(HP<=0){
             if(orig){
-                Debug.Log("second");
+                // Debug.Log("second");
                 Destroy(gameObject);
             } else{
                 // turn into orginal enemy;
-                Debug.Log("first");
+                // Debug.Log("first");
                 orig = true;
                 HP = origHP;
                 spriteRenderer.sprite = newSprite; 
