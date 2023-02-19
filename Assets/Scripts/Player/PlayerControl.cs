@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     public float timeToMove;
     public string action;
     public bool isMoving;
+    public string attackedBy;
 
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
@@ -86,7 +87,7 @@ public class PlayerControl : MonoBehaviour
             transform.eulerAngles=new Vector3(0, 0, 90f);
             canvasManager.ifRestart=true;
 
-            PlayingStats.deathCount();
+            PlayingStats.deathCount(attackedBy);
         }
     //=============================================================================================================
     // Facing direction;
@@ -167,12 +168,14 @@ public class PlayerControl : MonoBehaviour
                         if(plant==pea&&peaNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             peaNumber-=1;
-                            PlayingStats.plantCount("pea");
+                            PlayingStats.plantCount(NamingConstant.Plant1);
+                            Debug.Log(NamingConstant.Plant1);
                         }
                         if(plant==cherry&&cherryNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             cherryNumber-=1;
-                            PlayingStats.plantCount("cherry");
+                            PlayingStats.plantCount(NamingConstant.Plant2);
+                            Debug.Log(NamingConstant.Plant2);
                         }
                     }
                 }

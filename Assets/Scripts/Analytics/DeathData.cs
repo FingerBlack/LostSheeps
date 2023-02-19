@@ -6,18 +6,20 @@ public class DeathData
 {
     
     public string userID;
-    public string duration;
+    public string levelTime;
     public int deathCount;
     public string level;
-    private string time;
+    public string eventTime;
+    public string attackedBy;
     
 
-    public DeathData(string userID,string time,string level,string duration)
+    public DeathData(string userID,string level,string levelTime,string attackedBy)
     {
         this.level=level;
         this.deathCount = 1;
         this.userID = userID;
-        this.duration = duration;
-        this.time = PlayingStats.printDate(System.DateTime.Now);
+        this.levelTime = levelTime;
+        this.eventTime = PlayingStats.printDate(System.DateTime.Now);
+        this.attackedBy = attackedBy;
     }
 }

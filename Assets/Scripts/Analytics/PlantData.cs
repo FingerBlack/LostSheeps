@@ -8,14 +8,15 @@ public class PlantData
     // Start is called before the first frame update
     public string userID;
     public string plantName;
-    public string plantTime;
+    public string levelTime;
     public string level;
-    public PlantData(string userID,string plantName,string plantTime,string level)
+    public string eventTime;
+    public PlantData(string userID,string plantName,string levelTime,string level)
     {
         this.level = level;
-        this.plantTime = plantTime;
+        this.levelTime = levelTime;
         this.userID = userID;
-        
+        this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.plantName = plantName;
     }
     

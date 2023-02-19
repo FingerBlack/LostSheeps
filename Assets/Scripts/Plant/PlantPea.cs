@@ -84,12 +84,17 @@ public class PlantPea : MonoBehaviour
             float dis=Vector3.Distance(transform.parent.transform.position,targetObject1.transform.position);
             if(dis<0.01f){
                 if(transfer==1){
+
+                    PlayingStats.comboCount(NamingConstant.Combo1);
+
                     Instantiate(transferGameObject1,transform.position,Quaternion.identity,transform.parent);
                 }   
                 if(transfer==2){
+                    
                     Instantiate(transferGameObject2,transform.position,Quaternion.identity,transform.parent);
                 }
                 if(transfer==3){
+                    
                     Instantiate(transferGameObject3,transform.position,Quaternion.identity,transform.parent);
                 }
                 Destroy(targetObject1.gameObject);

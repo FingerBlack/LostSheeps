@@ -90,6 +90,7 @@ public class SlowTurret : MonoBehaviour
                         {
                             upCherry.target = transform.parent.gameObject;
                             downCherry.target = transform.parent.gameObject;
+                            
                         }
                     }
                 }
@@ -104,6 +105,7 @@ public class SlowTurret : MonoBehaviour
                         {
                             leftCherry.target = transform.parent.gameObject;
                             rightCherry.target = transform.parent.gameObject;
+                            
                         }
                     }
                 }

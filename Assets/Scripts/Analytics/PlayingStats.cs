@@ -4,8 +4,11 @@ using UnityEngine;
 using Proyecto26;
 using UnityEngine.SceneManagement;
 using System;
+
+// class involved PlayerControl Enemy1 Enemy
 public class PlayingStats : MonoBehaviour
 {
+    
     public static User user;
     public static DateTime startTime;
     public static DateTime endTime;
@@ -59,21 +62,23 @@ public class PlayingStats : MonoBehaviour
 
 
 
-    public static void deathCount()
+    public static void deathCount(string attackedBy)
     {
         User user = PlayingStats.user;
         Debug.Log(user.userID);
        
-        DeathData data = new DeathData(user.userID, printDate(System.DateTime.Now),currentSceneName, PlayingStats.getDuration());
+        DeathData data = new DeathData(user.userID,currentSceneName, PlayingStats.getDuration(),attackedBy);
 
 
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "deathData/" + System.Guid.NewGuid().ToString() + ".json", data);
     }
 
+
     public static string printDate(DateTime d)
     {
         return d.ToString("yyyy-MM-dd HH:mm:ss");
     }
+
 
     // get the running time of current level
     public static string getDuration()
@@ -86,5 +91,17 @@ public class PlayingStats : MonoBehaviour
 
         PlantData d = new PlantData(PlayingStats.user.userID, plantName, PlayingStats.getDuration(), PlayingStats.currentSceneName);
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "plantData/" + System.Guid.NewGuid().ToString() + ".json", d);
+    }
+
+
+    public static void comboCount(string comboName)
+    {
+        User user = PlayingStats.user;
+        
+
+        ComboData data = new ComboData(user.userID, comboName,  PlayingStats.getDuration(),currentSceneName);
+
+
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "comboData/" + System.Guid.NewGuid().ToString() + ".json", data);
     }
 }
