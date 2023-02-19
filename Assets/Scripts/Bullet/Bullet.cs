@@ -38,6 +38,10 @@ public class Bullet : MonoBehaviour
                 enemy.HP-=1f;
                 Destroy(gameObject);
             }
+            if(result.gameObject.TryGetComponent<Enemy2>(out Enemy2 enemy2)){
+                enemy2.HP-=1f;
+                Destroy(gameObject);
+            }
             // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
             //     //enemy.HP-=1f;
             //     Destroy(gameObject);
