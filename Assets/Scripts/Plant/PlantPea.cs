@@ -85,16 +85,17 @@ public class PlantPea : MonoBehaviour
             if(dis<0.01f){
                 if(transfer==1){
 
-                    PlayingStats.comboCount(NamingConstant.Combo1);
-
+                    PlayingStats.comboCount(transferGameObject1.name);
+                    
                     Instantiate(transferGameObject1,transform.position,Quaternion.identity,transform.parent);
                 }   
                 if(transfer==2){
-                    
+                    PlayingStats.comboCount(transferGameObject2.name);
                     Instantiate(transferGameObject2,transform.position,Quaternion.identity,transform.parent);
+
                 }
                 if(transfer==3){
-                    
+                    PlayingStats.comboCount(transferGameObject3.name);
                     Instantiate(transferGameObject3,transform.position,Quaternion.identity,transform.parent);
                 }
                 Destroy(targetObject1.gameObject);
