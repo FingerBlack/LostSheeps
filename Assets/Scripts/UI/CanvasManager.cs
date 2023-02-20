@@ -60,13 +60,15 @@ public class CanvasManager : MonoBehaviour
                 }
             }
         }
-        if(ifEnd){
+        
+        if(ifEnd){//success
             ifStart=false;
             nextLevel.SetActive(true);
             valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
-        }else if(ifRestart){
+            
+        }else if(ifRestart){//fail
             ifStart=false;
             restart.SetActive(true);
             valuePanel.SetActive(false);

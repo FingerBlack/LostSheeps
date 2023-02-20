@@ -113,6 +113,7 @@ public class ThreeWayTurret : MonoBehaviour
                         {
                             upCherry.target = transform.parent.gameObject;
                             downCherry.target = transform.parent.gameObject;
+                            
                         }
                     }
                 }
@@ -127,6 +128,7 @@ public class ThreeWayTurret : MonoBehaviour
                         {
                             leftCherry.target = transform.parent.gameObject;
                             rightCherry.target = transform.parent.gameObject;
+                            
                         }
                     }
                 }

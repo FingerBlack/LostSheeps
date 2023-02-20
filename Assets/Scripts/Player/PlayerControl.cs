@@ -28,6 +28,7 @@ public class PlayerControl : MonoBehaviour
     public float timeToMove;
     public string action;
     public bool isMoving;
+    public string attackedBy;
 
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
@@ -85,14 +86,8 @@ public class PlayerControl : MonoBehaviour
         if(HP<0){
             transform.eulerAngles=new Vector3(0, 0, 90f);
             canvasManager.ifRestart=true;
-            
-            User user = CameraControl.user;
-            Debug.Log(user.userID);
 
-            DeathData data = new DeathData(user.userID, System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
-            
-            RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "deathData/" + System.Guid.NewGuid().ToString()+ ".json", data);
+            PlayingStats.deathCount(attackedBy);
         }
     //=============================================================================================================
     // Facing direction;
@@ -173,10 +168,14 @@ public class PlayerControl : MonoBehaviour
                         if(plant==pea&&peaNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             peaNumber-=1;
+                            PlayingStats.plantCount(NamingConstant.Plant1);
+                            Debug.Log(NamingConstant.Plant1);
                         }
                         if(plant==cherry&&cherryNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             cherryNumber-=1;
+                            PlayingStats.plantCount(NamingConstant.Plant2);
+                            Debug.Log(NamingConstant.Plant2);
                         }
                     }
                 }

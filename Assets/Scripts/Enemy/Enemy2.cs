@@ -80,6 +80,8 @@ public class Enemy2 : MonoBehaviour
         if(distance<0.4f){
             Player.GetComponent<PlayerControl>().HP-=Damage;
 
+            Player.GetComponent<PlayerControl>().attackedBy = GetType().Name;
+
         }
 
         transform.position=Vector3.MoveTowards(transform.position,Player.transform.position,movementSpeed*Time.deltaTime);
