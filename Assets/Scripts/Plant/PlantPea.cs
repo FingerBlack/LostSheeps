@@ -232,7 +232,19 @@ public class PlantPea : MonoBehaviour
                     if(dis2<dis1){
                         targetEnemy=result.gameObject;
                     }
-                }               
+                }
+                if(result.gameObject.TryGetComponent<BossEnemy>(out BossEnemy boss)){
+                    if(!targetEnemy){
+                        targetEnemy=result.gameObject;
+                        continue;
+                    }
+                    float dis1=Vector3.Distance(transform.position,targetEnemy.transform.position);
+                    float dis2=Vector3.Distance(transform.position,result.gameObject.transform.position);
+                    if(dis2<dis1){
+                        targetEnemy=result.gameObject;
+                    }
+                }
+
             }
             yield return null; 
         }
