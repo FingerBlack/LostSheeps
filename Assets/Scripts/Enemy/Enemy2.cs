@@ -79,7 +79,8 @@ public class Enemy2 : MonoBehaviour
         //Debug.Log(distance);
         if(distance<0.4f){
             Player.GetComponent<PlayerControl>().HP-=Damage;
-            Player.GetComponent<PlayerControl>().attackedBy = NamingConstant.Enemy2;
+
+            Player.GetComponent<PlayerControl>().attackedBy = GetType().Name;
 
         }
 
