@@ -31,3 +31,25 @@ Mission Allocation:
 
 1. Jishuang is in charge of prototype completion.
 2. Junqiao is in charge of analytic graph.
+## Version 3.0
+
+Description： Gray Box.
+
+Mission Allocation:	
+
+1.  Jishuang is in charge of **everything**.
+2.  Songlin Lv is in charge of **teaching levels**.
+3.  David is in charge of **teaching levels design**.
+4.  Junqiao is in charge of **Analytics**. 
+5. Ching-Chih is in charge of **teaching levels**.
+## Version 4.0
+
+Description： Advanced Levels.
+
+Mission Allocation:	
+
+1.  Jishuang is in charge of **everything**.
+2.  Songlin Lv is in charge of **Enemy1**.
+3.  David is in charge of **Level Design& Basic artwork& Level Develop**.
+4.  Junqiao is in charge of **Analytic Develop**. 
+5. Ching-Chih is in charge of **Enemy2**.
