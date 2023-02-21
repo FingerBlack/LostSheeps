@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 677968358934440356}
   - component: {fileID: 8331339509440894152}
   - component: {fileID: 3626415958633460653}
+  - component: {fileID: -5746517564521749128}
   m_Layer: 7
   m_Name: Enemy2
   m_TagString: Untagged
@@ -157,3 +158,29 @@ MonoBehaviour:
   slowDuration: 0
   slowedTime: 0
   canvasManager: {fileID: 0}
+--- !u!61 &-5746517564521749128
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5375899361776046487}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.07664314, y: 0.4285037}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.3935512, y: 0.11045116}
+    oldSize: {x: 0.72, y: 1.1}
+    newSize: {x: 0.55, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.72, y: 1.1}
+  m_EdgeRadius: 0
