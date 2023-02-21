@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class NextLevel0 : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class NextLevel0 : MonoBehaviour
         
     }
     void OnClick(){
-        SceneChanger.SampleScene();
+        SceneManager.LoadScene(
+(int.Parse(SceneManager.GetActiveScene().name)+1).ToString());
     }
 }
