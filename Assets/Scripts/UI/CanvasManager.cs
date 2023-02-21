@@ -50,10 +50,12 @@ public class CanvasManager : MonoBehaviour
     {   
         
         if(timeCount>timeNeed-0.2f){
+            PlayingStats.onLevelSuccess();
             ifEnd=true;
         }
         if(ifStart){
-            foreach(Transform i in occupiedFloors.transform){
+            
+            foreach (Transform i in occupiedFloors.transform){
                 if(i.gameObject.GetComponent<OccupiedFloor>().isOccupied){
                     timeCount+=Time.deltaTime;
                     break;
@@ -62,14 +64,16 @@ public class CanvasManager : MonoBehaviour
         }
         
         if(ifEnd){//success
-            ifStart=false;
+            
+            ifStart =false;
             nextLevel.SetActive(true);
             valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
             
         }else if(ifRestart){//fail
-            ifStart=false;
+            
+            ifStart =false;
             restart.SetActive(true);
             valuePanel.SetActive(false);
             cardPanel.SetActive(false);
@@ -98,6 +102,7 @@ public class CanvasManager : MonoBehaviour
     }
     void OnClick(){
         //Debug.Log("Press the Button");
+        PlayingStats.onLevelStart();
         homePanel.SetActive(false);
         valuePanel.SetActive(true);
         cardPanel.SetActive(true);
