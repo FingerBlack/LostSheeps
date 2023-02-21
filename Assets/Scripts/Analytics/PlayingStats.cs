@@ -89,8 +89,8 @@ public class PlayingStats : MonoBehaviour
     void playingTime_updateTime()
     {
         currentTime = System.DateTime.Now;
-        Debug.Log(currentTime.ToString());
-        Debug.Log(startTime.ToString());
+        //Debug.Log(currentTime.ToString());
+        //Debug.Log(startTime.ToString());
 
 
 
