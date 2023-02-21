@@ -21,7 +21,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/chenjishuang/Documents/GitHub/LostSheeps/Build for Week6 3;E:/LostSheeps/Build for WebGL2;E:/LostSheeps/LostSheeps2/Build for week 6;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Users/chenjishuang/Downloads/Build2;/Users/chenjishuang/Documents/GitHub/LostSheeps/Build for Week6 3;E:/LostSheeps/Build for WebGL2;E:/LostSheeps/LostSheeps2/Build for week 6;;;;;;\"}"
             }
         ]
     }
