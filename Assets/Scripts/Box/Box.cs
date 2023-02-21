@@ -72,20 +72,23 @@ public class Box : MonoBehaviour
             }            
             transform.position = targetPos;
             origCellPos = targetCellPos;
-            if(!GetPlant(gameObject)){
-               // Debug.Log("1");
-                if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(1,0,0)))){
-               //     Debug.Log("2");
-                }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(-1,0,0)))){
-               //     Debug.Log("3");
-                }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(0,1,0)))){
-               //     Debug.Log("4");
-                }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(0,-1,0)))){
-               //     Debug.Log("5");
-                }
-            }
+            CheckNeighbors();
             isMoving = false;    
         }     
+    }
+    public void CheckNeighbors(){
+        if(!GetPlant(gameObject)){
+           // Debug.Log("1");
+            if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(1,0,0)))){
+           //     Debug.Log("2");
+            }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(-1,0,0)))){
+           //     Debug.Log("3");
+            }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(0,1,0)))){
+           //     Debug.Log("4");
+            }else if(GetResult(floorGrid.GetCellCenterWorld(origCellPos+new Vector3Int(0,-1,0)))){
+           //     Debug.Log("5");
+            }
+        }
     }
     private bool GetPlant(GameObject box){
         string plantKind="";
