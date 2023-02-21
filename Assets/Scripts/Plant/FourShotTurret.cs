@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class FourShotTurret : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class FourShotTurret : MonoBehaviour
     public float HP;
     public Vector3Int gridPosition;
     private Vector3 bulletOffset = new Vector3(0.5f, 1.0f, 0.0f);
+    public Light2D light;
+
     public float rapidFireRate;
     public int isRapidFiring;
     public int rapidFireNumber;
@@ -32,6 +35,7 @@ public class FourShotTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   
+        light=GetComponent<Light2D>();
         bulletPeriodBuff=0f;
         HP = 50f;
         target = null;
@@ -54,7 +58,9 @@ public class FourShotTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(bulletPeriodBuff>0.01f)
+            bulletPeriodBuff-=0.01f;
+        light.intensity=bulletPeriodBuff;
         if (target)
         {
             // shoot every period of time
