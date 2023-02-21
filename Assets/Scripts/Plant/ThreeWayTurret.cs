@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering.Universal;
 public class ThreeWayTurret : MonoBehaviour
 {
     //======================================== variables ============================================================
@@ -20,6 +20,7 @@ public class ThreeWayTurret : MonoBehaviour
     public float targetRange;
     public float bulletSpeed;
     public float HP;
+    public Light2D light;
     public Vector3Int gridPosition;
     private Vector3 bulletOffset = new Vector3(0.5f, 1.0f, 0.0f);
     public float bulletPeriodBuff;
@@ -28,6 +29,8 @@ public class ThreeWayTurret : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        light=GetComponent<Light2D>();
         HP = 50f;
         target = null;
         bulletPeriodBuff=0f;
@@ -36,7 +39,6 @@ public class ThreeWayTurret : MonoBehaviour
         targetRange = 5f;
         bulletSpeed = 10f;
         shootPeriod = 1.0f;
-
         shootTimer = 0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
@@ -47,7 +49,8 @@ public class ThreeWayTurret : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(bulletPeriodBuff>0.01f)
+            bulletPeriodBuff-=0.01f;
         if (target)
         {
             // shoot every period of time

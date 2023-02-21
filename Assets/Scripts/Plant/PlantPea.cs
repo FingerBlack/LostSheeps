@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlantPea : MonoBehaviour
 {   
@@ -34,13 +35,14 @@ public class PlantPea : MonoBehaviour
     private GameObject targetObject2;
     private GameObject box;
     private Box boxComponent;
-
+    public Light2D light;
     //=============================================================================================================
 
     // Start is called before the first frame update
     void Start()
     {   
         //isTransfer=false;
+        light=GetComponent<Light2D>();
         speed=1f;
         HP=50f;
         box=transform.parent.gameObject;
@@ -68,6 +70,9 @@ public class PlantPea : MonoBehaviour
         down = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(0,-1,0)));
         left = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(-1,0,0)));
         right = GetBox(map.GetCellCenterWorld(gridPosition+new Vector3Int(1,0,0)));
+        if(bulletPeriodBuff>0.01f)
+            bulletPeriodBuff-=0.01f;
+        light.intensity=bulletPeriodBuff;
         if(target){
             float dis=Vector3.Distance(transform.parent.transform.position,target.transform.position);
             // if(dis<0.1f){
