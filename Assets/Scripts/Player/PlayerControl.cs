@@ -214,7 +214,10 @@ public class PlayerControl : MonoBehaviour
         Physics2D.OverlapCircle(targetPos, 0.1f,filter,results);
         bool isOccupied=false;
         foreach( Collider2D result in results)
-        {
+        {   
+            if(result.isTrigger){
+                continue;
+            }
             if(result.gameObject.TryGetComponent<Box>(out Box box)){
                 isOccupied=true;
                 break;
