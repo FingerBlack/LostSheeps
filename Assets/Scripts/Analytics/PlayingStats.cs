@@ -11,10 +11,11 @@ public class PlayingStats : MonoBehaviour
     
     public static User user;
     public static DateTime startTime;
+    public static DateTime currentTime;
     public static DateTime endTime;
     public static string currentSceneName;
-    private string recordID;
-    private PlaytimeData playtimeData;
+    public static string recordID;
+    public static PlaytimeData playtimeData;
     // Start is called before the first frame update
     void Start()
 
@@ -22,8 +23,9 @@ public class PlayingStats : MonoBehaviour
         recordID = System.Guid.NewGuid().ToString();
         currentSceneName = SceneManager.GetActiveScene().name ;
         user = new User();
-        startTime = System.DateTime.Now;
-        playtimeData = new PlaytimeData(user.userID, printDate(startTime), currentSceneName);
+        
+        
+
         StartCoroutine(ExecuteEveryOneSecond());
         
 }
@@ -31,20 +33,52 @@ public class PlayingStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+
+    }
+
+    
+    public static void onLevelStart()
+    {
+        
+        recordID = System.Guid.NewGuid().ToString();
+        startTime = System.DateTime.Now;
+        playtimeData = new PlaytimeData(user.userID, currentSceneName);
+        playtimeData.start = printDate(startTime);
+        
+
+    }
+
+    public static void onLevelFail()
+    {
 
         
+        playtimeData.end = printDate(System.DateTime.Now);
+        playtimeData.status = "Fail";
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "playTime/" + recordID + ".json", playtimeData);
+
+
+    }
+
+    public static void onLevelSuccess()
+    {
+
+
+        playtimeData.end = printDate(System.DateTime.Now);
+        playtimeData.status = "Success";
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "playTime/" + recordID + ".json", playtimeData);
+
+
     }
 
 
-
-
-
+    
     private IEnumerator ExecuteEveryOneSecond()
     {
         while (true)
         {
             // Call your function here
-            playingTime_updateEndTime();
+            playingTime_updateTime();
 
             // Wait for one second before executing the next iteration
             yield return new WaitForSeconds(1);
@@ -52,14 +86,16 @@ public class PlayingStats : MonoBehaviour
     }
 
     //update every 1 second
-    void playingTime_updateEndTime()
+    void playingTime_updateTime()
     {
-        endTime = System.DateTime.Now;
-        playtimeData.end = printDate(endTime);
-        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "playTime/" + recordID + ".json", playtimeData);
+        currentTime = System.DateTime.Now;
+        Debug.Log(currentTime.ToString());
+        Debug.Log(startTime.ToString());
+
+
 
     }
-
+    
 
 
     public static void deathCount(string attackedBy)
@@ -83,7 +119,7 @@ public class PlayingStats : MonoBehaviour
     // get the running time of current level
     public static string getDuration()
     {
-        TimeSpan timeDifference = PlayingStats.endTime - PlayingStats.startTime;
+        TimeSpan timeDifference = PlayingStats.currentTime - PlayingStats.startTime;
         return timeDifference.TotalSeconds.ToString();
     }
     public static void plantCount(string plantName)

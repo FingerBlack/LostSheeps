@@ -9,11 +9,12 @@ public class PlaytimeData
     public string start;
     public string end;
     public string level;
-    public PlaytimeData(string userID,string start ,string sceneName)
+    public string status;
+    public PlaytimeData(string userID,string sceneName)
     {
         this.userID = userID;
         this.level = sceneName ;
-        this.start = start;
+        
         
     }
     

@@ -86,6 +86,7 @@ public class PlayerControl : MonoBehaviour
         if(HP<0){
             transform.eulerAngles=new Vector3(0, 0, 90f);
             canvasManager.ifRestart=true;
+            PlayingStats.onLevelFail();
 
             PlayingStats.deathCount(attackedBy);
         }
