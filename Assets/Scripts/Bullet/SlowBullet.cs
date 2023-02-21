@@ -49,6 +49,10 @@ public class SlowBullet : MonoBehaviour
                 enemy2.slowedTime = 0;
                 Destroy(gameObject);
             }
+            if(result.gameObject.TryGetComponent<GhostEnemy>(out GhostEnemy ghostEnemy)){
+                ghostEnemy.HP-=1f;
+                Destroy(gameObject);
+            }
             //  if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
             //     //enemy.HP-=1f;
             //     Destroy(gameObject);
