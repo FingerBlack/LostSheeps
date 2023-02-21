@@ -86,10 +86,13 @@ public class Box : MonoBehaviour
     }
     private bool GetPlant(GameObject box){
         string plantKind="";
-        GameObject plant=box.transform.GetChild(0).gameObject;
-        if(!plant){
+        if(box.transform.childCount==0){
             return false;
-        }
+        }        
+        GameObject plant=box.transform.GetChild(0).gameObject;
+        // if(!plant){
+        //     return false;
+        // }
 
         if(plant.TryGetComponent<PlantPea>(out PlantPea plantPea)){
             plantKind="PlantPea";
