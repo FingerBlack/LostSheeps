@@ -4,6 +4,8 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class CanvasManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -14,6 +16,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject cardPanel1;
     public GameObject nextLevel;
     public GameObject restart;
+    public GameObject menu;
     public GameObject occupiedFloors;
     public float timeCount;
     private PlayerControl playerControl;
@@ -24,10 +27,11 @@ public class CanvasManager : MonoBehaviour
     public float timeNeed;
     private Button startButton;
     private bool wasInCapture;
-
+    public HomeCanvas homeCanvas;
     void Start()
     {   
         //timeNeed=300f;
+        homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         timeCount=0f;
         wasInCapture = false;
         //set timeNeed
@@ -43,6 +47,7 @@ public class CanvasManager : MonoBehaviour
         cardPanel1=transform.GetChild(3).gameObject;
         nextLevel=transform.GetChild(4).gameObject;
         restart=transform.GetChild(5).gameObject;
+        menu=transform.GetChild(6).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
     }
@@ -75,12 +80,16 @@ public class CanvasManager : MonoBehaviour
         }
         
         if(ifEnd){//success
-            
+            int level=(int.Parse( SceneManager.GetActiveScene().name));
+            homeCanvas.levels[level]=1;
+            if(level+1<homeCanvas.levels.Count)
+                homeCanvas.levels[level+1]=2;
             ifStart =false;
             nextLevel.SetActive(true);
             valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
+            menu.SetActive(false);
             
         }else if(ifRestart){//fail
             
@@ -89,6 +98,8 @@ public class CanvasManager : MonoBehaviour
             valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
+            menu.SetActive(false);
+            
         }
         // if (Input.anyKey)
         // {
@@ -108,7 +119,7 @@ public class CanvasManager : MonoBehaviour
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
         uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
-        +"      Turrent Component: "+playerControl.peaNumber.ToString()
+        +"      \nTurrent Component: "+playerControl.peaNumber.ToString()
         +"      Radar Component: "+playerControl.cherryNumber.ToString();
     }
     void OnClick(){
@@ -118,6 +129,7 @@ public class CanvasManager : MonoBehaviour
         valuePanel.SetActive(true);
         cardPanel.SetActive(true);
         cardPanel1.SetActive(true);
+        menu.SetActive(true);
         ifStart=true;
     }
 }
