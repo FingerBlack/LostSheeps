@@ -170,13 +170,15 @@ public class PlayerControl : MonoBehaviour
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             peaNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant1);
-                            Debug.Log(NamingConstant.Plant1);
+                            box.CheckNeighbors();
+                            //Debug.Log(NamingConstant.Plant1);
                         }
                         if(plant==cherry&&cherryNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                             cherryNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant2);
-                            Debug.Log(NamingConstant.Plant2);
+                            box.CheckNeighbors();
+                            //Debug.Log(NamingConstant.Plant2);
                         }
                     }
                 }
