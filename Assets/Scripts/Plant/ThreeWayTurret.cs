@@ -146,7 +146,7 @@ public class ThreeWayTurret : MonoBehaviour
             Physics2D.OverlapCircle(transform.position, targetRange, filter, results);
             foreach (Collider2D result in results)
             {
-                if (result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)||result.gameObject.TryGetComponent<Enemy2>(out Enemy2 enemy2)||result.gameObject.TryGetComponent<GhostEnemy>(out GhostEnemy ghostEnemy)||result.gameObject.TryGetComponent<Enemy1>(out Enemy1 enemy1))
+                if (result.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
                 {
                     if (!target)
                     {

@@ -35,19 +35,7 @@ public class Bullet : MonoBehaviour
         foreach( Collider2D result in results)
         {
             if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
-                enemy.HP-=1f;
-                Destroy(gameObject);
-            }
-            if(result.gameObject.TryGetComponent<Enemy2>(out Enemy2 enemy2)){
-                enemy2.HP-=1f;
-                Destroy(gameObject);
-            }
-            if(result.gameObject.TryGetComponent<GhostEnemy>(out GhostEnemy ghostEnemy)){
-                ghostEnemy.HP-=1f;
-                Destroy(gameObject);
-            }
-            if(result.gameObject.TryGetComponent<Enemy1>(out Enemy1 enemy1)){
-                enemy1.HP-=1f;
+                enemy.healthPoint-=1f;
                 Destroy(gameObject);
             }
             // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){

@@ -51,9 +51,9 @@ public class EnemySpawner : MonoBehaviour
             float x = radius* Mathf.Cos( angle);
             float y = radius * Mathf.Sin( angle);
 
-            Instantiate(enemy,player.transform.position+new Vector3(x,y,0f), Quaternion.identity,enemies.transform);
-            enemy.GetComponent<Enemy>().movementSpeed=enemySpeed;
-            enemy.GetComponent<Enemy>().HP=hpSpeedLevel[level];
+            Instantiate(enemy,player.transform.position + new Vector3(x,y,0f), Quaternion.identity,enemies.transform);
+            //enemy.GetComponent<Enemy>().currentSpeed = enemySpeed;
+            enemy.GetComponent<Enemy>().healthPoint = hpSpeedLevel[level];
         }
     }
 }

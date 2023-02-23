@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostEnemy : Enemy
+public class DemonEnemy : Enemy
 {
     // Start is called before the first frame update
     void Start()
@@ -10,7 +10,7 @@ public class GhostEnemy : Enemy
         base.Init();
 
         // properties
-        healthPoint = 4.0f;
+        healthPoint = 5.0f;
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
@@ -23,7 +23,7 @@ public class GhostEnemy : Enemy
     // Update is called once per frame
     void Update()
     {   
-        // return if game not start yet
+        // check if game start
         if(!canvasManager.ifStart)
         {
             return;
