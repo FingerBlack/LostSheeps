@@ -22,7 +22,7 @@ public class OccupiedFloor : MonoBehaviour
     void Update()
     {   
         isOccupied=false;
-        Physics2D.OverlapCircle(transform.position, 0.1f,filter, results);
+        Physics2D.OverlapCircle(transform.position, 0.3f,filter, results);
         foreach( Collider2D result in results)
         {
 

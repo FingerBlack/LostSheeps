@@ -118,6 +118,7 @@ MonoBehaviour:
   timeToMove: 0
   action: 
   isMoving: 0
+  attackedBy: 
   playerDirection: {x: 0, y: 0, z: 0}
   canvasManager: {fileID: 0}
   playerGridPos: {x: 0, y: 0, z: 0}
