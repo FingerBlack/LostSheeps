@@ -56,8 +56,8 @@ public class PlayerControl : MonoBehaviour
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
         
-        pea=Resources.Load("Prefabs/Plant/Turret") as GameObject; //Load Plant pea
-        cherry=Resources.Load("Prefabs/Cherry/Radar") as GameObject; //Load Plant cherry
+        pea=Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
+        cherry=Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
         plant=pea;   
         HP=1000f; // Set HP 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map

@@ -95,12 +95,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1287289377089405327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f2eb47c231998f40b63bb115468fc56, type: 3}
+  m_Script: {fileID: 11500000, guid: 335fff6d311f9df4bb80c27d20643a4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TargetPos: {x: 0, y: 0, z: 0}
-  speed: 1
-  MaintainTime: 10
+  speed: 0
+  MaintainTime: 0
   TimeCount: 0
 --- !u!58 &1287289377089405324
 CircleCollider2D:

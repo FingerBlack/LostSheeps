@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
-    //======================================== variables ============================================================
+    // ============================== variables ==============================
     // Dont Initiat the Value here plz.
     public float healthPoint;
     [SerializeField] protected float attackDamage;

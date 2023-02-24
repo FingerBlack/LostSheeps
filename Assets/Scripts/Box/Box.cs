@@ -100,21 +100,21 @@ public class Box : MonoBehaviour
         //     return false;
         // }
 
-        if(plant.TryGetComponent<PlantPea>(out PlantPea plantPea)){
-            plantKind="PlantPea";
+        if(plant.TryGetComponent<SingleTurret>(out SingleTurret singleTurret)){
+            plantKind = "turret";
         }
-        if(plant.TryGetComponent<PlantCherry>(out PlantCherry plantCherry)){
-            plantKind="PlantCherry";   
+        if(plant.TryGetComponent<BuffTurret>(out BuffTurret buffTurret)){
+            plantKind = "radar";   
         }
-        if(plantKind=="PlantPea"){
+        if(plantKind == "turret"){
             //PlantPea plantPea=plant.GetComponent<PlantPea>();
-            if(plantPea.CheckNeighbors()){
+            if(singleTurret.CheckCombiantion()){
                 //Debug.Log("0.1");
                 return true;
             }
-        }else if(plantKind=="PlantCherry"){
+        }else if(plantKind == "radar"){
             //PlantCherry plantCherry=plant.GetComponent<PlantCherry>();
-            if(plantCherry.CheckNeighbors()){
+            if(buffTurret.CheckCombiantion()){
                // Debug.Log("0.2");
                 return true;
             }
