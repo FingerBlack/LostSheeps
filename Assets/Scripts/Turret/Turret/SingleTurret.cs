@@ -44,7 +44,7 @@ public class SingleTurret : AttackTurret
         base.TargetEnemy();
 
         if(targetEnemy){
-            base.ShootEnemy();
+            ShootEnemy();
         }
     }
 }

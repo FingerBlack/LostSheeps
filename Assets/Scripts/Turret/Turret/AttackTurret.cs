@@ -11,7 +11,7 @@ public abstract class AttackTurret : Turret
     protected Vector3 bulletOffset;
     [Tooltip("basic shooting cooldown")]
     public float basicShootPeriod;
-    private float shootTimer;
+    public float shootTimer;
     public float shootRange;
     public float bulletSpeed;
     [Tooltip("timer used for count down buff time")]
