@@ -32,7 +32,7 @@ public class LargeRadar : MonoBehaviour
     void Start()
     {   
         target=null;
-        buffValue=0.6f;
+        buffValue=1.5f;
         box=transform.parent.gameObject;
         boxComponent=box.GetComponent<Box>();
         map = GameObject.Find("Grid").GetComponent<Grid>();

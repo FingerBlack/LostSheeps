@@ -51,7 +51,7 @@ public class FourShotTurret : MonoBehaviour
         //StartCoroutine(CheckNeighbors());
         rapidFireRate = 0.1f;
         isRapidFiring = 0;
-        rapidFireNumber = 4;
+        rapidFireNumber = 5;
         numFireinRapid = 0;
 }
 
