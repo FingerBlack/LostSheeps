@@ -14,7 +14,7 @@ public class GhostEnemy : Enemy
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
-        normalSpeed = 0.5f;
+        normalSpeed = 1.5f;
         slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;

@@ -14,7 +14,7 @@ public class DemonEnemy : Enemy
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
-        normalSpeed = 0.7f;
+        normalSpeed = 2.5f;
         slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
