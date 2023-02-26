@@ -12,6 +12,8 @@ public class SingleTurret : AttackTurret
         // varying initialization (from Turret & AttackTurret)
         healthPoint = 50.0f;
         isCombinable = true;
+        
+        // call this only if it's combinable
         base.CombinableInit();
 
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
@@ -30,6 +32,7 @@ public class SingleTurret : AttackTurret
 
         light2D.intensity = bulletBuffTimer;
 
+        // call this only if it's combinable
         if(isCombinable){
             if(combinationTarget){
                 float dis = Vector3.Distance(transform.parent.transform.position, combinationTarget.transform.position);

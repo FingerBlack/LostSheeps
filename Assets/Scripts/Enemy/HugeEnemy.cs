@@ -14,8 +14,8 @@ public class HugeEnemy : Enemy
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
-        normalSpeed = 1.0f;
-        slowedSpeed = 0.2f;
+        normalSpeed = 0.5f;
+        slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
     }

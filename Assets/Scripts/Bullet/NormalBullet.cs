@@ -11,12 +11,12 @@ public class NormalBullet : Bullet
 
     void Update()
     {
-        TimeCount += Time.deltaTime;
-        if(TimeCount > MaintainTime){
+        timeCount += Time.deltaTime;
+        if(timeCount > maintainTime){
             Destroy(gameObject);
         }
         
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, TargetPos, speed * Time.deltaTime);
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, targetPos, speed * Time.deltaTime);
 
         base.CheckCollideEnemy();
     }

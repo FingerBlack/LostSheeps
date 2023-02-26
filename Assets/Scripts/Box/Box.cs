@@ -107,15 +107,11 @@ public class Box : MonoBehaviour
             plantKind = "radar";   
         }
         if(plantKind == "turret"){
-            //PlantPea plantPea=plant.GetComponent<PlantPea>();
             if(singleTurret.CheckCombiantion()){
-                //Debug.Log("0.1");
                 return true;
             }
         }else if(plantKind == "radar"){
-            //PlantCherry plantCherry=plant.GetComponent<PlantCherry>();
             if(buffTurret.CheckCombiantion()){
-               // Debug.Log("0.2");
                 return true;
             }
         }

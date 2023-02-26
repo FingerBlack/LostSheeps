@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class Bullet : MonoBehaviour
 {
-    public Vector3 TargetPos;
+    public Vector3 targetPos;
     public float speed;
-    public float MaintainTime; 
-    public float TimeCount;
+    protected float maintainTime; 
+    protected float timeCount;
     protected ContactFilter2D filter; // Collider Detect Tools.
     protected List<Collider2D> results;// Collider Detect Tools.
 
@@ -17,8 +17,8 @@ public abstract class Bullet : MonoBehaviour
         // initialize here will override instantiate from turret
         //TargetPos = Vector3.zero;
         //speed = 0.0f;
-        MaintainTime = 10.0f;
-        TimeCount = 0.0f;
+        maintainTime = 10.0f;
+        timeCount = 0.0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
     }

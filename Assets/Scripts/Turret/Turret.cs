@@ -16,12 +16,12 @@ public abstract class Turret : MonoBehaviour
     protected GameObject rightBox;
     private Box boxComponent;
     protected Light2D light2D;
-    // collider eetect tools
+    // collider detect tools
     protected ContactFilter2D filter; 
     // colliding list
     protected List<Collider2D> results;
     
-    // ========== combination related ==========
+    // ========== combination related variables ==========
     protected bool isCombinable;
     [Tooltip("move towards combination target if exists")]
     protected GameObject combinationTarget;
@@ -53,8 +53,8 @@ public abstract class Turret : MonoBehaviour
         gridPosition = map.WorldToCell(transform.position);
         boxComponent = transform.parent.gameObject.GetComponent<Box>();
         light2D = GetComponent<Light2D>();
-        filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
-        results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+        filter = new ContactFilter2D().NoFilter();
+        results = new List<Collider2D>();
 
         combinationTarget = null;
         combinationSpeed = 1.0f;
@@ -64,7 +64,7 @@ public abstract class Turret : MonoBehaviour
         transferCode = TransferCode.None;
     }
 
-    // necessary things for combinable turrets
+    // necessary initialization for combinable turrets
     protected virtual void CombinableInit()
     {
         transferGameObject = new GameObject[4] {
@@ -142,7 +142,6 @@ public abstract class Turret : MonoBehaviour
         return 0;
     }
 
-    // combination methods
     protected virtual bool CheckNeighborsCombine(GameObject neighbor1, GameObject neighbor2)
     {
         int radarCount = GetComponent<Radar>() ?  1 : 0;

@@ -119,8 +119,8 @@ public class CanvasManager : MonoBehaviour
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
         uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
-        +"      \nTurrent Component: "+playerControl.peaNumber.ToString()
-        +"      Radar Component: "+playerControl.cherryNumber.ToString();
+        +"      \nTurrent Component: "+playerControl.turretSeedNumber.ToString()
+        +"      Radar Component: "+playerControl.radarSeedNumber.ToString();
     }
     void OnClick(){
         //Debug.Log("Press the Button");

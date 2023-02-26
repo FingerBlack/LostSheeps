@@ -24,7 +24,6 @@ public abstract class AttackTurret : Turret
         base.Init();
 
         // varying initialization
-        //bulletOffset = new Vector3(0.5f, 1.0f, 0.0f);
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
         basicShootPeriod = 1.0f;
         shootRange = 5.0f;
@@ -62,16 +61,19 @@ public abstract class AttackTurret : Turret
         {
             shootTimer = 0.0f;
 
+            // generate bullet
             GameObject obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
             Bullet bulletComponent = obj.GetComponent<Bullet>();
             Vector3 direction = (targetEnemy.transform.position - transform.position + new Vector3(0.0f, -1.0f, 0.0f));
-            bulletComponent.TargetPos = transform.position + direction.normalized * 1000.0f;
+
+            // setup bullet properties
+            bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
             bulletComponent.speed = bulletSpeed;
         }
 
-        Vector3 currEnemyPos = targetEnemy.transform.position - transform.position;
-        float enemyDist = currEnemyPos.magnitude;
-        if (enemyDist > shootRange){
+        // check if enemy is in range
+        Vector3 enemyDistance = targetEnemy.transform.position - transform.position;
+        if (enemyDistance.magnitude > shootRange){
             targetEnemy = null;
         }
     }
