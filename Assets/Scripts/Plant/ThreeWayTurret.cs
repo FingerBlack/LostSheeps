@@ -66,6 +66,11 @@ public class ThreeWayTurret : MonoBehaviour
                 GameObject obj2 = Instantiate(bullet, transform.position + new Vector3(0f, 1.0f, 0.0f), Quaternion.identity, GameObject.Find("/Bullets").transform);
                 Bullet BulletComponent2 = obj2.GetComponent<Bullet>();
 
+                GameObject obj3 = Instantiate(bullet, transform.position + new Vector3(0f, 1.0f, 0.0f), Quaternion.identity, GameObject.Find("/Bullets").transform);
+                Bullet BulletComponent3 = obj3.GetComponent<Bullet>();
+                GameObject obj4 = Instantiate(bullet, transform.position + new Vector3(0f, 1.0f, 0.0f), Quaternion.identity, GameObject.Find("/Bullets").transform);
+                Bullet BulletComponent4 = obj4.GetComponent<Bullet>();
+
                 //temp
                 float x, y;
                 //
@@ -80,12 +85,28 @@ public class ThreeWayTurret : MonoBehaviour
                 y = direction2.y;
                 direction2.x = x * Mathf.Cos(-Mathf.PI / 9) - y * Mathf.Sin(-Mathf.PI / 9);
                 direction2.y = x * Mathf.Sin(-Mathf.PI / 9) + y * Mathf.Cos(-Mathf.PI / 9);
+
+                Vector3 direction3 = (target.transform.position - transform.position + new Vector3(0f, -1f, 0f));
+                x = direction3.x;
+                y = direction3.y;
+                direction3.x = x * Mathf.Cos(Mathf.PI / 15) - y * Mathf.Sin(Mathf.PI / 15);
+                direction3.y = x * Mathf.Sin(Mathf.PI / 15) + y * Mathf.Cos(Mathf.PI / 15);
+                Vector3 direction4 = (target.transform.position - transform.position + new Vector3(0f, -1f, 0f));
+                x = direction4.x;
+                y = direction4.y;
+                direction4.x = x * Mathf.Cos(-Mathf.PI / 15) - y * Mathf.Sin(-Mathf.PI / 15);
+                direction4.y = x * Mathf.Sin(-Mathf.PI / 15) + y * Mathf.Cos(-Mathf.PI / 15);
+
                 BulletComponent.TargetPos = transform.position + direction.normalized * 1000.0f;
                 BulletComponent.speed = bulletSpeed;
                 BulletComponent1.TargetPos = transform.position + direction1.normalized * 1000.0f;
                 BulletComponent1.speed = bulletSpeed;
                 BulletComponent2.TargetPos = transform.position + direction2.normalized * 1000.0f;
                 BulletComponent2.speed = bulletSpeed;
+                BulletComponent3.TargetPos = transform.position + direction3.normalized * 1000.0f;
+                BulletComponent3.speed = bulletSpeed;
+                BulletComponent4.TargetPos = transform.position + direction4.normalized * 1000.0f;
+                BulletComponent4.speed = bulletSpeed;
             }
             Vector3 currEnemyPos = target.transform.position - transform.position;
             float enemyDist = currEnemyPos.magnitude;

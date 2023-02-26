@@ -32,7 +32,7 @@ public class PlantCherry : MonoBehaviour
     void Start()
     {   
         target=null;
-        buffValue=0.3f;
+        buffValue=1f;
         box=transform.parent.gameObject;
         boxComponent=box.GetComponent<Box>();
         map = GameObject.Find("Grid").GetComponent<Grid>();
