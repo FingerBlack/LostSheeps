@@ -29,7 +29,7 @@ public class LevelFloor : MonoBehaviour
     void Update()
     {   
         // cheat
-        if(Input.GetKeyDown(KeyCode.P)){
+        if(status == 0 && Input.GetKeyDown(KeyCode.P)){
             status = 1;
             GetComponent<SpriteRenderer>().color=new Color(1f,1f,0f,1f);
         }
