@@ -14,8 +14,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject horiBox;
     public GameObject vertBox;
     
-    public int turretSeedNumber;
-    public int radarSeedNumber;
+    public int seedNumber;
     public float horiInput;
     public float vertInput;
     public float horiDis;
@@ -49,8 +48,8 @@ public class PlayerControl : MonoBehaviour
         isMoving=false;
         action="None";
         timeToMove=0.2f;
-        turretSeedNumber=0; //initiate the peaNumber.
-        radarSeedNumber=0; ////initiate the cherryNumber.
+        seedNumber=0; //initiate the peaNumber.
+       
         horiSpeed =5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
@@ -166,16 +165,16 @@ public class PlayerControl : MonoBehaviour
             {
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
                     if(box.transform.childCount==0){
-                        if(plant==pea&&turretSeedNumber>0){
+                        if(plant==pea&&seedNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            turretSeedNumber-=1;
+                            seedNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant1);
                             box.CheckNeighbors();
                             //Debug.Log(NamingConstant.Plant1);
                         }
-                        if(plant==cherry&&radarSeedNumber>0){
+                        if(plant==cherry&&seedNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            radarSeedNumber-=1;
+                            seedNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant2);
                             box.CheckNeighbors();
                             //Debug.Log(NamingConstant.Plant2);
@@ -197,12 +196,12 @@ public class PlayerControl : MonoBehaviour
         Physics2D.OverlapCircle(transform.position, 0.2f,filter, results);
         foreach( Collider2D result in results)
         {
-            if(result.gameObject.TryGetComponent<TurretSeed>(out TurretSeed turretSeed)){
-                turretSeedNumber+=1;
+            if(result.gameObject.TryGetComponent<Seed>(out Seed seed)){
+                seedNumber+=1;
                 Destroy(result.gameObject);
             }
-            if(result.gameObject.TryGetComponent<RadarSeed>(out RadarSeed radarSeed)){
-                radarSeedNumber+=1;
+            if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
+                seedNumber+=1;
                 Destroy(result.gameObject);
             }
         }

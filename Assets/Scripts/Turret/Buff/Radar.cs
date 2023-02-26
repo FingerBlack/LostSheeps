@@ -12,7 +12,7 @@ public class Radar : BuffTurret
         isCombinable = true;
         base.CombinableInit();
         
-        buffValue=0.3f;
+        buffValue=1f;
     }
 
     void Update()

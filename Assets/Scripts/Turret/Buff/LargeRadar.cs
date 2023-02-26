@@ -11,7 +11,7 @@ public class LargeRadar : BuffTurret
         healthPoint = 50.0f;
         isCombinable = false;
     
-        buffValue=0.6f;
+        buffValue=1.5f;
     }
 
     // Update is called once per frame
