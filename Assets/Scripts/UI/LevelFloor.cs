@@ -28,6 +28,12 @@ public class LevelFloor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        // cheat
+        if(status == 0 && Input.GetKeyDown(KeyCode.P)){
+            status = 1;
+            GetComponent<SpriteRenderer>().color=new Color(1f,1f,0f,1f);
+        }
+
         if(status==0){
             return;
         }

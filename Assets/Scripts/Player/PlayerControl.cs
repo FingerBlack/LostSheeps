@@ -14,7 +14,8 @@ public class PlayerControl : MonoBehaviour
     public GameObject horiBox;
     public GameObject vertBox;
     
-    public int seedNumber;
+    public int turretSeedNumber;
+    public int radarSeedNumber;
     public float horiInput;
     public float vertInput;
     public float horiDis;
@@ -48,15 +49,15 @@ public class PlayerControl : MonoBehaviour
         isMoving=false;
         action="None";
         timeToMove=0.2f;
-        seedNumber=0; //initiate the peaNumber.
-       
+        turretSeedNumber=0; //initiate the peaNumber.
+        radarSeedNumber=0; ////initiate the cherryNumber.
         horiSpeed =5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
         
-        pea=Resources.Load("Prefabs/Plant/Turret") as GameObject; //Load Plant pea
-        cherry=Resources.Load("Prefabs/Cherry/Radar") as GameObject; //Load Plant cherry
+        pea=Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
+        cherry=Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
         plant=pea;   
         HP=1000f; // Set HP 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map
@@ -165,16 +166,16 @@ public class PlayerControl : MonoBehaviour
             {
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
                     if(box.transform.childCount==0){
-                        if(plant==pea&&seedNumber>0){
+                        if(plant==pea&&turretSeedNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            seedNumber-=1;
+                            turretSeedNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant1);
                             box.CheckNeighbors();
                             //Debug.Log(NamingConstant.Plant1);
                         }
-                        if(plant==cherry&&seedNumber>0){
+                        if(plant==cherry&&radarSeedNumber>0){
                             GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            seedNumber-=1;
+                            radarSeedNumber-=1;
                             PlayingStats.plantCount(NamingConstant.Plant2);
                             box.CheckNeighbors();
                             //Debug.Log(NamingConstant.Plant2);
@@ -196,12 +197,12 @@ public class PlayerControl : MonoBehaviour
         Physics2D.OverlapCircle(transform.position, 0.2f,filter, results);
         foreach( Collider2D result in results)
         {
-            if(result.gameObject.TryGetComponent<Seed>(out Seed seed)){
-                seedNumber+=1;
+            if(result.gameObject.TryGetComponent<TurretSeed>(out TurretSeed turretSeed)){
+                turretSeedNumber+=1;
                 Destroy(result.gameObject);
             }
-            if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
-                seedNumber+=1;
+            if(result.gameObject.TryGetComponent<RadarSeed>(out RadarSeed radarSeed)){
+                radarSeedNumber+=1;
                 Destroy(result.gameObject);
             }
         }

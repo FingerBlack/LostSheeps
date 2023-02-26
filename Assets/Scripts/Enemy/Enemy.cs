@@ -2,74 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    //======================================== variables ============================================================
+    // ============================== variables ==============================
     // Dont Initiat the Value here plz.
-    public float HP=5f;
-    public GameObject Player;
-    public float movementSpeed;
-    public float Damage;
-    public int isSlowed;
-    public float slowDuration;
+    public float healthPoint;
+    [SerializeField] protected float attackDamage;
+    [Tooltip("enemy attacks every attackSpeed seconds")]
+    [SerializeField] protected float attackSpeed;
+    [Tooltip("timer used for checking if enemy could attack")]
+    [SerializeField] protected float attackCoolDown;
+    [SerializeField] protected float attackRange;
+    [SerializeField] protected float currentSpeed;
+    [SerializeField] protected float normalSpeed;
+    [SerializeField] protected float slowedSpeed;
+    public bool isSlowed;
+    [Tooltip("slow effect period")]
+    [SerializeField] protected float slowDuration;
+    [Tooltip("timer used for check slowed status")]
     public float slowedTime;
-    public CanvasManager canvasManager;
-    private float notSlowedSPeed;
-    private float slowedSPeed;
-    //=============================================================================================================
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] protected GameObject player;
+    [SerializeField] protected CanvasManager canvasManager;
+    
+    // ============================== general methods ==============================
+    // general initialization, call this function first in Start() then modify varying variables
+    protected virtual void Init()
     {
-        // HP=5f;
+        // varying inititalization (should be replaced)
+        healthPoint = 5.0f;
+        attackDamage = 40.0f;
+        attackSpeed = 1.0f;
+        attackRange = 0.4f;
+        normalSpeed = 2.0f;
+        slowedSpeed = 0.2f;
+        slowDuration = 5.0f;
+
+        // fixed initialization
+        attackCoolDown = 0.0f;
+        currentSpeed = 0.0f;
+        isSlowed = false;
+        slowedTime = 0.0f;
+
+        player=GameObject.Find("Player");
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
-        Damage=40f;
-        //movementSpeed;
-        Player=GameObject.Find("Player");
-        isSlowed = 0;
-        slowDuration = 5;
-        slowedTime = 0;
-        notSlowedSPeed = 2.0f;
-        slowedSPeed = 0.2f;
     }
 
-    // Update is called once per frame
-    void Update()
-    {   
-        if(!canvasManager.ifStart){
-            return;
-        }
-        if (isSlowed==1 )
+    // in Update(), if this enemy is slowed, call this method
+    protected virtual void CheckSlowed()
+    {
+        if(slowedTime < slowDuration)
         {
-            if(slowedTime < slowDuration)
-            {
-                movementSpeed = slowedSPeed;
-                slowedTime += Time.deltaTime;
-            }
-            else
-            {
-                slowedTime = 0;
-                isSlowed = 0;
-            }
+            currentSpeed = slowedSpeed;
+            slowedTime += Time.deltaTime;
         }
         else
         {
-            movementSpeed = notSlowedSPeed;
+            slowedTime = 0;
+            isSlowed = false;
+            currentSpeed = normalSpeed;
+        }
+    }
 
+    // call this method in Update to deal damage to player
+    protected virtual void TryAttackPlayer()
+    {
+        if(attackCoolDown > 0)
+        {
+            attackCoolDown -= Time.deltaTime;
         }
 
+        float distance = Vector3.Distance(transform.position, player.transform.position);
+        if(distance < attackRange && attackCoolDown <= 0)
+        {
+            // attack
+            player.GetComponent<PlayerControl>().HP -= attackDamage;
+        
+            player.GetComponent<PlayerControl>().attackedBy = GetType().Name;
 
-        if(HP<=0){
-            Destroy(gameObject);
+            attackCoolDown = attackSpeed;
         }
-        float distance=Vector3.Distance(transform.position,Player.transform.position);
-        //Debug.Log(distance);
-        if(distance<0.4f){
-            Player.GetComponent<PlayerControl>().HP-=Damage;
-            
-            Player.GetComponent<PlayerControl>().attackedBy = GetType().Name;
-
-        }
-
-        transform.position=Vector3.MoveTowards(transform.position,Player.transform.position,movementSpeed*Time.deltaTime);
     }
 }

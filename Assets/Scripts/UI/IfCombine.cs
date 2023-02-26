@@ -6,10 +6,10 @@ public class IfCombine : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject radar;
-    private PlantCherry radarComponent;
+    private BuffTurret radarComponent;
     void Start()
     {
-        radarComponent=radar.GetComponent<PlantCherry>();
+        radarComponent=radar.GetComponent<BuffTurret>();
         
     }
 

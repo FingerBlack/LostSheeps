@@ -83,8 +83,7 @@ public class CanvasManager : MonoBehaviour
             int level=(int.Parse( SceneManager.GetActiveScene().name));
             homeCanvas.levels[level]=1;
             if(level+1<homeCanvas.levels.Count)
-                if( homeCanvas.levels[level+1]==0)
-                    homeCanvas.levels[level+1]=2;
+                homeCanvas.levels[level+1]=2;
             ifStart =false;
             nextLevel.SetActive(true);
             valuePanel.SetActive(false);
@@ -120,7 +119,8 @@ public class CanvasManager : MonoBehaviour
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
         uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
-        +"      \nComponent: "+playerControl.seedNumber.ToString();
+        +"      \nTurrent Component: "+playerControl.turretSeedNumber.ToString()
+        +"      Radar Component: "+playerControl.radarSeedNumber.ToString();
     }
     void OnClick(){
         //Debug.Log("Press the Button");

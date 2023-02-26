@@ -4,18 +4,10 @@ using UnityEngine;
 
 public class Seed : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private float timeCount;
-    void Start()
-    {
-        timeCount=0f;
-    }
+    protected float lifeTimer;
 
-    // Update is called once per frame
-    void Update()
+    protected void Init()
     {
-        if(timeCount>10f){
-            Destroy(gameObject);
-        }
+        lifeTimer = 0.0f;
     }
 }
