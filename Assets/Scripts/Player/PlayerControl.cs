@@ -200,11 +200,11 @@ public class PlayerControl : MonoBehaviour
                 seedNumber+=1;
                 Destroy(result.gameObject);
             }
-            if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
-                seedNumber+=1;
-                Destroy(result.gameObject);
-            }
-        }
+        //     if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
+        //         seedNumber+=1;
+        //         Destroy(result.gameObject);
+        //     }
+        // }
     }
     private IEnumerator SlowMove(Vector3Int direction)
     {
