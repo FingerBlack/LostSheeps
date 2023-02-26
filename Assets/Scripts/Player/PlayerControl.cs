@@ -198,18 +198,13 @@ public class PlayerControl : MonoBehaviour
         {
             if(result.gameObject.TryGetComponent<Seed>(out Seed seed)){
                 seedNumber+=1;
-                PlayingStats.pickCount(result.gameObject.GetType().Name);
-                
-               
                 Destroy(result.gameObject);
             }
-            if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
-                seedNumber+=1;
-                PlayingStats.pickCount(result.gameObject.GetType().Name);
-                
-                Destroy(result.gameObject);
-            }
-        }
+        //     if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
+        //         seedNumber+=1;
+        //         Destroy(result.gameObject);
+        //     }
+        // }
     }
     private IEnumerator SlowMove(Vector3Int direction)
     {
