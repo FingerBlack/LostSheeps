@@ -18,6 +18,7 @@ public class Restart : MonoBehaviour
         
     }
     void OnClick(){
+        PlayingStats.onLevelFail();
         SceneManager.LoadScene( SceneManager.GetActiveScene().name);
     }
 }

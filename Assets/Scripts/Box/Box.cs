@@ -31,6 +31,7 @@ public class Box : MonoBehaviour
     void Update()
     {  
         if(!isMoving&&(action=="move")){
+            
             StartCoroutine(SlowMove(direction));
             action="None";
         }   
@@ -39,6 +40,7 @@ public class Box : MonoBehaviour
     // use IEnumerator to move continuously to target position
     private IEnumerator SlowMove(Vector3Int direction)
     {
+        PlayingStats.pushCount();
         Vector3Int targetCellPos = origCellPos + direction;
         Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
 
