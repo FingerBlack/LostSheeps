@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     // ============================== variables ==============================
-    // Dont Initiat the Value here plz.
     public float healthPoint;
     [SerializeField] protected float attackDamage;
     [Tooltip("enemy attacks every attackSpeed seconds")]
@@ -50,13 +49,11 @@ public abstract class Enemy : MonoBehaviour
     // in Update(), if this enemy is slowed, call this method
     protected virtual void CheckSlowed()
     {
-        if(slowedTime < slowDuration)
-        {
+        if(slowedTime < slowDuration){
             currentSpeed = slowedSpeed;
             slowedTime += Time.deltaTime;
         }
-        else
-        {
+        else{
             slowedTime = 0;
             isSlowed = false;
             currentSpeed = normalSpeed;
@@ -66,14 +63,12 @@ public abstract class Enemy : MonoBehaviour
     // call this method in Update to deal damage to player
     protected virtual void TryAttackPlayer()
     {
-        if(attackCoolDown > 0)
-        {
+        if(attackCoolDown > 0){
             attackCoolDown -= Time.deltaTime;
         }
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        if(distance < attackRange && attackCoolDown <= 0)
-        {
+        if(distance < attackRange && attackCoolDown <= 0){
             // attack
             player.GetComponent<PlayerControl>().HP -= attackDamage;
         

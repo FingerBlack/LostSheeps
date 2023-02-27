@@ -45,13 +45,13 @@ public class ThreeWayTurret : AttackTurret
 
             GameObject obj = null;
             Bullet bulletComponent = null;
-            Vector3 direction = targetEnemy.transform.position - transform.position + new Vector3(0f, -1f, 0f);
+            Vector3 direction = targetEnemy.transform.position - transform.position - bulletOffset;
             float x = direction.x, y = direction.y;
             float[] shootAngles = {-Mathf.PI / 9, -Mathf.PI / 15, 0, Mathf.PI / 15, Mathf.PI / 9};
 
             for(int i=0;i<5;i++){
                 // generate bullet
-                obj = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 1.0f, 0.0f), Quaternion.identity, GameObject.Find("/Bullets").transform);
+                obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
                 bulletComponent = obj.GetComponent<Bullet>();
 
                 // adjust angles

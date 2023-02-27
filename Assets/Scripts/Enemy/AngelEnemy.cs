@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonEnemy : Enemy
+public class AngelEnemy : Enemy
 {
-    // Start is called before the first frame update
     void Start()
     {
         base.Init();
@@ -20,7 +19,6 @@ public class DemonEnemy : Enemy
         currentSpeed = normalSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {   
         // check if game start

@@ -5,7 +5,11 @@ using UnityEngine.Rendering.Universal;
 
 public class FourShotTurret : AttackTurret
 {
+    [Tooltip("hold targetEnemy direction until attack over")]
+    protected Vector3 targetEnemyPosition;
     [SerializeField] protected bool isRapidFiring;
+    [Tooltip("indicate whether four shot has ended")]
+    [SerializeField] protected bool hasFiringEnded;
     [Tooltip("shot period in a single attack")]
     [SerializeField] protected float rapidFireRate;
     [Tooltip("total bullet number of a single attack")]
@@ -27,7 +31,9 @@ public class FourShotTurret : AttackTurret
         bulletSpeed = 10.0f;
 
         // four shot turret only
+        targetEnemyPosition = Vector3.zero;
         isRapidFiring = false;
+        hasFiringEnded = true;
         rapidFireRate = 0.1f;
         rapidFireNumber = 5;
         numFireinRapid = 0;
@@ -43,9 +49,7 @@ public class FourShotTurret : AttackTurret
 
         light2D.intensity = bulletBuffTimer;
 
-        if(!isRapidFiring){
-            base.TargetEnemy();
-        }
+        base.TargetEnemy();
 
         if(targetEnemy){
             ShootEnemy();
@@ -60,33 +64,41 @@ public class FourShotTurret : AttackTurret
             shootTimer = 0.0f;
             isRapidFiring = true;
         }
-        else if (shootTimer > rapidFireRate && isRapidFiring){
-            shootTimer = 0.0f;
-            if (numFireinRapid < rapidFireNumber)
-            {
-                numFireinRapid++;
-
-                // generate bullet
-                GameObject obj = Instantiate(bulletPrefab, transform.position + new Vector3(0f, 1.0f, 0.0f), Quaternion.identity, GameObject.Find("/Bullets").transform);
-                Bullet bulletComponent = obj.GetComponent<Bullet>();
-                Vector3 direction = (targetEnemy.transform.position - transform.position + new Vector3(0f, -1f, 0f));
-                
-                // setup bullet properties
-                bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
-                bulletComponent.speed = bulletSpeed;
-            }
-            else{
-                isRapidFiring = false;
-                numFireinRapid = 0;
-            }
+        else if (isRapidFiring && hasFiringEnded){
+            hasFiringEnded = false;
+            targetEnemyPosition = targetEnemy.transform.position;
+            StartCoroutine("FourShots");
         }
 
         // check if enemy is in range
-        if(!isRapidFiring){
-            Vector3 enemyDistance = targetEnemy.transform.position - transform.position;
-            if (enemyDistance.magnitude > shootRange){
-                targetEnemy = null;
-            }
+        Vector3 enemyDistance = targetEnemy.transform.position - transform.position;
+        if (enemyDistance.magnitude > shootRange){
+            targetEnemy = null;
+        }
+    }
+
+    protected IEnumerator FourShots()
+    {
+        ++numFireinRapid;
+
+        // generate bullet
+        GameObject obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
+        Bullet bulletComponent = obj.GetComponent<Bullet>();
+        Vector3 direction = (targetEnemyPosition - transform.position - bulletOffset);
+        
+        // setup bullet properties
+        bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
+        bulletComponent.speed = bulletSpeed;
+
+        if (numFireinRapid < rapidFireNumber){
+            yield return new WaitForSeconds(rapidFireRate);
+            StartCoroutine("FourShots");
+        }
+        else{
+            isRapidFiring = false;
+            hasFiringEnded = true;
+            numFireinRapid = 0;
+            shootTimer = 0.0f;
         }
     }
 }
