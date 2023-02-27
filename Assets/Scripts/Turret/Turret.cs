@@ -24,7 +24,7 @@ public abstract class Turret : MonoBehaviour
     // ========== combination related variables ==========
     protected bool isCombinable;
     [Tooltip("move towards combination target if exists")]
-    protected GameObject combinationTarget;
+    [SerializeField] protected GameObject combinationTarget;
     protected float combinationSpeed;
     [Tooltip("combination neighbor 1")]
     private GameObject targetObject1;
@@ -49,14 +49,16 @@ public abstract class Turret : MonoBehaviour
         isCombinable = false;
 
         // fixed initialization
-        map = GameObject.Find("Grid").GetComponent<Grid>();
-        gridPosition = map.WorldToCell(transform.position);
+        map = GameObject.Find("Grid").GetComponent<Grid>();        
         boxComponent = transform.parent.gameObject.GetComponent<Box>();
         light2D = GetComponent<Light2D>();
         filter = new ContactFilter2D().NoFilter();
         results = new List<Collider2D>();
 
-        combinationTarget = null;
+        // call this after results is initialized
+        GetLocalPosition();
+
+        //combinationTarget = null;
         combinationSpeed = 1.0f;
         targetObject1 = null;
         targetObject2 = null;
@@ -88,12 +90,15 @@ public abstract class Turret : MonoBehaviour
      
     protected GameObject GetBox(Vector3 position){
         Physics2D.OverlapCircle(position, 0.1f, filter, results);
-        foreach( Collider2D result in results)
-        {
-            if(result.gameObject.TryGetComponent<Box>(out Box box)){
-                return result.gameObject;
+        if(results.Count > 0){
+            foreach( Collider2D result in results)
+            {
+                if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                    return result.gameObject;
+                }
             }
         }
+        
         return null;
     }
 
@@ -106,7 +111,6 @@ public abstract class Turret : MonoBehaviour
             // instantiate with enum, -1 to fit position in array
             PlayingStats.comboCount(transferGameObject[(int)transferCode - 1].name);
             Instantiate(transferGameObject[(int)transferCode - 1], transform.position, Quaternion.identity, transform.parent);
-
 
             Destroy(targetObject1.gameObject);
             Destroy(targetObject2.gameObject);
@@ -166,6 +170,9 @@ public abstract class Turret : MonoBehaviour
         } else{
             return false;
         }
+
+        print("turretCount " + turretCount);
+        print("radarcount" + radarCount);
 
         // get plant kind this combination will change into
         if(turretCount == 3){

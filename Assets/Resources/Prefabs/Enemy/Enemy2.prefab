@@ -147,17 +147,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b4efff45e414f1b9bbc32ca9121342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 5
-  origHP: 5
-  spriteRenderer: {fileID: 5375899361776046486}
-  newSprite: {fileID: 1988386695, guid: 460f123ddd98ebd4282be8de6474965c, type: 3}
-  Player: {fileID: 0}
-  movementSpeed: 0
-  Damage: 0
+  healthPoint: 0
+  attackDamage: 0
+  attackSpeed: 0
+  attackCoolDown: 0
+  attackRange: 0
+  currentSpeed: 0
+  normalSpeed: 0
+  slowedSpeed: 0
   isSlowed: 0
   slowDuration: 0
   slowedTime: 0
+  player: {fileID: 0}
   canvasManager: {fileID: 0}
+  demonEnemySprite: {fileID: 1988386695, guid: 460f123ddd98ebd4282be8de6474965c, type: 3}
 --- !u!61 &-5746517564521749128
 BoxCollider2D:
   m_ObjectHideFlags: 0

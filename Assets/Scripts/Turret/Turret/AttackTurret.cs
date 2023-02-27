@@ -64,7 +64,7 @@ public abstract class AttackTurret : Turret
             // generate bullet
             GameObject obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
             Bullet bulletComponent = obj.GetComponent<Bullet>();
-            Vector3 direction = (targetEnemy.transform.position - transform.position + new Vector3(0.0f, -1.0f, 0.0f));
+            Vector3 direction = (targetEnemy.transform.position - transform.position - bulletOffset);
 
             // setup bullet properties
             bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;

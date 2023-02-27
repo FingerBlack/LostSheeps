@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DemonEnemy : Enemy
+public class ShieldEnemy : Enemy
 {
-    // Start is called before the first frame update
+    // ============================== variables ==============================
+    protected bool hasShield;
+    protected float unShieldedHealth;
+    [SerializeField] protected Sprite demonEnemySprite;
+
+    // ======================================================================
     void Start()
     {
         base.Init();
@@ -18,6 +23,10 @@ public class DemonEnemy : Enemy
         slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
+
+        // shield enemy only
+        unShieldedHealth = 5.0f;
+        hasShield = true;
     }
 
     // Update is called once per frame
@@ -30,7 +39,14 @@ public class DemonEnemy : Enemy
 
         // check if alive
         if(healthPoint <= 0){
-            Destroy(gameObject);
+            if(hasShield){
+                hasShield = false;
+                healthPoint += unShieldedHealth;
+                GetComponent<SpriteRenderer>().sprite = demonEnemySprite; 
+            }
+            else{
+                Destroy(gameObject);
+            }
         }
 
         // check slowed 
