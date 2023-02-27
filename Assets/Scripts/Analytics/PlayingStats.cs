@@ -129,6 +129,21 @@ public class PlayingStats : MonoBehaviour
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "plantData/" + System.Guid.NewGuid().ToString() + ".json", d);
     }
 
+    public static void pushCount()
+    {
+
+        PushData d = new PushData(PlayingStats.user.userID,  PlayingStats.getDuration(), PlayingStats.currentSceneName);
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "pushData/" + System.Guid.NewGuid().ToString() + ".json", d);
+    }
+
+
+    public static void pickCount(string pickedItem)
+    {
+
+        PickData d = new PickData(PlayingStats.user.userID, pickedItem, PlayingStats.getDuration(), PlayingStats.currentSceneName);
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "pickData/" + System.Guid.NewGuid().ToString() + ".json", d);
+    }
+
 
     public static void comboCount(string comboName)
     {

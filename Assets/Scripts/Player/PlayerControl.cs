@@ -194,17 +194,21 @@ public class PlayerControl : MonoBehaviour
         // Collider for detect seeds.
         //=============================================================================================================
         Physics2D.OverlapCircle(transform.position, 0.2f,filter, results);
-        foreach( Collider2D result in results)
+        foreach (Collider2D result in results)
         {
-            if(result.gameObject.TryGetComponent<Seed>(out Seed seed)){
-                seedNumber+=1;
-                Destroy(result.gameObject);
-            }
-            if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
-                seedNumber+=1;
+            if (result.gameObject.TryGetComponent<Seed>(out Seed seed))
+            {
+                seedNumber += 1;
+                
+                PlayingStats.pickCount(seed.GetType().Name);
                 Destroy(result.gameObject);
             }
         }
+        //     if(result.gameObject.TryGetComponent<Seed>(out Seed cherrySeed)){
+        //         seedNumber+=1;
+        //         Destroy(result.gameObject);
+        //     }
+        // }
     }
     private IEnumerator SlowMove(Vector3Int direction)
     {
