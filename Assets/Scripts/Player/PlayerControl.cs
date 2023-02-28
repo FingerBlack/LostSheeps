@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
     public float dY;
     public float currentHp;
     public float maxHp;
-    public float timeToMove;
+    public float speed;
     public string action;
     public bool isMoving;
     public string attackedBy;
@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
     public CanvasManager canvasManager;
     public Vector3Int playerGridPos;
     public Vector3Int targetrGridPos;
+    public Vector3Int isMovingDirection;
     public Vector3 targetWorldPos;
     public SpriteRenderer spriteRenderer;
     public Image hpImage;
@@ -55,10 +56,10 @@ public class PlayerControl : MonoBehaviour
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         isMoving=false;
         action="None";
-        timeToMove=0.2f;
+        //timeToMove=0.2f;
         //seedNumber=0; //initiate the peaNumber.
         currentHp=maxHp;
-        horiSpeed =5f; //Remember to Set the Speed on Start 
+        speed =2.5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
@@ -152,21 +153,26 @@ public class PlayerControl : MonoBehaviour
 
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in Grid Space
 
-        if(horiInput!=0){
-            if(!isMoving){
+        
+        if(!isMoving){
+            if(horiInput!=0){
                 isMoving=true;
-                StartCoroutine(SlowMove(new Vector3Int(horiInput>0?1:-1,0,0)));
-                action="None";
-            }   
+                isMovingDirection=playerGridPos+new Vector3Int(horiInput>0?1:-1,0,0);
+            }else if(vertInput!=0){
+                isMovingDirection=playerGridPos+new Vector3Int(0,vertInput>0?1:-1,0);
+                isMoving=true;
+            }
+
+            action="None";
+        }else{
+            SlowMove(floorGrid.GetCellCenterWorld(isMovingDirection));
+            
+        }   
             //}            
-        }else
-        if(vertInput!=0){
-            if(!isMoving){
-                isMoving=true;
-                StartCoroutine(SlowMove(new Vector3Int(0,vertInput>0?1:-1,0)));
-                action="None";
-            }             
-        }
+       
+        
+                 
+        
 
         
         //=============================================================================================================
@@ -237,56 +243,53 @@ public class PlayerControl : MonoBehaviour
         //     }
         // }
     }
-    private IEnumerator SlowMove(Vector3Int direction)
+    private void SlowMove(Vector3 targetPos)
     {
-        while(true){
-            Vector3Int targetCellPos = playerGridPos + direction;
-            Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
-            ContactFilter2D filter = new ContactFilter2D().NoFilter();
-            List<Collider2D> results = new List<Collider2D>();
-            Physics2D.OverlapCircle(targetPos, 0.1f,filter,results);
-            bool isOccupied=false;
-            foreach( Collider2D result in results)
-            {   
-                if(result.isTrigger){
-                    continue;
-                }
-                if(result.gameObject.TryGetComponent<Box>(out Box box)){
-                    isOccupied=true;
-                    break;
-                }else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
-                    isOccupied=true;
-                    break;
-                }else if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
-                    isOccupied=true;
-                    break;
-                }             
+       
+        //Vector3Int targetCellPos = playerGridPos + direction;
+        //Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
+        ContactFilter2D filter = new ContactFilter2D().NoFilter();
+        List<Collider2D> results = new List<Collider2D>();
+        Physics2D.OverlapCircle(targetPos, 0.1f,filter,results);
+        bool isOccupied=false;
+        foreach( Collider2D result in results)
+        {   
+            if(result.isTrigger){
+                continue;
             }
-            if(!isOccupied){
-                
-                float elapsedTime = Time.deltaTime;
-                Vector3 origPos = transform.position;
-                while(elapsedTime < timeToMove){
-                    transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
-                    elapsedTime += Time.deltaTime;
-                    yield return null;
-                }            
-                //transform.position = targetPos;
-                playerGridPos = targetCellPos;
-                if(new Vector3Int(horiInput>0?1:-1,0,0)!=direction){
-                    isMoving = false;    
-                    break;
-                }else
-                if(new Vector3Int(0,vertInput>0?1:-1,0)!=direction){
-                    isMoving = false;    
-                    break;
-                }
-
-            }else{
-                isMoving = false;
+            if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                isOccupied=true;
                 break;
-            }    
+            }else if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
+                isOccupied=true;
+                break;
+            }else if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
+                isOccupied=true;
+                break;
+            }             
         }
+        if(!isOccupied){
+            
+            float elapsedTime = Time.deltaTime;
+            Vector3 origPos = transform.position;
+            // while(elapsedTime < timeToMove){
+            //     transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
+            //     elapsedTime += Time.deltaTime;
+            //     yield return null;
+            // }
+            transform.position=Vector3.MoveTowards(transform.position,targetPos,speed*Time.deltaTime);            
+            //transform.position = targetPos;
+            //playerGridPos = targetCellPos;
+            if(Vector3.Distance(transform.position,targetPos)<0.01){
+                isMoving = false;    
+                
+            }
+
+        }else{
+            isMoving = false;
+            
+        }    
+        
         
     }
     private GameObject GetBox(Vector3 position){
