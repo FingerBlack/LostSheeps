@@ -38,23 +38,30 @@ public class PlayerControl : MonoBehaviour
     public Vector3Int playerGridPos;
     public Vector3Int targetrGridPos;
     public Vector3 targetWorldPos;
-
-
+    public SpriteRenderer spriteRenderer;
+    public Sprite l;
+    public Sprite r;
+    public Sprite b;
+    public Sprite f;
     //=============================================================================================================
     // Start is called before the first frame update
     void Start()
     {      
+        spriteRenderer=GetComponent<SpriteRenderer>();
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         isMoving=false;
         action="None";
         timeToMove=0.2f;
         seedNumber=0; //initiate the peaNumber.
-       
+        
         horiSpeed =5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
-        
+        l= Resources.Load<Sprite>("Pictures/Player/l");
+        r= Resources.Load<Sprite>("Pictures/Player/r") ;
+        b= Resources.Load<Sprite>("Pictures/Player/b");
+        f= Resources.Load<Sprite>("Pictures/Player/f") ;
         pea=Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
         cherry=Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
         plant=pea;   
@@ -95,6 +102,7 @@ public class PlayerControl : MonoBehaviour
         {   
 
             playerDirection = new Vector3Int(1, 0, 0);
+            spriteRenderer.sprite=r;
             targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
             targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); // Set the target position in grid space;
             
@@ -103,6 +111,7 @@ public class PlayerControl : MonoBehaviour
         {
 
             playerDirection =new Vector3Int(-1, 0, 0);
+            spriteRenderer.sprite=l;
             targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
             targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
 
@@ -110,11 +119,13 @@ public class PlayerControl : MonoBehaviour
         else if(vertInput>0)
         {
             playerDirection =new Vector3Int(0, 1, 0);
+            spriteRenderer.sprite=f;
             targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
             targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
             
         }else if(vertInput<0){
             playerDirection =new Vector3Int(0, -1, 0);
+            spriteRenderer.sprite=b;
             targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
             targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
 

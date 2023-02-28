@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 185573754, guid: 91180792b88a4a84fbc8b71c8add140a, type: 3}
+  m_Sprite: {fileID: 934520193, guid: 895f3a762a9fc5140b65c5417bc8a63a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -123,6 +123,11 @@ MonoBehaviour:
   playerGridPos: {x: 0, y: 0, z: 0}
   targetrGridPos: {x: 0, y: 0, z: 0}
   targetWorldPos: {x: 0, y: 0, z: 0}
+  spriteRenderer: {fileID: 0}
+  l: {fileID: 0}
+  r: {fileID: 0}
+  b: {fileID: 0}
+  f: {fileID: 0}
 --- !u!61 &2853620171554428229
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -139,8 +144,8 @@ BoxCollider2D:
   m_Offset: {x: 0.008846089, y: 0.12258227}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.47009832, y: 0.04324177}
-    oldSize: {x: 0.55, y: 0.93}
+    pivot: {x: 0.49053463, y: 0.030795092}
+    oldSize: {x: 0.99, y: 2.03}
     newSize: {x: 0.55, y: 0.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
