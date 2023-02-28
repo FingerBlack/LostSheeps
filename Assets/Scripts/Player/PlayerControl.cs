@@ -264,7 +264,7 @@ public class PlayerControl : MonoBehaviour
             }
             if(!isOccupied){
                 
-                float elapsedTime = 0;
+                float elapsedTime = Time.deltaTime;
                 Vector3 origPos = transform.position;
                 while(elapsedTime < timeToMove){
                     transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
