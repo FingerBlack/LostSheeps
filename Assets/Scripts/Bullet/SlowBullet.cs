@@ -32,6 +32,7 @@ public class SlowBullet : Bullet
                 enemy.isSlowed = true;
                 enemy.slowedTime = 0;
                 Destroy(gameObject);
+                break;
             }
         }
     }

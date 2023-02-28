@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public abstract class Enemy : MonoBehaviour
 {
     // ============================== variables ==============================
+    public float maxHealthPoint;
     public float healthPoint;
     [SerializeField] protected float attackDamage;
     [Tooltip("enemy attacks every attackSpeed seconds")]
@@ -22,13 +23,13 @@ public abstract class Enemy : MonoBehaviour
     public float slowedTime;
     [SerializeField] protected GameObject player;
     [SerializeField] protected CanvasManager canvasManager;
-    
+    public Image hpImage;
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
     protected virtual void Init()
     {
         // varying inititalization (should be replaced)
-        healthPoint = 5.0f;
+        //healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
@@ -38,7 +39,7 @@ public abstract class Enemy : MonoBehaviour
 
         // fixed initialization
         attackCoolDown = 0.0f;
-        currentSpeed = 0.0f;
+        currentSpeed = 0.2f;
         isSlowed = false;
         slowedTime = 0.0f;
 
@@ -70,7 +71,7 @@ public abstract class Enemy : MonoBehaviour
         float distance = Vector3.Distance(transform.position, player.transform.position);
         if(distance < attackRange && attackCoolDown <= 0){
             // attack
-            player.GetComponent<PlayerControl>().HP -= attackDamage;
+            player.GetComponent<PlayerControl>().currentHp -= attackDamage;
         
             player.GetComponent<PlayerControl>().attackedBy = GetType().Name;
 

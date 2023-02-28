@@ -42,7 +42,7 @@ public class CanvasManager : MonoBehaviour
         startButton=homePanel.transform.GetChild(0).gameObject.GetComponent<Button>();
         startButton.onClick.AddListener(OnClick);
         valuePanel=transform.GetChild(1).gameObject;
-        ui=valuePanel.transform.GetChild(0).gameObject;
+        ui=valuePanel.transform.GetChild(1).gameObject;
         cardPanel=transform.GetChild(2).gameObject;
         cardPanel1=transform.GetChild(3).gameObject;
         nextLevel=transform.GetChild(4).gameObject;
@@ -119,7 +119,7 @@ public class CanvasManager : MonoBehaviour
         TMP_Text uiDisplay = ui.GetComponent<TMP_Text>();
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
-        uiDisplay.text="HP: "+ playerControl.HP.ToString()+"      Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
+        uiDisplay.text="Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
         +"      \nComponent: "+playerControl.seedNumber.ToString();
     }
     void OnClick(){

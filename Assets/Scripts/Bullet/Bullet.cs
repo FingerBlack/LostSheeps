@@ -31,6 +31,7 @@ public abstract class Bullet : MonoBehaviour
             if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
                 enemy.healthPoint -= 1.0f;
                 Destroy(gameObject);
+                break;
             }
         }
     }

@@ -120,12 +120,12 @@ TextureImporter:
       name: l_0
       rect:
         serializedVersion: 2
-        x: 81
+        x: 78
         y: 11
-        width: 101
+        width: 112
         height: 201
       alignment: 9
-      pivot: {x: 0.47849023, y: 0.031843025}
+      pivot: {x: 0.5064374, y: 0.034067687}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
