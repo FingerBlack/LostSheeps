@@ -53,7 +53,7 @@ Mission Allocation:
 3.  David is in charge of **Level Design& Basic artwork& Level Develop**.
 4.  Junqiao is in charge of **Analytic Develop**. 
 5. Ching-Chih is in charge of **Enemy2**.
-## Version 4.0
+## Version 5.0
 
 Description： Advanced Levels.
 
