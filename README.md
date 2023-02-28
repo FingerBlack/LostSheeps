@@ -53,3 +53,15 @@ Mission Allocation:
 3.  David is in charge of **Level Design& Basic artwork& Level Develop**.
 4.  Junqiao is in charge of **Analytic Develop**. 
 5. Ching-Chih is in charge of **Enemy2**.
+## Version 5.0
+
+Description： Advanced Levels.
+
+Mission Allocation:	
+
+1.  Jishuang is in charge of **everything**.
+2.  Songlin Lv is in charge of **Refomate Code part 2**.
+3.  David is in charge of **Level Design& Basic artwork& Level Develop**.
+4.  Junqiao is in charge of **Analytic Develop & Design**. 
+5. Ching-Chih is in charge of **Refomate Code part 1**.
+6. Zihao is in charge of **Refomate Code part 3**.
