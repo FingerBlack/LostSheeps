@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: da6a1eef8534a403a90cfaac49e8046f
+guid: d10a15e8427b44cf6b78d94a43f878cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -117,22 +117,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: selectedbox_0
+      name: box (1)_0
       rect:
         serializedVersion: 2
-        x: 318
-        y: 566
-        width: 57
-        height: 96
+        x: 321
+        y: 569
+        width: 35
+        height: 56
       alignment: 9
-      pivot: {x: 0.5260127, y: 0.27}
+      pivot: {x: 0.47657993, y: 0.25849697}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9815adae788eb4323b93950f0caa357f
-      internalID: 2076207589
+      spriteID: c2e5bf350bac7424185c837ae3be208b
+      internalID: -2067958713
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      selectedbox_0: 2076207589
+      box (1)_0: -2067958713
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
