@@ -11,7 +11,7 @@ public class PlayingStats : MonoBehaviour
     
     public static User user;
     public static DateTime startTime;
-    public static DateTime currentTime;
+    
     public static DateTime endTime;
     public static string currentSceneName;
     public static string recordID;
@@ -26,7 +26,7 @@ public class PlayingStats : MonoBehaviour
         
         
 
-        StartCoroutine(ExecuteEveryOneSecond());
+        //StartCoroutine(ExecuteEveryOneSecond());
         
 }
 
@@ -88,7 +88,7 @@ public class PlayingStats : MonoBehaviour
     //update every 1 second
     void playingTime_updateTime()
     {
-        currentTime = System.DateTime.Now;
+        //currentTime = System.DateTime.Now;
         //Debug.Log(currentTime.ToString());
         //Debug.Log(startTime.ToString());
 
@@ -119,7 +119,7 @@ public class PlayingStats : MonoBehaviour
     // get the running time of current level
     public static string getDuration()
     {
-        TimeSpan timeDifference = PlayingStats.currentTime - PlayingStats.startTime;
+        TimeSpan timeDifference = System.DateTime.Now - PlayingStats.startTime;
         return timeDifference.TotalSeconds.ToString();
     }
     public static void plantCount(string plantName)
