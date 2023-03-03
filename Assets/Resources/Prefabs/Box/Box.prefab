@@ -109,7 +109,9 @@ MonoBehaviour:
   stand: 0
   HP: 0
   direction: {x: 0, y: 0, z: 0}
-  targetedLayer: {fileID: 7604133835323628589}
+  spriteRenderer: {fileID: 772589750350014205}
+  targetedBox: {fileID: 942152868, guid: bd5588d3675044098ad5dd25bd20a3d4, type: 3}
+  normalBox: {fileID: -297484341, guid: 8587b580a0cf645788fc0ccf78973436, type: 3}
 --- !u!61 &7916194214287243875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -217,6 +219,6 @@ SpriteRenderer:
   m_Size: {x: 0.7, y: 0.78}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

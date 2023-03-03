@@ -17,13 +17,13 @@ public class Box : MonoBehaviour
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
     private string plantKind;
-    // public SpriteRenderer spriteRenderer;
-    // public Sprite targetedBox;
-    // public Sprite normalBox;
-    public GameObject targetedLayer;
+    public SpriteRenderer spriteRenderer;
+    public Sprite targetedBox;
+    public Sprite normalBox;
+    // public GameObject targetedLayer;
     void Start()
     { 
-        targetedLayer.SetActive(false);
+        // targetedLayer.SetActive(false);
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>();
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
@@ -138,11 +138,11 @@ public class Box : MonoBehaviour
 
     public void setTargeted(bool targeted){
         if(targeted){
-            targetedLayer.SetActive(true);
-            // spriteRenderer.sprite=targetedBox;
+            // targetedLayer.SetActive(true);
+            spriteRenderer.sprite=targetedBox;
         } else{
-            targetedLayer.SetActive(false);
-            // spriteRenderer.sprite=normalBox;
+            // targetedLayer.SetActive(false);
+            spriteRenderer.sprite=normalBox;
         }
     }
 }
