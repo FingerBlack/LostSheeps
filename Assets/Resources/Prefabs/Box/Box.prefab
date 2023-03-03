@@ -108,6 +108,9 @@ MonoBehaviour:
   stand: 0
   HP: 0
   direction: {x: 0, y: 0, z: 0}
+  spriteRenderer: {fileID: 772589750350014205}
+  targetedBox: {fileID: 2076207589, guid: da6a1eef8534a403a90cfaac49e8046f, type: 3}
+  normalBox: {fileID: 118667546, guid: e8bca423c9a8ce8448efaa5361a29d25, type: 3}
 --- !u!61 &7916194214287243875
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -125,7 +128,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.51031494, y: 0.26558992}
-    oldSize: {x: 0.51, y: 0.93999994}
+    oldSize: {x: 0.57, y: 0.96}
     newSize: {x: 0.55, y: 0.78}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

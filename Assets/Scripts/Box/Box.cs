@@ -17,6 +17,9 @@ public class Box : MonoBehaviour
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
     private string plantKind;
+    public SpriteRenderer spriteRenderer;
+    public Sprite targetedBox;
+    public Sprite normalBox;
     void Start()
     { 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>();
@@ -129,5 +132,13 @@ public class Box : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void setTargeted(bool targeted){
+        if(targeted){
+            spriteRenderer.sprite=targetedBox;
+        } else{
+            spriteRenderer.sprite=normalBox;
+        }
     }
 }
