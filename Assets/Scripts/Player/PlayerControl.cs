@@ -48,6 +48,7 @@ public class PlayerControl : MonoBehaviour
     public Sprite r;
     public Sprite b;
     public Sprite f;
+
     //=============================================================================================================
     // Start is called before the first frame update
     void Start()
@@ -224,20 +225,27 @@ public class PlayerControl : MonoBehaviour
             foreach( Collider2D result in results)
             {
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                    
+
                     if(box.transform.childCount==0){
-                        if(plant==pea&&seedNumber>0){
-                            GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            seedNumber-=1;
-                            PlayingStats.plantCount(NamingConstant.Plant1);
-                            box.CheckNeighbors();
-                            //Debug.Log(NamingConstant.Plant1);
+                        if(seedNumber==0){
+                            GameObject.Find("Canvas").GetComponent<CanvasManager>().componentCounterText.GetComponent<TwinkleText>().Twinkle();
                         }
-                        if(plant==cherry&&seedNumber>0){
-                            GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
-                            seedNumber-=1;
-                            PlayingStats.plantCount(NamingConstant.Plant2);
-                            box.CheckNeighbors();
-                            //Debug.Log(NamingConstant.Plant2);
+                        else{
+                            if(plant==pea&&seedNumber>0){
+                                GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
+                                seedNumber-=1;
+                                PlayingStats.plantCount(NamingConstant.Plant1);
+                                box.CheckNeighbors();
+                                //Debug.Log(NamingConstant.Plant1);
+                            }
+                            if(plant==cherry&&seedNumber>0){
+                                GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
+                                seedNumber-=1;
+                                PlayingStats.plantCount(NamingConstant.Plant2);
+                                box.CheckNeighbors();
+                                //Debug.Log(NamingConstant.Plant2);
+                            }
                         }
                     }
                 }
