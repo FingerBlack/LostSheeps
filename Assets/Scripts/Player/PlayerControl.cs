@@ -106,44 +106,70 @@ public class PlayerControl : MonoBehaviour
         }
     //=============================================================================================================
     // Facing direction;
+        // if (horiInput > 0) 
+        // {   
+        //     if(playerDirection!=new Vector3Int(1, 0, 0)){
+        //         playerDirection = new Vector3Int(1, 0, 0);
+        //         // spriteRenderer.sprite=r;
+        //     }
+
+        //     targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
+        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); // Set the target position in grid space;
+            
+        // }
+        // else if(horiInput < 0)
+        // {
+        //     if(playerDirection!=new Vector3Int(-1, 0, 0)){
+        //         playerDirection =new Vector3Int(-1, 0, 0);
+        //         // spriteRenderer.sprite=l;
+        //     }
+        //     targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
+        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+
+        // }
+        // else if(vertInput>0)
+        // {
+        //      if(playerDirection!=new Vector3Int(0, 1, 0)){
+        //         playerDirection =new Vector3Int(0, 1, 0);
+        //         // spriteRenderer.sprite=f;
+        //     }
+        //     targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
+        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+            
+        // }else if(vertInput<0){
+        //      if(playerDirection!=new Vector3Int(0, -1, 0)){ 
+        //         playerDirection =new Vector3Int(0, -1, 0);
+        //         // spriteRenderer.sprite=b;
+        //     }
+        //     targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
+        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+
+        // }
+
+        Vector3Int newDirection = Vector3Int.zero;
         if (horiInput > 0) 
         {   
-            if(playerDirection!=new Vector3Int(1, 0, 0)){
-                playerDirection = new Vector3Int(1, 0, 0);
-                spriteRenderer.sprite=r;
-            }
-
-            targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
-            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); // Set the target position in grid space;
-            
+            newDirection = Vector3Int.right;
         }
         else if(horiInput < 0)
         {
-            if(playerDirection!=new Vector3Int(-1, 0, 0)){
-                playerDirection =new Vector3Int(-1, 0, 0);
-                spriteRenderer.sprite=l;
-            }
-            targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
-            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
-
+            newDirection = Vector3Int.left;
         }
         else if(vertInput>0)
         {
-             if(playerDirection!=new Vector3Int(0, 1, 0)){
-                playerDirection =new Vector3Int(0, 1, 0);
-                spriteRenderer.sprite=f;
-            }
-            targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
-            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
-            
+            newDirection = Vector3Int.up;
         }else if(vertInput<0){
-             if(playerDirection!=new Vector3Int(0, -1, 0)){ 
-                playerDirection =new Vector3Int(0, -1, 0);
-                spriteRenderer.sprite=b;
-            }
-            targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
-            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+            newDirection = Vector3Int.down;
+        }
 
+        if(newDirection != Vector3Int.zero){
+            if(playerDirection != newDirection){
+                playerDirection = newDirection;
+                updateSprite();
+            }
+            updateTarget();
+            // targetrGridPos = playerGridPos + playerDirection;
+            // targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
         }
 
     //=============================================================================================================
@@ -185,6 +211,7 @@ public class PlayerControl : MonoBehaviour
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
                     box.direction=playerDirection;
                     box.action="move";
+                    box.setTargeted(false);
                 }
                 // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
                 //     wall.direction=playerDirection;
@@ -301,5 +328,46 @@ public class PlayerControl : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void updateSprite(){
+        if(playerDirection == Vector3Int.left){
+            spriteRenderer.sprite=l;
+        } else if(playerDirection == Vector3Int.right){
+            spriteRenderer.sprite=r;
+        } else if(playerDirection == Vector3Int.up){
+            spriteRenderer.sprite=f;
+        } else if(playerDirection == Vector3Int.down){
+            spriteRenderer.sprite=b;
+        }
+    }
+
+    private void updateTarget(){
+        if(targetrGridPos != playerGridPos + playerDirection){
+            untargetBox();
+            targetrGridPos = playerGridPos + playerDirection;
+            targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
+            targetBox();
+        }
+    }
+
+    private void targetBox(){
+        Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                box.setTargeted(true);
+            }
+        }
+    }
+
+    private void untargetBox(){
+        Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
+        foreach( Collider2D result in results)
+        {
+            if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                box.setTargeted(false);
+            }
+        }
     }
 }
