@@ -107,46 +107,6 @@ public class PlayerControl : MonoBehaviour
         }
     //=============================================================================================================
     // Facing direction;
-        // if (horiInput > 0) 
-        // {   
-        //     if(playerDirection!=new Vector3Int(1, 0, 0)){
-        //         playerDirection = new Vector3Int(1, 0, 0);
-        //         // spriteRenderer.sprite=r;
-        //     }
-
-        //     targetrGridPos = playerGridPos + new Vector3Int(1, 0, 0);
-        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); // Set the target position in grid space;
-            
-        // }
-        // else if(horiInput < 0)
-        // {
-        //     if(playerDirection!=new Vector3Int(-1, 0, 0)){
-        //         playerDirection =new Vector3Int(-1, 0, 0);
-        //         // spriteRenderer.sprite=l;
-        //     }
-        //     targetrGridPos = playerGridPos + new Vector3Int(-1, 0, 0);
-        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
-
-        // }
-        // else if(vertInput>0)
-        // {
-        //      if(playerDirection!=new Vector3Int(0, 1, 0)){
-        //         playerDirection =new Vector3Int(0, 1, 0);
-        //         // spriteRenderer.sprite=f;
-        //     }
-        //     targetrGridPos = playerGridPos + new Vector3Int(0, 1, 0);
-        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
-            
-        // }else if(vertInput<0){
-        //      if(playerDirection!=new Vector3Int(0, -1, 0)){ 
-        //         playerDirection =new Vector3Int(0, -1, 0);
-        //         // spriteRenderer.sprite=b;
-        //     }
-        //     targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0);
-        //     targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
-
-        // }
-
         Vector3Int newDirection = Vector3Int.zero;
         if (horiInput > 0) 
         {   
@@ -168,9 +128,6 @@ public class PlayerControl : MonoBehaviour
                 playerDirection = newDirection;
                 updateSprite();
             }
-            
-            // targetrGridPos = playerGridPos + playerDirection;
-            // targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
         }
         updateTarget();
     //=============================================================================================================
