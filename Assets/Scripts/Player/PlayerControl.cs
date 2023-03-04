@@ -168,11 +168,11 @@ public class PlayerControl : MonoBehaviour
                 playerDirection = newDirection;
                 updateSprite();
             }
-            updateTarget();
+            
             // targetrGridPos = playerGridPos + playerDirection;
             // targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos);
         }
-
+        updateTarget();
     //=============================================================================================================
     // All Input setting are here, learn these code and expand these codes in the future.
     //=============================================================================================================
