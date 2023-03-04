@@ -6,9 +6,11 @@ public class spawner : MonoBehaviour
 {
     public GameObject spawnObject;
     public float spawnRate;
+    public int totalNumber;
     private float spawnTimer;
     public CanvasManager canvasManager;
     private Grid floorGrid;
+    private GameObject enemies;
     // Start is called before the first frame update
     void Start()
     {   
@@ -16,6 +18,7 @@ public class spawner : MonoBehaviour
         transform.position = floorGrid.GetCellCenterWorld(floorGrid.WorldToCell(transform.position));
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         spawnTimer = 0;
+        enemies=GameObject.Find("/Enemies");
     }
 
     // Update is called once per frame
@@ -30,7 +33,10 @@ public class spawner : MonoBehaviour
             if (spawnTimer >= spawnRate)
             {
                 spawnTimer = 0;
-                GameObject obj = Instantiate(spawnObject, transform.position, Quaternion.identity, GameObject.Find("/Enemies").transform);
+                if(enemies.transform.childCount<=totalNumber){
+
+                    Instantiate(spawnObject, transform.position, Quaternion.identity, enemies.transform);
+                }
             }
 
         }
