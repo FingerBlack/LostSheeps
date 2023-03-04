@@ -119,8 +119,7 @@ public class CanvasManager : MonoBehaviour
         TMP_Text uiDisplay = ui.GetComponent<TMP_Text>();
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
-        uiDisplay.text="Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
-        +"      \nComponent: "+playerControl.seedNumber.ToString();
+        uiDisplay.text="Component: "+playerControl.seedNumber.ToString();
     }
     void OnClick(){
         //Debug.Log("Press the Button");
