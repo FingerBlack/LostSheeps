@@ -23,6 +23,17 @@ public class CoroutineRunner : MonoBehaviour
         instance.StartCoroutine(countEnemyStats());
     }
 
+    public static void StopMyCoroutine()
+    {
+
+        if (instance == null)
+        {
+            GameObject coroutineRunnerObject = new GameObject("Coroutine Runner");
+            instance = coroutineRunnerObject.AddComponent<CoroutineRunner>();
+        }
+        instance.StopCoroutine(countEnemyStats());
+    }
+
     private static IEnumerator countEnemyStats()
     {
         int stage = 1;

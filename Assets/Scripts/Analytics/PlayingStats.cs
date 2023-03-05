@@ -16,6 +16,8 @@ public class PlayingStats : MonoBehaviour
     public static string currentSceneName;
     public static string recordID;
     public static PlaytimeData playtimeData;
+    
+    
     // Start is called before the first frame update
     void Start()
 
@@ -47,8 +49,9 @@ public class PlayingStats : MonoBehaviour
         startTime = System.DateTime.Now;
         playtimeData = new PlaytimeData(user.userID, currentSceneName);
         playtimeData.start = printDate(startTime);
+        
 
-        //StartCoroutine(PlayingStats.ExecuteEveryFiveSecond());
+        
         
         CoroutineRunner.StartMyCoroutine();
 
@@ -61,8 +64,8 @@ public class PlayingStats : MonoBehaviour
         playtimeData.end = printDate(System.DateTime.Now);
         playtimeData.status = "Fail";
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "playTime/" + recordID + ".json", playtimeData);
-        //StopCoroutine(PlayingStats.ExecuteEveryFiveSecond());
-
+        CoroutineRunner.StopMyCoroutine();
+        sendSafeZoneTime();
     }
 
     public static void onLevelSuccess()
@@ -73,24 +76,22 @@ public class PlayingStats : MonoBehaviour
         playtimeData.status = "Success";
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "playTime/" + recordID + ".json", playtimeData);
 
-        //StopCoroutine(PlayingStats.ExecuteEveryFiveSecond());
-
+        CoroutineRunner.StopMyCoroutine();
+        sendSafeZoneTime();
 
     }
 
-
-    
-    public static IEnumerator ExecuteEveryFiveSecond()
+    public static void sendSafeZoneTime()
     {
-        while (true)
-        {
-            // Call your function here
-            List<Vector3> list = PlayingStats.enemyCount();
+        
+        SafeZoneData d = new SafeZoneData(PlayingStats.user.userID, PlayingStats.currentSceneName,CanvasManager.totalTimeinSafeZone.ToString());
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "safeZoneTime/" + recordID + ".json", d);
+        
 
-            // Wait for one second before executing the next iteration
-            yield return new WaitForSeconds(5);
-        }
+        
     }
+    
+    
 
     
     
