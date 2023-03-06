@@ -16,12 +16,16 @@ public abstract class AttackTurret : Turret
     public float bulletSpeed;
     [Tooltip("timer used for count down buff time")]
     public float bulletBuffTimer;
+    public GameObject buff;
     public CanvasManager canvasManager;
+    protected SpriteRenderer sprite;
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
     protected override void Init()
     {
         base.Init();
+        sprite=GetComponent<SpriteRenderer>();
+        buff=transform.GetChild(0).gameObject;
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         // varying initialization
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
@@ -59,7 +63,9 @@ public abstract class AttackTurret : Turret
     protected virtual void ShootEnemy()
     {
         // shoot every period of time
-
+        if(!canvasManager.ifStart){
+            return ;
+        }
         shootTimer += Time.deltaTime;
         if(shootTimer > basicShootPeriod / (1.0f + bulletBuffTimer))
         {

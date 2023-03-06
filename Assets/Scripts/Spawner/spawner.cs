@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
-{
+{   
+    
     public GameObject spawnObject;
     public float spawnRate;
     public int totalExistNumber;
@@ -17,6 +18,7 @@ public class Spawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {   //totalEnemies=10;
+
         currentEnemies=0;
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>();
         transform.position = floorGrid.GetCellCenterWorld(floorGrid.WorldToCell(transform.position));

@@ -7,7 +7,7 @@ public class BoxSpawner : MonoBehaviour
     // Start is called before the first frame update
     private Grid map; // Grid Map
     private GameObject box; // Grid Map
-    public Vector3Int gridPlayerPosition;
+    public Vector3Int gridPosition;
     public int basicNumber;
     public int totalNumber;
     private ContactFilter2D filter; // Collider Detect Tools.
@@ -17,7 +17,7 @@ public class BoxSpawner : MonoBehaviour
     {      
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         map=GameObject.Find("Grid").GetComponent<Grid>();
-        box=Resources.Load("Prefabs/Box") as GameObject;
+        box=Resources.Load("Prefabs/Box/Box") as GameObject;
         basicNumber=8;
         totalNumber=16;
         
@@ -31,7 +31,7 @@ public class BoxSpawner : MonoBehaviour
         if(!canvasManager.ifStart){
             return;
         }
-        gridPlayerPosition=(GameObject.Find("Player").GetComponent<PlayerControl>().playerGridPos);
+        gridPosition=map.WorldToCell(transform.position);;
         int n=totalNumber-GameObject.Find("Boxes").transform.childCount;
         while(n>0){
             int count=0;
@@ -40,9 +40,9 @@ public class BoxSpawner : MonoBehaviour
                 if(count>20){
                     break;
                 }
-                int x= Random.Range(-10,11);
-                int y= Random.Range(-10,11);
-                Vector3 worldPos=map.GetCellCenterWorld(gridPlayerPosition+new Vector3Int(x,y,0));
+                int x= Random.Range(-6,6);
+                int y= Random.Range(-7,7);
+                Vector3 worldPos=map.GetCellCenterWorld(gridPosition+new Vector3Int(x,y,0));
                 if(GetBox(worldPos)){
                     continue;
                 }else{
