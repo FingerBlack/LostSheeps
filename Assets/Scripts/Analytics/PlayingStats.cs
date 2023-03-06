@@ -155,6 +155,18 @@ public class PlayingStats : MonoBehaviour
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "comboData/" + System.Guid.NewGuid().ToString() + ".json", data);
     }
 
+
+    public static void damageToEnemy(string source,string damage, string target)
+    {
+        User user = PlayingStats.user;
+
+
+        DamageData data = new DamageData(user.userID, PlayingStats.getDuration(), PlayingStats.currentSceneName,PlayingStats.recordID,source,damage,target);
+
+
+        RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "damageData/" + System.Guid.NewGuid().ToString() + ".json", data);
+    }
+
     public static List<Vector3> enemyCount()
     {
         GameObject[] enemyLayerObjects = FindObjectsOfType<GameObject>()

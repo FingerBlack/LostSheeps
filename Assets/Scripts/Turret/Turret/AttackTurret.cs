@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public abstract class AttackTurret : Turret
 {
     // ============================== variables ==============================
@@ -69,6 +69,9 @@ public abstract class AttackTurret : Turret
             // setup bullet properties
             bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
             bulletComponent.speed = bulletSpeed;
+            bulletComponent.source = String.Copy(GetType().Name);
+            
+            
         }
 
         // check if enemy is in range

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class ThreeWayTurret : AttackTurret
 {
     void Start()
@@ -61,6 +61,7 @@ public class ThreeWayTurret : AttackTurret
                 // setup bullet properties
                 bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
                 bulletComponent.speed = bulletSpeed;
+                bulletComponent.source = String.Copy(GetType().Name);
             }
         }
 

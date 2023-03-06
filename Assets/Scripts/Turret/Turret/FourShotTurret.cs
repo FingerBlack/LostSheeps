@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using System;
 public class FourShotTurret : AttackTurret
 {
     [Tooltip("hold targetEnemy direction until attack over")]
@@ -59,6 +59,8 @@ public class FourShotTurret : AttackTurret
     protected override void ShootEnemy()
     {
         // shoot every period of time
+        
+            
         shootTimer += Time.deltaTime;
         if(shootTimer > basicShootPeriod / (1.0f + bulletBuffTimer) && !isRapidFiring){
             shootTimer = 0.0f;
@@ -89,6 +91,8 @@ public class FourShotTurret : AttackTurret
         // setup bullet properties
         bulletComponent.targetPos = transform.position + direction.normalized * 1000.0f;
         bulletComponent.speed = bulletSpeed;
+        bulletComponent.source = String.Copy(GetType().Name);
+
 
         if (numFireinRapid < rapidFireNumber){
             yield return new WaitForSeconds(rapidFireRate);
