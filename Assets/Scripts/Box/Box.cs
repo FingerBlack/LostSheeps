@@ -69,6 +69,7 @@ public class Box : MonoBehaviour
             }                
         }
         if(!isOccupied){
+            setTargeted(false);
             isMoving = true;
             float elapsedTime = 0;
             Vector3 origPos = transform.position;

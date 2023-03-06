@@ -169,7 +169,7 @@ public class PlayerControl : MonoBehaviour
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
                     box.direction=playerDirection;
                     box.action="move";
-                    box.setTargeted(false);
+                    // box.setTargeted(false);
                 }
                 // if(result.gameObject.TryGetComponent<Wall>(out Wall wall)){
                 //     wall.direction=playerDirection;
