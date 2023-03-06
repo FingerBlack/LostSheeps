@@ -10,7 +10,7 @@ public abstract class Bullet : MonoBehaviour
     protected float timeCount;
     protected ContactFilter2D filter; // Collider Detect Tools.
     protected List<Collider2D> results;// Collider Detect Tools.
-
+    public string source;
 
     protected virtual void Init()
     {
@@ -21,18 +21,25 @@ public abstract class Bullet : MonoBehaviour
         timeCount = 0.0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
+
+
     }
 
     protected virtual void CheckCollideEnemy()
     {
+       
         Physics2D.OverlapCircle(transform.position, 0.1f, filter, results);
         foreach( Collider2D result in results)
         {
             if(result.gameObject.TryGetComponent<Enemy>(out Enemy enemy)){
                 enemy.healthPoint -= 1.0f;
+
+                
+                PlayingStats.damageToEnemy(source, 1.0f.ToString(),enemy.GetType().Name);
                 Destroy(gameObject);
                 break;
             }
         }
+        
     }
 }

@@ -31,6 +31,8 @@ public class SlowBullet : Bullet
                 enemy.healthPoint -= 1.0f;
                 enemy.isSlowed = true;
                 enemy.slowedTime = 0;
+                
+                PlayingStats.damageToEnemy(source, 1.0f.ToString(), enemy.GetType().Name);
                 Destroy(gameObject);
                 break;
             }

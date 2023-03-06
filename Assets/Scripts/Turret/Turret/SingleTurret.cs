@@ -20,6 +20,7 @@ public class SingleTurret : AttackTurret
         basicShootPeriod = 1.0f;
         shootRange = 5.0f;
         bulletSpeed = 10.0f;
+        
     }
 
     // Update is called once per frame

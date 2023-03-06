@@ -20,6 +20,9 @@ public class NormalBullet : Bullet
 
         base.CheckCollideEnemy();
     }
+
+
+   
 }
 
 

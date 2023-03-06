@@ -28,6 +28,7 @@ public class CanvasManager : MonoBehaviour
     private Button startButton;
     private bool wasInCapture;
     public HomeCanvas homeCanvas;
+    public static float totalTimeinSafeZone;
     void Start()
     {   
         //timeNeed=300f;
@@ -50,6 +51,7 @@ public class CanvasManager : MonoBehaviour
         menu=transform.GetChild(6).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
+        
     }
 
     // Update is called once per frame
@@ -58,23 +60,31 @@ public class CanvasManager : MonoBehaviour
         
         if(timeCount>timeNeed-0.2f){
             PlayingStats.onLevelSuccess();
-            ifEnd=true;
+
+            
+             
+                
+            ifEnd =true;
         }
         if(ifStart){
             
             foreach (Transform i in occupiedFloors.transform){
                 if(i.gameObject.GetComponent<OccupiedFloor>().isOccupied){
                     timeCount+=Time.deltaTime;
+
+                    totalTimeinSafeZone += Time.deltaTime;
                     wasInCapture = true;
                     break;
                 }
             }
             if (wasInCapture)
             {
+                
                 wasInCapture = false;
             }
             else
             {
+                
                 timeCount -= Mathf.Max(0f, timeCount - Time.deltaTime);
             }
         }
