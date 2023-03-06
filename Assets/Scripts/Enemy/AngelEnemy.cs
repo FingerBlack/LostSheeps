@@ -9,7 +9,7 @@ public class AngelEnemy : Enemy
         base.Init();
 
         // properties
-        healthPoint = 5.0f;
+        healthPoint = 15.0f;
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;

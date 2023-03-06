@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -3003414465236750935}
   - component: {fileID: -6005611735911755579}
   - component: {fileID: 4685770314362556924}
+  - component: {fileID: -8464552454014050353}
   m_Layer: 7
   m_Name: Enemy 1
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: -641192382, guid: 236c476a02eb34b2e96461ef53fe5ce7, type: 3}
-  m_Color: {r: 0.066037714, g: 0.030942198, b: 0.030942198, a: 1}
+  m_Color: {r: 0.5568628, g: 0.06666667, b: 0.06666667, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -160,3 +161,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6489185, y: 1.0815308}
   m_EdgeRadius: 0
+--- !u!114 &-8464552454014050353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558840483417937306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb6ce1c9697d9d45ab4a927f6842ed0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealthPoint: 0
+  healthPoint: 0
+  attackDamage: 0
+  attackSpeed: 0
+  attackCoolDown: 0
+  attackRange: 0
+  currentSpeed: 0
+  normalSpeed: 0
+  slowedSpeed: 0
+  isSlowed: 0
+  slowDuration: 0
+  slowedTime: 0
+  player: {fileID: 0}
+  canvasManager: {fileID: 0}
+  hpImage: {fileID: 0}
