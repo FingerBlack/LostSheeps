@@ -27,7 +27,7 @@ public class Spawner : MonoBehaviour
         enemies=GameObject.Find("/Enemies");
         sprite=GetComponent<SpriteRenderer>();
     }
-
+ 
     // Update is called once per frame
     void Update()
     {   
