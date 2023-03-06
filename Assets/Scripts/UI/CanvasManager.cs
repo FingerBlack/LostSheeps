@@ -140,10 +140,13 @@ public class CanvasManager : MonoBehaviour
         PlayingStats.onLevelStart();
         homePanel.SetActive(false);
         //valuePanel.SetActive(true);
-        cardPanel.SetActive(true);
-        cardPanel1.SetActive(true);
-        menu.SetActive(true);
-        componentCounterPanel.SetActive(true);
+        if(SceneManager.GetActiveScene().name!="Home"){
+            cardPanel.SetActive(true);
+            cardPanel1.SetActive(true);
+            menu.SetActive(true);
+            componentCounterPanel.SetActive(true);
+        }
+        
         ifStart=true;
     }
 }

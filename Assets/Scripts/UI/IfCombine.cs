@@ -5,18 +5,18 @@ using UnityEngine;
 public class IfCombine : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject radar;
-    private BuffTurret radarComponent;
+    public GameObject turret;
+    private Turret turretComponent;
     void Start()
     {
-        radarComponent=radar.GetComponent<BuffTurret>();
+        turretComponent=turret.GetComponent<Turret>();
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(radarComponent.gridPosition==new Vector3Int(3,-2,0)){
+        if(turretComponent.gridPosition==new Vector3Int(-13,-4,0)){
             Destroy(gameObject);
         }
     }

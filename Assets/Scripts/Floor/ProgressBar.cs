@@ -16,6 +16,7 @@ public class ProgressBar : MonoBehaviour
     void Start()
     {
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
+        captureTime=canvasManager.timeNeed;
         progressBar = GetComponent<SpriteRenderer>();
     }
 
