@@ -60,8 +60,21 @@ Description： Advanced Levels.
 Mission Allocation:	
 
 1.  Jishuang is in charge of **everything**.
-2.  Songlin Lv is in charge of **Refomate Code part 2**.
+2.  Songlin Lv is in charge of **Refactoring Code part 2**.
 3.  David is in charge of **Level Design& Basic artwork& Level Develop**.
 4.  Junqiao is in charge of **Analytic Develop & Design**. 
-5. Ching-Chih is in charge of **Refomate Code part 1**.
-6. Zihao is in charge of **Refomate Code part 3**.
+5. Ching-Chih is in charge of **Refactoring Code part 1**.
+6. Zihao is in charge of **Refactoring Code part 3**.
+
+## Version 6.0
+
+Description： Advanced Levels.
+
+Mission Allocation:	
+
+1.  Jishuang is in charge of **everything**.
+2.  Songlin Lv is in charge of **UI & Level Desigh**.
+3.  David is in charge of **Level Design& Basic artwork & Introduction video**.
+4.  Junqiao is in charge of **Analytic Develop & Design**. 
+5. Ching-Chih is in charge of **UI**.
+6. Zihao is in charge of **UI**.
