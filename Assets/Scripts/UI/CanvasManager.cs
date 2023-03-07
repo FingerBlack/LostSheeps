@@ -11,6 +11,8 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     public GameObject homePanel;
     public GameObject valuePanel;
+    public GameObject componentCounterPanel;
+    public GameObject componentCounterText;
     public GameObject ui;
     public GameObject cardPanel;
     public GameObject cardPanel1;
@@ -49,6 +51,8 @@ public class CanvasManager : MonoBehaviour
         nextLevel=transform.GetChild(4).gameObject;
         restart=transform.GetChild(5).gameObject;
         menu=transform.GetChild(6).gameObject;
+        componentCounterPanel=transform.GetChild(7).gameObject;
+        componentCounterText=componentCounterPanel.transform.GetChild(1).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
         
@@ -57,7 +61,6 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        
         if(timeCount>timeNeed-0.2f){
             PlayingStats.onLevelSuccess();
 
@@ -97,20 +100,22 @@ public class CanvasManager : MonoBehaviour
                     homeCanvas.levels[level+1]=2;
             ifStart =false;
             nextLevel.SetActive(true);
-            valuePanel.SetActive(false);
+            //valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
             menu.SetActive(false);
+            componentCounterPanel.SetActive(false);
             
         }else if(ifRestart){//fail
             
             ifStart =false;
             restart.SetActive(true);
-            valuePanel.SetActive(false);
+            //valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
             menu.SetActive(false);
-            
+            componentCounterPanel.SetActive(false);
+
         }
         // if (Input.anyKey)
         // {
@@ -119,6 +124,8 @@ public class CanvasManager : MonoBehaviour
         //     cardPanel.SetActive(true);
         //     cardPanel1.SetActive(true);
         // }
+
+
         if(playerControl.plant==playerControl.pea){
             cardPanel.GetComponent<UnityEngine.UI.Image>().color= new Color(1f,1f,1f,1f);
             cardPanel1.GetComponent<UnityEngine.UI.Image>().color= new Color(0.5f,0.5f,0.5f,1f);
@@ -126,20 +133,30 @@ public class CanvasManager : MonoBehaviour
             cardPanel.GetComponent<UnityEngine.UI.Image>().color= new Color(0.5f,0.5f,0.5f,1f);
             cardPanel1.GetComponent<UnityEngine.UI.Image>().color= new Color(1f,1f,1f,1f);
         }
-        TMP_Text uiDisplay = ui.GetComponent<TMP_Text>();
+        
+        
+        //TMP_Text uiDisplay = ui.GetComponent<TMP_Text>();
         // TMP_Text peaSeedNumberDisplay = peaSeedNumber.GetComponent<TMP_Text>();
         // TMP_Text cherrySeedNumberDisplay = cherrySeedNumber.GetComponent<TMP_Text>();
-        uiDisplay.text="Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
-        +"      \nComponent: "+playerControl.seedNumber.ToString();
+        //uiDisplay.text="Capture Time: "+TimeSpan.FromSeconds(Mathf.Min(timeNeed-timeCount, timeNeed)).ToString(@"mm\:ss")
+        //+"      \nComponent: "+playerControl.seedNumber.ToString();
+
+        TMP_Text componentAmount = componentCounterText.GetComponent<TMP_Text>();
+        componentAmount.text="× " + playerControl.seedNumber.ToString();
+
     }
     void OnClick(){
         //Debug.Log("Press the Button");
         PlayingStats.onLevelStart();
         homePanel.SetActive(false);
-        valuePanel.SetActive(true);
-        cardPanel.SetActive(true);
-        cardPanel1.SetActive(true);
-        menu.SetActive(true);
+        //valuePanel.SetActive(true);
+        if(SceneManager.GetActiveScene().name!="Home"){
+            cardPanel.SetActive(true);
+            cardPanel1.SetActive(true);
+            menu.SetActive(true);
+            componentCounterPanel.SetActive(true);
+        }
+        
         ifStart=true;
     }
 }

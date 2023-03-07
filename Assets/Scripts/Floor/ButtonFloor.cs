@@ -8,6 +8,7 @@ public class ButtonFloor : MonoBehaviour
     private ContactFilter2D filter; // Collider Detect Tools.
     private List<Collider2D> results;// Collider Detect Tools.
     public GameObject wallsList;
+    public GameObject spawnerList;
     void Start()
     { 
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
@@ -24,6 +25,13 @@ public class ButtonFloor : MonoBehaviour
         {
             if(result.gameObject.TryGetComponent<Box>(out Box box)){
                 wallsList.SetActive(false);
+                if(spawnerList){
+                    foreach(Transform s in spawnerList.transform){
+                        s.gameObject.GetComponent<Spawner>().enabled=true;
+                    }
+                }
+
+                break;
             }
 //            if(result.gameObject.TryGetComponent<PlayerControl>(out PlayerControl playerControl)){
 //                wallsList.SetActive(false);

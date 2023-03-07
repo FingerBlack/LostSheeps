@@ -28,10 +28,16 @@ public class SingleTurret : AttackTurret
     {   
         base.GetLocalPosition();
 
-        if(bulletBuffTimer > 0.01f)
+        if(bulletBuffTimer > 0.01f){
+            buff.SetActive(true);
+            sprite.color=new Color(1f,190f/255f,190f/255f,1f);
             bulletBuffTimer -= 0.01f;
+        }else{
+            sprite.color=new Color(1f,1f,1f,1f);
+            buff.SetActive(false);
+        }
 
-        light2D.intensity = bulletBuffTimer;
+        //light2D.intensity = bulletBuffTimer;
 
         // call this only if it's combinable
         if(isCombinable){
