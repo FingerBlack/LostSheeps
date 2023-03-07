@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1000
+  spritePixelsToUnits: 400
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,10 +120,10 @@ TextureImporter:
       name: buff_0
       rect:
         serializedVersion: 2
-        x: 734
-        y: 721
-        width: 489
-        height: 621
+        x: 493
+        y: 949
+        width: 888
+        height: 719
       alignment: 9
       pivot: {x: 0.49337596, y: 0.093929686}
       border: {x: 0, y: 0, z: 0, w: 0}
