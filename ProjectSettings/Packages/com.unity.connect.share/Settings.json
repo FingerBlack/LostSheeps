@@ -21,7 +21,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"E:/LostSheeps/Build for WebGL6;E:/LostSheeps/Build for WebGL5;E:/LostSheeps/Build for WebGL4;E:/LostSheeps/Build for WebGL3;E:/LostSheeps/Build for WebGL2;E:/LostSheeps/LostSheeps2/Build for week 6;;;;\"}"
+                "value": "{\"m_Value\":\"E:/LostSheeps/Build for WebGL7;E:/LostSheeps/Build for WebGL6;E:/LostSheeps/Build for WebGL5;E:/LostSheeps/Build for WebGL4;E:/LostSheeps/Build for WebGL3;E:/LostSheeps/Build for WebGL2;E:/LostSheeps/LostSheeps2/Build for week 6;;;\"}"
             }
         ]
     }

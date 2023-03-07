@@ -9,7 +9,8 @@ public class AngelEnemy : Enemy
         base.Init();
 
         // properties
-        healthPoint = 15.0f;
+        maxHealthPoint=15.0f;
+        healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
@@ -25,7 +26,7 @@ public class AngelEnemy : Enemy
         if(!canvasManager.ifStart){
             return;
         }
-
+        hpImage.fillAmount=healthPoint/maxHealthPoint;
         // check if alive
         if(healthPoint <= 0){
             Destroy(gameObject);
