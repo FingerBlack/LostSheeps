@@ -49,10 +49,10 @@ public class PlayingStats : MonoBehaviour
         startTime = System.DateTime.Now;
         playtimeData = new PlaytimeData(user.userID, currentSceneName);
         playtimeData.start = printDate(startTime);
-        
 
-        
-        
+
+
+        CanvasManager.totalTimeinSafeZone = 0;
         CoroutineRunner.StartMyCoroutine();
 
     }
@@ -88,7 +88,9 @@ public class PlayingStats : MonoBehaviour
         RestClient.Put("https://lostsheeps-26b16-default-rtdb.firebaseio.com/" + "safeZoneTime/" + recordID + ".json", d);
         
 
-        
+
+
+
     }
     
     
