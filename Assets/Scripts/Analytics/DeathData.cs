@@ -11,7 +11,7 @@ public class DeathData
     public string level;
     public string eventTime;
     public string attackedBy;
-    
+    public string recordID;
 
     public DeathData(string userID,string level,string levelTime,string attackedBy)
     {
@@ -21,5 +21,6 @@ public class DeathData
         this.levelTime = levelTime;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.attackedBy = attackedBy;
+        this.recordID = PlayingStats.recordID;
     }
 }

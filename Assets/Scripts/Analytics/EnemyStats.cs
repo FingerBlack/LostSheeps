@@ -9,6 +9,7 @@ public class EnemyStats
     public List<Vector3> enemyLocation;
     public string levelTime;
     public string level;
+    public string recordID;
     public EnemyStats(string enemyNumber, List<Vector3> enemyLocation, string levelTime, string level)
     {
         this.levelTime = levelTime;
@@ -16,5 +17,6 @@ public class EnemyStats
         this.enemyNumber = enemyNumber;
         this.enemyLocation = enemyLocation;
         this.eventTime= PlayingStats.printDate(System.DateTime.Now);
+        this.recordID = PlayingStats.recordID;
     }
 }

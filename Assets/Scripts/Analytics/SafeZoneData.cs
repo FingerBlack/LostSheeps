@@ -9,14 +9,15 @@ public class SafeZoneData
     public string level;
     public string eventTime;
     public string timeInSafeZone;
-
+    public string recordID;
     public SafeZoneData(string userID, string level, string timeInSafeZone)
     {
         this.level = level;
         this.timeInSafeZone = timeInSafeZone;
         this.userID = userID;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
-        
+        this.recordID = PlayingStats.recordID;
+
 
     }
 }

@@ -11,6 +11,7 @@ public class PlantData
     public string levelTime;
     public string level;
     public string eventTime;
+    public string recordID;
     public PlantData(string userID,string plantName,string levelTime,string level)
     {
         this.level = level;
@@ -18,6 +19,7 @@ public class PlantData
         this.userID = userID;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.plantName = plantName;
+        this.recordID = PlayingStats.recordID;
     }
     
 }

@@ -11,6 +11,7 @@ public class PushData
     public string level;
     public string eventTime;
     public string pushCount;
+    public string recordID;
     public PushData(string userID,string levelTime,string level)
     {
         this.level = level;
@@ -18,6 +19,7 @@ public class PushData
         this.userID = userID;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.pushCount = "1";
-      
+        this.recordID = PlayingStats.recordID;
+
     }
 }

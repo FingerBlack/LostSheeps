@@ -10,6 +10,7 @@ public class PickData
     public string levelTime;
     public string level;
     public string eventTime;
+    public string recordID;
     public PickData(string userID, string pickedItem, string levelTime, string level)
     {
         this.level = level;
@@ -17,5 +18,6 @@ public class PickData
         this.userID = userID;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.pickedItem = pickedItem;
+        this.recordID = PlayingStats.recordID;
     }
 }

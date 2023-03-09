@@ -11,6 +11,7 @@ public class ComboData
     public string levelTime;
     public string level;
     public string eventTime;
+    public string recordID;
     public ComboData(string userID, string comboName, string levelTime, string level)
     {
         this.level = level;
@@ -18,6 +19,7 @@ public class ComboData
         this.userID = userID;
         this.eventTime = PlayingStats.printDate(System.DateTime.Now);
         this.comboName = comboName;
+        this.recordID = PlayingStats.recordID;
     }
 
 }
