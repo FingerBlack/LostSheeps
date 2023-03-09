@@ -9,7 +9,7 @@ using System.Linq;
 public class PlayingStats : MonoBehaviour
 {
     
-    public static User user;
+    public static User user = new User();
     public static DateTime startTime;
     
     public static DateTime endTime;
@@ -24,7 +24,8 @@ public class PlayingStats : MonoBehaviour
     {
         recordID = System.Guid.NewGuid().ToString();
         currentSceneName = SceneManager.GetActiveScene().name ;
-        user = new User();
+        
+        Debug.Log(user.userID);
 
 
         

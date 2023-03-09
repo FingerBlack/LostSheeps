@@ -192,16 +192,16 @@ public class PlayerControl : MonoBehaviour
                             if(plant==pea&&seedNumber>0){
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
-                                PlayingStats.plantCount(NamingConstant.Plant1);
+                                PlayingStats.plantCount(obj.GetComponent<AttackTurret>().GetType().Name);
                                 box.CheckNeighbors();
-                                //Debug.Log(NamingConstant.Plant1);
+                                
                             }
                             if(plant==cherry&&seedNumber>0){
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
-                                PlayingStats.plantCount(NamingConstant.Plant2);
+                                PlayingStats.plantCount(obj.GetComponent<BuffTurret>().GetType().Name);
                                 box.CheckNeighbors();
-                                //Debug.Log(NamingConstant.Plant2);
+                                
                             }
                         }
                     }
