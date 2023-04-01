@@ -48,6 +48,16 @@ public class PlayerControl : MonoBehaviour
     public Sprite r;
     public Sprite b;
     public Sprite f;
+    private bool inputEnabled = true; // 添加这个变量
+    public void EnableInput()
+    {
+        inputEnabled = true;
+    }
+
+    public void DisableInput()
+    {
+        inputEnabled = false;
+    }
 
     //=============================================================================================================
     // Start is called before the first frame update
@@ -85,7 +95,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!canvasManager.ifStart){
+        if(!canvasManager.ifStart|| !inputEnabled){
             return;
         }
         //HP UI
