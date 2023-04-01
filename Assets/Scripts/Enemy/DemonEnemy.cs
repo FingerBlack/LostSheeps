@@ -5,10 +5,13 @@ using UnityEngine;
 public class DemonEnemy : Enemy
 {
     // Start is called before the first frame update
+    private UnityEngine.AI.NavMeshAgent agent;
     void Start()
     {
         base.Init();
-
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.updateRotation = false; // 禁用旋转
+        agent.updateUpAxis=false;
         // properties
         healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
@@ -21,25 +24,42 @@ public class DemonEnemy : Enemy
     }
 
     // Update is called once per frame
+    private float setDestinationInterval = 0.1f;
+    private float timeSinceLastSet;
+
+    // Update is called once per frame
     void Update()
-    {   
+    {
+        timeSinceLastSet += Time.deltaTime;
+        if (timeSinceLastSet >= setDestinationInterval)
+        {
+            agent.SetDestination(player.transform.position);
+            timeSinceLastSet = 0.0f;
+        }
+
         // check if game start
-        if(!canvasManager.ifStart){
+        if(!canvasManager.ifStart)
+        {
             return;
         }
-        hpImage.fillAmount=healthPoint/maxHealthPoint;
+
+        hpImage.fillAmount = healthPoint / maxHealthPoint;
+
         // check if alive
-        if(healthPoint <= 0){
+        if(healthPoint <= 0)
+        {
             Destroy(gameObject);
         }
 
         // check slowed 
-        if(isSlowed){
+        if(isSlowed)
+        {
             base.CheckSlowed();
         }
 
         base.TryAttackPlayer();
-
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
+        //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
     }
 }
+
+

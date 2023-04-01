@@ -87,9 +87,10 @@ GameObject:
   - component: {fileID: 1558840483417937304}
   - component: {fileID: 1558840483417937307}
   - component: {fileID: 1558840483417937305}
-  - component: {fileID: -3003414465236750935}
   - component: {fileID: -6005611735911755579}
-  - component: {fileID: 6295852009385150362}
+  - component: {fileID: 7642715411495111537}
+  - component: {fileID: 2749659807842952154}
+  - component: {fileID: 3208802083363222440}
   m_Layer: 7
   m_Name: DemonEnemy
   m_TagString: Untagged
@@ -192,32 +193,6 @@ MonoBehaviour:
   player: {fileID: 0}
   canvasManager: {fileID: 0}
   hpImage: {fileID: 4675988016095586575}
---- !u!61 &-3003414465236750935
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558840483417937306}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: c328e971d95ecf74185e858ce0bfcc94, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.015022986, y: 0.07855077}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.4589755, y: 0.08081279}
-    oldSize: {x: 0.55, y: 1.0899999}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.3864078, y: 0.30852094}
-  m_EdgeRadius: 0
 --- !u!50 &-6005611735911755579
 Rigidbody2D:
   serializedVersion: 4
@@ -239,7 +214,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6295852009385150362
+--- !u!195 &7642715411495111537
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558840483417937306}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.16
+  m_Speed: 3.5
+  m_Acceleration: 120.62
+  avoidancePriority: 42
+  m_AngularSpeed: 180
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 0
+  m_AutoRepath: 1
+  m_Height: 0.39
+  m_BaseOffset: 0.08
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!58 &2749659807842952154
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558840483417937306}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.016663164, y: 0.035064325}
+  serializedVersion: 2
+  m_Radius: 0.15855
+--- !u!61 &3208802083363222440
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

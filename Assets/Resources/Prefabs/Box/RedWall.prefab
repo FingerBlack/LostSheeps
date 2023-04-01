@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6310758477686538379}
   - component: {fileID: 4158951639690710887}
   - component: {fileID: 4909336296670263694}
+  - component: {fileID: 8542324680445850535}
   m_Layer: 11
   m_Name: RedWall
   m_TagString: Untagged
@@ -99,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0121923685, y: 0.058750704}
+  m_Offset: {x: -0.0041121244, y: 0.06916925}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.37201828}
@@ -110,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6091881, y: 0.64307976}
+  m_Size: {x: 0.5198512, y: 0.43747586}
   m_EdgeRadius: 0
 --- !u!114 &4909336296670263694
 MonoBehaviour:
@@ -134,3 +135,19 @@ MonoBehaviour:
   stand: 0
   HP: 0
   direction: {x: 0, y: 0, z: 0}
+--- !u!208 &8542324680445850535
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1031140529772350550}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.275, y: 0.305, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.02, y: 0.11, z: 0}
+  m_TimeToStationary: 0.5
