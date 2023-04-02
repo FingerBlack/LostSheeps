@@ -5,20 +5,28 @@ using UnityEngine;
 public class IfPressE : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject box;
+    
+    public List<GameObject> boxList;
     private Box boxComponent;
    
     void Start()
     {
-        boxComponent=box.GetComponent<Box>();
+        
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(boxComponent.transform.childCount!=0){
-            Destroy(gameObject);
+        for (int i = 0; i < boxList.Count; i++)
+        {
+            boxComponent = boxList[i].GetComponent<Box>();
+            if(boxComponent.transform.childCount!=0){
+                Destroy(gameObject);
         }
+           
+        }
+
+        
     }
 }
