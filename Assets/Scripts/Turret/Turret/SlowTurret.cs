@@ -31,6 +31,8 @@ public class SlowTurret : AttackTurret
         }else{
             sprite.color=new Color(1f,1f,1f,1f);
             buff.SetActive(false);
+            base.bulletType = BulletType.Normal;
+            bulletPrefab = bulletPrefabNormal;
         }
 
         //light2D.intensity = bulletBuffTimer;

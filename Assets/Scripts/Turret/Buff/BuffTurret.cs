@@ -10,6 +10,7 @@ public class BuffTurret : Turret
     protected GameObject downRightBox;
     protected GameObject upLeftBox;
     protected GameObject downLeftBox;
+    protected BulletType buffBulletType;
 
     protected override void Init()
     {
@@ -17,7 +18,7 @@ public class BuffTurret : Turret
 
         // varying initialization
         buffValue=0.3f;
-
+        buffBulletType = BulletType.Normal;
         // fixed initialization
     }
 
@@ -49,6 +50,7 @@ public class BuffTurret : Turret
             if(gameObject.transform.GetChild(0).gameObject.TryGetComponent<AttackTurret>(out AttackTurret attackTurret)){
                 if(attackTurret.bulletBuffTimer < buffValue){
                     attackTurret.bulletBuffTimer = buffValue;
+                    attackTurret.buffBullet(buffBulletType);
                 }
             }
         }

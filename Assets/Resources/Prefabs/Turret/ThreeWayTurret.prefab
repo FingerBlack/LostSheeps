@@ -110,7 +110,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8539321876677869035}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.01, z: -0.06598809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -189,6 +189,9 @@ MonoBehaviour:
   transferGameObject: []
   targetEnemy: {fileID: 0}
   bulletPrefab: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
+  bulletPrefabNormal: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
+  bulletPrefabSlow: {fileID: 1287289377089405327, guid: 1ccc722f051d17b4181c8a2453d6c027, type: 3}
+  bulletPrefabFrozen: {fileID: 1287289377089405327, guid: 1ccc722f051d17b4181c8a2453d6c027, type: 3}
   basicShootPeriod: 0
   shootTimer: 0
   shootRange: 0
