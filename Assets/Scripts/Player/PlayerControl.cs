@@ -48,6 +48,16 @@ public class PlayerControl : MonoBehaviour
     public Sprite r;
     public Sprite b;
     public Sprite f;
+    private bool inputEnabled = true; // 添加这个变量
+    public void EnableInput()
+    {
+        inputEnabled = true;
+    }
+
+    public void DisableInput()
+    {
+        inputEnabled = false;
+    }
 
     //=============================================================================================================
     // Start is called before the first frame update
@@ -62,6 +72,7 @@ public class PlayerControl : MonoBehaviour
         currentHp=maxHp;
         speed =2.5f; //Remember to Set the Speed on Start 
         vertSpeed =2.5f;  //Remember to Set the Speed on Start 
+        horiSpeed=2.5f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
         l= Resources.Load<Sprite>("Pictures/Player/l");
@@ -85,7 +96,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!canvasManager.ifStart){
+        if(!canvasManager.ifStart|| !inputEnabled){
             return;
         }
         //HP UI
@@ -149,8 +160,13 @@ public class PlayerControl : MonoBehaviour
 
             action="None";
         }else{
-            SlowMove(floorGrid.GetCellCenterWorld(isMovingDirection));
-            
+            //transform.position = Vector3.MoveTowards(transform.position,isMovingDirection , currentSpeed * Time.deltaTime);
+            //SlowMove(floorGrid.GetCellCenterWorld(isMovingDirection));
+            // Calculate the movement vector based on input and speed
+            Vector3 movement = new Vector3(horiInput, vertInput,0 ) * speed * Time.deltaTime;
+
+            // Update transform position
+            transform.position += movement;
         }   
             //}            
        
