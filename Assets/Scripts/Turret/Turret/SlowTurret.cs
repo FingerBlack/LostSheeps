@@ -15,9 +15,9 @@ public class SlowTurret : AttackTurret
         isCombinable = false;
 
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
-        basicShootPeriod = 0.3f;
-        shootRange = 9.0f;
-        bulletSpeed = 15.0f;
+        basicShootPeriod = 1f;
+        shootRange = 3.2f;
+        bulletSpeed = 10.0f;
     }
 
     // Update is called once per frame
