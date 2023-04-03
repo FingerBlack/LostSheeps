@@ -46,7 +46,7 @@ public abstract class Enemy : MonoBehaviour
         normalSpeed = 2.0f;
         slowedSpeed = 0.2f;
         slowDuration = 5.0f;
-        
+        //chasingRange = 5.0f;
 
         // fixed initialization
         attackCoolDown = 0.0f;
