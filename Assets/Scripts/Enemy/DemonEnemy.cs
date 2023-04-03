@@ -36,41 +36,63 @@ public class DemonEnemy : Enemy
     {
         wanderInterval -= Time.deltaTime;
         timeSinceLastSet += Time.deltaTime;
+
         if (timeSinceLastSet >= setDestinationInterval)
         {
             timeSinceLastSet = 0.0f;
+            float distanceFromPlayer = (transform.position - player.transform.position).magnitude;
 
-            if((transform.position - player.transform.position).magnitude < chasingRange){
+            if (distanceFromPlayer < chasingRange && HasValidPathToDestination(enemyAgent, player.transform.position))
+            {
                 wanderInterval = 3.0f;
                 isWandering = false;
                 enemyAgent.SetDestination(player.transform.position);
-                debug=HasValidPathToDestination(enemyAgent);
-                //enemyAgent.SetDestination(player.transform.position);
-                if(!debug){
-                    enemyAgent.isStopped = true;
-                    
-                }else{
-                    enemyAgent.isStopped =  false;
-                }
             }
-            else{
-                enemyAgent.isStopped =  false;
-                if(!isWandering){
-                    isWandering = true;
-
-                    base.wanderAround(3.0f);
-                }
-                else{
-                    if(wanderInterval <= 0.0f){
+            else
+            {
+                if (distanceFromPlayer >= chasingRange && !isWandering && !HasValidPathToDestination(enemyAgent, player.transform.position))
+                {
+                    if (wanderInterval <= 0.0f)
+                    {
                         wanderInterval = 3.0f;
                         base.wanderAround(3.0f);
+                        //enemyAgent.isStopped = false;
+                    }
+                    enemyAgent.isStopped = false;
+                }
+                else if (distanceFromPlayer >= chasingRange && isWandering)
+                {
+                    if (wanderInterval <= 0.0f)
+                    {
+                        wanderInterval = 3.0f;
+                        base.wanderAround(3.0f);
+                        
+                    }
+                    enemyAgent.isStopped = false;
+                }
+                else
+                {
+                    if (HasValidPathToDestination(enemyAgent, player.transform.position))
+                    {
+                        enemyAgent.SetDestination(player.transform.position);
+                        enemyAgent.isStopped = false;
+                    }
+                    else
+                    {
+                        isWandering = true;
+
+                        if (wanderInterval <= 0.0f)
+                        {
+                            wanderInterval = 3.0f;
+                            base.wanderAround(3.0f);
+                            
+                        }
+                        enemyAgent.isStopped = false;
                     }
                 }
             }
-            
-            
-
         }
+
 
         // check if game start
         if(!canvasManager.ifStart)
@@ -95,10 +117,10 @@ public class DemonEnemy : Enemy
         base.TryAttackPlayer();
         //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
     }
-    bool HasValidPathToDestination(UnityEngine.AI.NavMeshAgent navMeshAgent)
+    bool HasValidPathToDestination(UnityEngine.AI.NavMeshAgent navMeshAgent,Vector3 destination)
     {
         UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
-        bool hasPath = navMeshAgent.CalculatePath(navMeshAgent.destination, path);
+        bool hasPath = navMeshAgent.CalculatePath(destination, path);
 
         if (!hasPath || path.status == UnityEngine.AI.NavMeshPathStatus.PathPartial)
         {
