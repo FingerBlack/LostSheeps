@@ -6,7 +6,7 @@ public class DemonEnemy : Enemy
 {
     private float timeSinceLastSet;
     public bool debug;
-    [SerializeField] private float wanderInterval = 3.0f;
+    [SerializeField] private float wanderInterval = 0.0f;
     void Start()
     {
         base.Init();

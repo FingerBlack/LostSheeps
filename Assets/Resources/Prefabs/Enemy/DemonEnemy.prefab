@@ -196,7 +196,9 @@ MonoBehaviour:
   hpImage: {fileID: 4675988016095586575}
   isWandering: 0
   wanderDestination: {x: 0, y: 0, z: 0}
-  wanderInterval: 3
+  chasingRange: 15
+  debug: 0
+  wanderInterval: 0
 --- !u!50 &-6005611735911755579
 Rigidbody2D:
   serializedVersion: 4
@@ -228,7 +230,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.16
-  m_Speed: 3.5
+  m_Speed: 2.6
   m_Acceleration: 120.62
   avoidancePriority: 42
   m_AngularSpeed: 180

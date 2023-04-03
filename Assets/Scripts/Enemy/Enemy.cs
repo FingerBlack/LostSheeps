@@ -31,7 +31,7 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected bool isWandering;
     [SerializeField] protected Vector3 wanderDestination;
     [Tooltip("enemy will start chasing player within this range")]
-    protected float chasingRange;
+    [SerializeField] public float chasingRange;
 
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
@@ -46,7 +46,7 @@ public abstract class Enemy : MonoBehaviour
         normalSpeed = 2.0f;
         slowedSpeed = 0.2f;
         slowDuration = 5.0f;
-        chasingRange = 5.0f;
+        
 
         // fixed initialization
         attackCoolDown = 0.0f;
@@ -61,7 +61,7 @@ public abstract class Enemy : MonoBehaviour
         enemyAgent.updateRotation = false; // 禁用旋转
         enemyAgent.updateUpAxis=false;
 
-        isWandering = false;
+        isWandering = true;
     }
 
     // in Update(), if this enemy is slowed, call this method

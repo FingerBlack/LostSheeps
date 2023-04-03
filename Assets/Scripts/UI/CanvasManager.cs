@@ -31,6 +31,7 @@ public class CanvasManager : MonoBehaviour
     private bool wasInCapture;
     public HomeCanvas homeCanvas;
     public static float totalTimeinSafeZone;
+    public GameObject navigation;
     void Start()
     {   
         //timeNeed=300f;
@@ -55,12 +56,23 @@ public class CanvasManager : MonoBehaviour
         componentCounterText=componentCounterPanel.transform.GetChild(1).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
+        navigation.SetActive(false);
         
     }
 
     // Update is called once per frame
     void Update()
     {   
+
+
+        if (ifStart)
+        {
+            navigation.SetActive(true);
+        }
+        else
+        {
+            navigation.SetActive(false);
+        }
         if(timeCount>timeNeed-0.2f){
             PlayingStats.onLevelSuccess();
 
@@ -149,8 +161,9 @@ public class CanvasManager : MonoBehaviour
         //Debug.Log("Press the Button");
         PlayingStats.onLevelStart();
         homePanel.SetActive(false);
+        
         //valuePanel.SetActive(true);
-        if(SceneManager.GetActiveScene().name!="Home"){
+        if (SceneManager.GetActiveScene().name!="Home"){
             cardPanel.SetActive(true);
             cardPanel1.SetActive(true);
             menu.SetActive(true);
