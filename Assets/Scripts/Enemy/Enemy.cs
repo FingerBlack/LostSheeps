@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
+
 public abstract class Enemy : MonoBehaviour
 {
     // ============================== variables ==============================
@@ -24,6 +26,12 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected GameObject player;
     [SerializeField] protected CanvasManager canvasManager;
     public Image hpImage;
+    protected NavMeshAgent enemyAgent;
+    [SerializeField] protected bool isWandering;
+    [SerializeField] protected Vector3 wanderDestination;
+    [Tooltip("enemy will start chasing player within this range")]
+    protected float chasingRange;
+
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
     protected virtual void Init()
@@ -36,6 +44,7 @@ public abstract class Enemy : MonoBehaviour
         normalSpeed = 2.0f;
         slowedSpeed = 0.2f;
         slowDuration = 5.0f;
+        chasingRange = 5.0f;
 
         // fixed initialization
         attackCoolDown = 0.0f;
@@ -45,6 +54,12 @@ public abstract class Enemy : MonoBehaviour
 
         player=GameObject.Find("Player");
         canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
+
+        enemyAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        enemyAgent.updateRotation = false; // 禁用旋转
+        enemyAgent.updateUpAxis=false;
+
+        isWandering = false;
     }
 
     // in Update(), if this enemy is slowed, call this method
@@ -77,5 +92,11 @@ public abstract class Enemy : MonoBehaviour
 
             attackCoolDown = attackSpeed;
         }
+    }
+
+    protected virtual void wanderAround(){
+        float range = 5.0f;
+        wanderDestination = new Vector3(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
+        enemyAgent.SetDestination(wanderDestination);
     }
 }

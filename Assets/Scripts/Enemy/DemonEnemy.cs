@@ -4,14 +4,11 @@ using UnityEngine;
 
 public class DemonEnemy : Enemy
 {
-    // Start is called before the first frame update
-    private UnityEngine.AI.NavMeshAgent agent;
+    
     void Start()
     {
         base.Init();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-        agent.updateRotation = false; // 禁用旋转
-        agent.updateUpAxis=false;
+
         // properties
         healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
@@ -21,19 +18,44 @@ public class DemonEnemy : Enemy
         slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
+        chasingRange = 5.0f;
     }
 
     // Update is called once per frame
     private float setDestinationInterval = 0.1f;
     private float timeSinceLastSet;
 
+    [SerializeField] private float wanderInterval = 3.0f;
+
     // Update is called once per frame
     void Update()
     {
+        wanderInterval -= Time.deltaTime;
         timeSinceLastSet += Time.deltaTime;
         if (timeSinceLastSet >= setDestinationInterval)
         {
-            agent.SetDestination(player.transform.position);
+            if(!enemyAgent.hasPath){
+                enemyAgent.ResetPath();
+            }
+
+            if((transform.position - player.transform.position).magnitude < chasingRange){
+                wanderInterval = 3.0f;
+                isWandering = false;
+                enemyAgent.SetDestination(player.transform.position);
+            }
+            else{
+                if(!isWandering){
+                    isWandering = true;
+                    base.wanderAround();
+                }
+                else{
+                    if(wanderInterval <= 0.0f){
+                        wanderInterval = 3.0f;
+                        base.wanderAround();
+                    }
+                }
+            }
+
             timeSinceLastSet = 0.0f;
         }
 
