@@ -9,11 +9,12 @@ public class IfPickedUp : MonoBehaviour
     
     public GameObject buildPrompt;
     public List<GameObject> seedList;
+    public GameObject switchPrompt;
 
     void Start()
     {
         buildPrompt.SetActive(false);
-
+        switchPrompt.SetActive(false);
     }
 
     // Update is called once per frame

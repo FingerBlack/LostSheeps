@@ -8,11 +8,12 @@ public class IfPressE : MonoBehaviour
     
     public List<GameObject> boxList;
     private Box boxComponent;
-   
+    public GameObject switchPrompt;
+
     void Start()
     {
         
-        
+
     }
 
     // Update is called once per frame
@@ -22,8 +23,10 @@ public class IfPressE : MonoBehaviour
         {
             boxComponent = boxList[i].GetComponent<Box>();
             if(boxComponent.transform.childCount!=0){
+                switchPrompt.SetActive(true);
                 Destroy(gameObject);
-        }
+                
+            }
            
         }
 
