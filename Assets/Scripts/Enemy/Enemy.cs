@@ -9,6 +9,7 @@ public abstract class Enemy : MonoBehaviour
     // ============================== variables ==============================
     public float maxHealthPoint;
     public float healthPoint;
+    public Vector3 localPosition;
     [SerializeField] protected float attackDamage;
     [Tooltip("enemy attacks every attackSpeed seconds")]
     [SerializeField] protected float attackSpeed;
@@ -39,6 +40,7 @@ public abstract class Enemy : MonoBehaviour
         // varying inititalization (should be replaced)
         //healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
+        localPosition=transform.position;
         attackSpeed = 1.0f;
         attackRange = 0.4f;
         normalSpeed = 2.0f;
@@ -94,9 +96,9 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void wanderAround(){
-        float range = 5.0f;
-        wanderDestination = new Vector3(transform.position.x + Random.Range(-range, range), transform.position.y + Random.Range(-range, range));
+    protected virtual void wanderAround(float range){
+
+        wanderDestination = new Vector3(localPosition.x + Random.Range(-range, range), localPosition.y + Random.Range(-range, range),0);
         enemyAgent.SetDestination(wanderDestination);
     }
 }

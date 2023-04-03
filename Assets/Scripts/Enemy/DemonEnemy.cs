@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class DemonEnemy : Enemy
 {
-    
+    private float timeSinceLastSet;
+    public bool debug;
+    [SerializeField] private float wanderInterval = 3.0f;
     void Start()
     {
         base.Init();
 
         // properties
+        timeSinceLastSet=setDestinationInterval;
         healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
         attackSpeed = 1.0f;
@@ -19,13 +22,14 @@ public class DemonEnemy : Enemy
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
         chasingRange = 5.0f;
+        enemyAgent.SetDestination(transform.position);
     }
 
     // Update is called once per frame
     private float setDestinationInterval = 0.1f;
-    private float timeSinceLastSet;
 
-    [SerializeField] private float wanderInterval = 3.0f;
+
+
 
     // Update is called once per frame
     void Update()
@@ -34,31 +38,38 @@ public class DemonEnemy : Enemy
         timeSinceLastSet += Time.deltaTime;
         if (timeSinceLastSet >= setDestinationInterval)
         {
-            if(!enemyAgent.hasPath){
-                enemyAgent.ResetPath();
-                base.wanderAround();
-                return;
-            }
+            timeSinceLastSet = 0.0f;
 
             if((transform.position - player.transform.position).magnitude < chasingRange){
                 wanderInterval = 3.0f;
                 isWandering = false;
                 enemyAgent.SetDestination(player.transform.position);
+                debug=HasValidPathToDestination(enemyAgent);
+                //enemyAgent.SetDestination(player.transform.position);
+                if(!debug){
+                    enemyAgent.isStopped = true;
+                    
+                }else{
+                    enemyAgent.isStopped =  false;
+                }
             }
             else{
+                enemyAgent.isStopped =  false;
                 if(!isWandering){
                     isWandering = true;
-                    base.wanderAround();
+
+                    base.wanderAround(3.0f);
                 }
                 else{
                     if(wanderInterval <= 0.0f){
                         wanderInterval = 3.0f;
-                        base.wanderAround();
+                        base.wanderAround(3.0f);
                     }
                 }
             }
+            
+            
 
-            timeSinceLastSet = 0.0f;
         }
 
         // check if game start
@@ -83,6 +94,20 @@ public class DemonEnemy : Enemy
 
         base.TryAttackPlayer();
         //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
+    }
+    bool HasValidPathToDestination(UnityEngine.AI.NavMeshAgent navMeshAgent)
+    {
+        UnityEngine.AI.NavMeshPath path = new UnityEngine.AI.NavMeshPath();
+        bool hasPath = navMeshAgent.CalculatePath(navMeshAgent.destination, path);
+
+        if (!hasPath || path.status == UnityEngine.AI.NavMeshPathStatus.PathPartial)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }
 
