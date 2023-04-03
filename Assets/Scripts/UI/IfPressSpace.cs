@@ -9,9 +9,12 @@ public class IfPressSpace : MonoBehaviour
     public GameObject box;
     private Box boxComponent;
     private Vector3Int position;
+    public GameObject buttonFloorPrompt;
+
     void Start()
-    {   
-        floorGrid=GameObject.Find("Grid").GetComponent<Grid>();
+    {
+        buttonFloorPrompt.SetActive(false);
+        floorGrid =GameObject.Find("Grid").GetComponent<Grid>();
         boxComponent=box.GetComponent<Box>();
         position=floorGrid.WorldToCell(boxComponent.transform.position);
     }
@@ -20,6 +23,7 @@ public class IfPressSpace : MonoBehaviour
     void Update()
     {
         if(floorGrid.WorldToCell(boxComponent.transform.position)!=position){
+            buttonFloorPrompt.SetActive(true);
             Destroy(gameObject);
         }
     }
