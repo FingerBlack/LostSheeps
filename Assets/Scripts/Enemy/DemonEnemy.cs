@@ -36,6 +36,8 @@ public class DemonEnemy : Enemy
         {
             if(!enemyAgent.hasPath){
                 enemyAgent.ResetPath();
+                base.wanderAround();
+                return;
             }
 
             if((transform.position - player.transform.position).magnitude < chasingRange){
