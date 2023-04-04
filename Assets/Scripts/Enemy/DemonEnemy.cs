@@ -7,11 +7,13 @@ public class DemonEnemy : Enemy
     private float timeSinceLastSet;
     public bool debug;
     [SerializeField] private float wanderInterval = 0.0f;
+    //public CanvasManager canvasManager;
     void Start()
     {
         base.Init();
 
         // properties
+        canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
         timeSinceLastSet=setDestinationInterval;
         healthPoint = maxHealthPoint;
         attackDamage = 40.0f;
@@ -33,7 +35,11 @@ public class DemonEnemy : Enemy
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(!canvasManager.ifStart){
+            return;
+        }
+        
         wanderInterval -= Time.deltaTime;
         timeSinceLastSet += Time.deltaTime;
 
@@ -91,13 +97,6 @@ public class DemonEnemy : Enemy
                     }
                 }
             }
-        }
-
-
-        // check if game start
-        if(!canvasManager.ifStart)
-        {
-            return;
         }
 
         hpImage.fillAmount = healthPoint / maxHealthPoint;

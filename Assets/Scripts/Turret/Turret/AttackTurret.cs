@@ -100,9 +100,9 @@ public abstract class AttackTurret : Turret
         }
     }
 
-    public virtual void buffBullet(BulletType bulletType){
+    public virtual void buffBullet(BulletType bulletType0){
         // Debug.Log("slow!!");
-        bulletType = bulletType;
+        bulletType = bulletType0;
         if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
         else if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
         if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;

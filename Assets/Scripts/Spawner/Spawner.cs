@@ -47,6 +47,8 @@ public class Spawner : MonoBehaviour
                 if(currentEnemies<totalEnemies&&enemies.transform.childCount<totalExistNumber){
                     currentEnemies++;
                     Instantiate(spawnObject, transform.position, Quaternion.identity, enemies.transform);
+
+
                 }
             }
 

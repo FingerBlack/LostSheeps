@@ -68,13 +68,15 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void CheckSlowed()
     {
         if(slowedTime < slowDuration){
+
+            enemyAgent.speed=slowedSpeed;
             currentSpeed = slowedSpeed;
             slowedTime += Time.deltaTime;
         }
         else{
             slowedTime = 0;
             isSlowed = false;
-            currentSpeed = normalSpeed;
+            enemyAgent.speed = normalSpeed;
         }
     }
 
