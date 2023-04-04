@@ -56,7 +56,7 @@ public class CanvasManager : MonoBehaviour
         componentCounterText=componentCounterPanel.transform.GetChild(1).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
-        navigation.SetActive(false);
+        //navigation.SetActive(false);
         
     }
 
@@ -65,14 +65,14 @@ public class CanvasManager : MonoBehaviour
     {   
 
 
-        if (ifStart)
-        {
-            navigation.SetActive(true);
-        }
-        else
-        {
-            navigation.SetActive(false);
-        }
+        // if (ifStart)
+        // {
+        //     navigation.SetActive(true);
+        // }
+        // else
+        // {
+        //     navigation.SetActive(false);
+        // }
         if(timeCount>timeNeed-0.2f){
             PlayingStats.onLevelSuccess();
 
