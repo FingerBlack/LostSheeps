@@ -30,6 +30,8 @@ public class ThreeWayTurret : AttackTurret
         }else{
             sprite.color=new Color(1f,1f,1f,1f);
             buff.SetActive(false);
+            base.bulletType = BulletType.Normal;
+            bulletPrefab = bulletPrefabNormal;
         }
 
         //light2D.intensity = bulletBuffTimer;
@@ -57,6 +59,9 @@ public class ThreeWayTurret : AttackTurret
 
             for(int i=0;i<5;i++){
                 // generate bullet
+                // if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
+                // else if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
+                // else if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;
                 obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
                 bulletComponent = obj.GetComponent<Bullet>();
 

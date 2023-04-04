@@ -8,6 +8,9 @@ public abstract class AttackTurret : Turret
     [Tooltip("shooting at targetEnemy if exists")]
     public GameObject targetEnemy;
     public GameObject bulletPrefab;
+    public GameObject bulletPrefabNormal;
+    public GameObject bulletPrefabSlow;
+    public GameObject bulletPrefabFrozen;
     protected Vector3 bulletOffset;
     [Tooltip("basic shooting cooldown")]
     public float basicShootPeriod;
@@ -19,6 +22,8 @@ public abstract class AttackTurret : Turret
     public GameObject buff;
     public CanvasManager canvasManager;
     protected SpriteRenderer sprite;
+    // change bullte type
+    protected BulletType bulletType;
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
     protected override void Init()
@@ -37,6 +42,7 @@ public abstract class AttackTurret : Turret
         targetEnemy = null;
         shootTimer = basicShootPeriod;
         bulletBuffTimer = 0.0f;
+        bulletType = BulletType.Normal;
     }
     
     protected virtual void TargetEnemy(){   
@@ -72,6 +78,9 @@ public abstract class AttackTurret : Turret
             shootTimer = 0.0f;
 
             // generate bullet
+            // if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
+            // else if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
+            // else if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;
             GameObject obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
             Bullet bulletComponent = obj.GetComponent<Bullet>();
             Vector3 direction = (targetEnemy.transform.position - transform.position - bulletOffset);
@@ -89,5 +98,13 @@ public abstract class AttackTurret : Turret
         if (enemyDistance.magnitude > shootRange){
             targetEnemy = null;
         }
+    }
+
+    public virtual void buffBullet(BulletType bulletType){
+        // Debug.Log("slow!!");
+        bulletType = bulletType;
+        if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
+        else if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
+        if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;
     }
 }

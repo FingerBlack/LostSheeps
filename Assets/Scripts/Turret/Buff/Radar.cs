@@ -11,6 +11,7 @@ public class Radar : BuffTurret
         healthPoint = 50.0f;
         isCombinable = true;
         base.CombinableInit();
+        buffBulletType = BulletType.Slow;
         
         buffValue=1f;
     }
