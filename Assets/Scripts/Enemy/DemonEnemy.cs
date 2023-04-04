@@ -21,7 +21,7 @@ public class DemonEnemy : Enemy
         slowedSpeed = normalSpeed * 0.3f;
         slowDuration = 5.0f;
         currentSpeed = normalSpeed;
-        
+        //chasingRange = 5.0f;
         enemyAgent.SetDestination(transform.position);
     }
 
