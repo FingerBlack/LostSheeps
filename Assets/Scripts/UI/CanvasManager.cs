@@ -138,10 +138,10 @@ public class CanvasManager : MonoBehaviour
         // }
 
 
-        if(playerControl.plant==playerControl.pea){
+        if(playerControl.plant==playerControl.turret){
             cardPanel.GetComponent<UnityEngine.UI.Image>().color= new Color(1f,1f,1f,1f);
             cardPanel1.GetComponent<UnityEngine.UI.Image>().color= new Color(0.5f,0.5f,0.5f,1f);
-        }else if(playerControl.plant==playerControl.cherry){
+        }else if(playerControl.plant==playerControl.radar){
             cardPanel.GetComponent<UnityEngine.UI.Image>().color= new Color(0.5f,0.5f,0.5f,1f);
             cardPanel1.GetComponent<UnityEngine.UI.Image>().color= new Color(1f,1f,1f,1f);
         }

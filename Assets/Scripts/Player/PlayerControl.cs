@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 using UnityEngine.Tilemaps;
 using Proyecto26;
+
 public class PlayerControl : MonoBehaviour
 {
     //======================================== variables ============================================================
     // Dont Initiat the Value here plz.
     private Grid floorGrid; // Grid Map
     public GameObject plant;
-    public GameObject pea;  // Plant Kind
-    public GameObject cherry;  // Plant Kind
+    public GameObject turret;  // Plant Kind
+    public GameObject radar;  // Plant Kind
     public GameObject horiBox;
     public GameObject vertBox;
     
@@ -48,7 +49,7 @@ public class PlayerControl : MonoBehaviour
     public Sprite r;
     public Sprite b;
     public Sprite f;
-    private bool inputEnabled = true; // 添加这个变量
+    private bool inputEnabled = true;
     public void EnableInput()
     {
         inputEnabled = true;
@@ -63,59 +64,59 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {      
-        spriteRenderer=GetComponent<SpriteRenderer>();
-        canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
-        isMoving=false;
-        action="None";
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
+        isMoving = false;
+        action = "None";
         //timeToMove=0.2f;
         //seedNumber=0; //initiate the peaNumber.
-        currentHp=maxHp;
-        speed =2.5f; //Remember to Set the Speed on Start 
-        vertSpeed =2.5f;  //Remember to Set the Speed on Start 
-        horiSpeed=2.5f;
+        currentHp = maxHp;
+        speed = 2.5f; //Remember to Set the Speed on Start 
+        vertSpeed = 2.5f;  //Remember to Set the Speed on Start 
+        horiSpeed = 2.5f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
-        l= Resources.Load<Sprite>("Pictures/Player/l");
-        r= Resources.Load<Sprite>("Pictures/Player/r") ;
-        b= Resources.Load<Sprite>("Pictures/Player/b");
-        f= Resources.Load<Sprite>("Pictures/Player/f") ;
-        pea=Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
-        cherry=Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
-        plant=pea;   
+        l = Resources.Load<Sprite>("Pictures/Player/l");
+        r = Resources.Load<Sprite>("Pictures/Player/r");
+        b = Resources.Load<Sprite>("Pictures/Player/b");
+        f = Resources.Load<Sprite>("Pictures/Player/f");
+        turret = Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
+        radar = Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
+        plant = turret;
         //HP=1000f; // Set HP 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in GridSpace
-        transform.position=floorGrid.GetCellCenterWorld(playerGridPos);
+        transform.position = floorGrid.GetCellCenterWorld(playerGridPos);
         playerDirection = new Vector3Int(0, -1, 0); //Set default direction
-        dX=0f; //initiate the direction
-        dY=-1f; //initiate the direction
+        dX = 0f; //initiate the direction
+        dY = -1f; //initiate the direction
         targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0); //initiate the target position in Grid Space
-        targetWorldPos=floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
+        targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
     }
     //=============================================================================================================
     // Update is called once per frame
     void Update()
     {   
-        if(!canvasManager.ifStart|| !inputEnabled){
+        if(!canvasManager.ifStart || !inputEnabled){
             return;
         }
-        //HP UI
-        hpImage.fillAmount=currentHp/maxHp;
-        // Movement Input
 
+        //HP UI
+        hpImage.fillAmount = currentHp/maxHp;
+
+        // Movement Input
         horiInput = Input.GetAxis("Horizontal");
         vertInput = Input.GetAxis("Vertical");
-        // horiSpeed =5f; //Remember to Set the Speed on Start 
-        // vertSpeed =2.5f;  //Remember to Set the Speed on Start 
+
     //=============================================================================================================
     // Hp
-        if(currentHp<0){
-            transform.eulerAngles=new Vector3(0, 0, 90f);
-            canvasManager.ifRestart=true;
+        if(currentHp < 0){
+            transform.eulerAngles = new Vector3(0, 0, 90f);
+            canvasManager.ifRestart = true;
             PlayingStats.onLevelFail();
-
             PlayingStats.deathCount(attackedBy);
         }
+
     //=============================================================================================================
     // Facing direction;
         Vector3Int newDirection = Vector3Int.zero;
@@ -152,32 +153,27 @@ public class PlayerControl : MonoBehaviour
         if(!isMoving){
             if(horiInput!=0){
                 isMoving=true;
-                isMovingDirection=playerGridPos+new Vector3Int(horiInput>0?1:-1,0,0);
+                isMovingDirection = playerGridPos+new Vector3Int(horiInput>0 ? 1 : -1, 0, 0);
             }else if(vertInput!=0){
-                isMovingDirection=playerGridPos+new Vector3Int(0,vertInput>0?1:-1,0);
+                isMovingDirection = playerGridPos+new Vector3Int(0, vertInput>0 ? 1 : -1, 0);
                 isMoving=true;
             }
 
             action="None";
         }else{
-            //transform.position = Vector3.MoveTowards(transform.position,isMovingDirection , currentSpeed * Time.deltaTime);
-            //SlowMove(floorGrid.GetCellCenterWorld(isMovingDirection));
             // Calculate the movement vector based on input and speed
-            Vector3 movement = new Vector3(horiInput, vertInput,0 ) * speed * Time.deltaTime;
+            Vector3 movingDirection = new Vector3(horiInput, vertInput, 0);
+            if(movingDirection.magnitude > 1)
+                movingDirection.Normalize(); // moving speed won't exceed 1
 
+            Vector3 movement = movingDirection * speed * Time.deltaTime;
             // Update transform position
             transform.position += movement;
-        }   
-            //}            
-       
-        
-                 
-        
-
+        }
         
         //=============================================================================================================
         // Other Input
-        if(Input.GetKeyDown(KeyCode.Space)){  // Whatif press the F.
+        if(Input.GetKeyDown(KeyCode.Space)){  // Whatif press the space.
             
             Physics2D.OverlapCircle(targetWorldPos, 0.1f,filter, results);
             foreach( Collider2D result in results)
@@ -205,14 +201,14 @@ public class PlayerControl : MonoBehaviour
                             GameObject.Find("Canvas").GetComponent<CanvasManager>().componentCounterText.GetComponent<TwinkleText>().Twinkle();
                         }
                         else{
-                            if(plant==pea&&seedNumber>0){
+                            if(plant==turret && seedNumber>0){
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<AttackTurret>().GetType().Name);
                                 box.CheckNeighbors();
                                 
                             }
-                            if(plant==cherry&&seedNumber>0){
+                            if(plant==radar && seedNumber>0){
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<BuffTurret>().GetType().Name);
@@ -225,10 +221,10 @@ public class PlayerControl : MonoBehaviour
             }
         }
         if(Input.GetKeyDown(KeyCode.Alpha1)){  //Whatif press the #1.
-            plant=pea;
+            plant = turret;
         }
         if(Input.GetKeyDown(KeyCode.Alpha2)){ //Whatif press the #2.
-            plant=cherry;
+            plant = radar;
 
         }
         //=============================================================================================================
