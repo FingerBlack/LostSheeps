@@ -113,6 +113,12 @@ public class DemonEnemy : Enemy
             base.CheckSlowed();
         }
 
+        // check frozen
+        if(isFrozen)
+        {
+            base.CheckFrozen();
+        }
+
         base.TryAttackPlayer();
         //transform.position = Vector3.MoveTowards(transform.position, player.transform.position, currentSpeed * Time.deltaTime);
     }
