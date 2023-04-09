@@ -32,6 +32,14 @@ public class CanvasManager : MonoBehaviour
     public HomeCanvas homeCanvas;
     public static float totalTimeinSafeZone;
     public GameObject navigation;
+
+    private GameObject helpMenu;
+
+    void Awake()
+    {
+        helpMenu=GameObject.Find("HelpMenu");
+        helpMenu.SetActive(false);
+    }
     void Start()
     {   
         //timeNeed=300f;
@@ -60,10 +68,35 @@ public class CanvasManager : MonoBehaviour
         
     }
 
+
+    void PauseGame()
+    {
+        Time.timeScale = 0f; // Set the time scale to zero to pause the game
+    }
+
+    void UnpauseGame()
+    {
+        Time.timeScale = 1f; // Set the time scale to one to unpause the game
+    }
+
     // Update is called once per frame
     void Update()
-    {   
-
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (Time.timeScale == 0f)
+            {
+                UnpauseGame();
+                helpMenu.SetActive(false);
+            }
+            else
+            {
+                
+                PauseGame();
+                helpMenu.SetActive(true);
+                
+            }
+        }
 
         // if (ifStart)
         // {
@@ -73,7 +106,7 @@ public class CanvasManager : MonoBehaviour
         // {
         //     navigation.SetActive(false);
         // }
-        if(timeCount>timeNeed-0.2f){
+        if (timeCount>timeNeed-0.2f){
             PlayingStats.onLevelSuccess();
 
             
