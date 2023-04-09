@@ -13,9 +13,9 @@ public class ThreeWayTurret : AttackTurret
         isCombinable = false;
 
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
-        basicShootPeriod = 1.0f;
+        basicShootPeriod = 0.7f;
         shootRange = 5.0f;
-        bulletSpeed = 10.0f;
+        bulletSpeed = 17.0f;
     }
 
     // Update is called once per frame
@@ -55,9 +55,9 @@ public class ThreeWayTurret : AttackTurret
             Bullet bulletComponent = null;
             Vector3 direction = targetEnemy.transform.position - transform.position - bulletOffset;
             float x = direction.x, y = direction.y;
-            float[] shootAngles = {-Mathf.PI / 9, -Mathf.PI / 15, 0, Mathf.PI / 15, Mathf.PI / 9};
+            float[] shootAngles = {-Mathf.PI / 18, -Mathf.PI / 24, -Mathf.PI / 21, 0, Mathf.PI / 24, Mathf.PI /21, Mathf.PI / 18};
 
-            for(int i=0;i<5;i++){
+            for(int i=0;i<7;i++){
                 // generate bullet
                 // if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
                 // else if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;

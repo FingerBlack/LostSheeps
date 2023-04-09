@@ -27,15 +27,15 @@ public class FourShotTurret : AttackTurret
 
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
         basicShootPeriod = 1.0f;
-        shootRange = 5.0f;
-        bulletSpeed = 10.0f;
+        shootRange = 7.0f;
+        bulletSpeed = 15.0f;
 
         // four shot turret only
         targetEnemyPosition = Vector3.zero;
         isRapidFiring = false;
         hasFiringEnded = true;
-        rapidFireRate = 0.1f;
-        rapidFireNumber = 5;
+        rapidFireRate = 0.05f;
+        rapidFireNumber = 6;
         numFireinRapid = 0;
     }
 

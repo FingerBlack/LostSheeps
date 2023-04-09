@@ -15,9 +15,9 @@ public class SlowTurret : AttackTurret
         isCombinable = false;
 
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
-        basicShootPeriod = 1f;
-        shootRange = 3.2f;
-        bulletSpeed = 10.0f;
+        basicShootPeriod = 0.7f;
+        shootRange = 5f;
+        bulletSpeed = 15.0f;
     }
 
     // Update is called once per frame
@@ -50,13 +50,14 @@ public class SlowTurret : AttackTurret
         if(shootTimer > basicShootPeriod / (1.0f + bulletBuffTimer))
         {
             shootTimer = 0.0f;
+            float rand = UnityEngine.Random.Range(0.0f, Mathf.PI);
 
             GameObject obj = null;
             Bullet bulletComponent = null;
             Vector3 direction = targetEnemy.transform.position - transform.position - bulletOffset;
             float x = direction.x, y = direction.y;
-            float[] shootAngles = {0, Mathf.PI / 4, Mathf.PI / 2, 3 * Mathf.PI / 4,  Mathf.PI , 5 * Mathf.PI / 4,
-             6 * Mathf.PI / 4, 7 * Mathf.PI / 4, 2 * Mathf.PI , 9 * Mathf.PI / 4, 10 * Mathf.PI / 4, 11 * Mathf.PI / 4, Mathf.PI / 8, 3 * Mathf.PI / 8, 5 * Mathf.PI / 8, 7 * Mathf.PI / 8};
+            float[] shootAngles = {rand+0, rand+Mathf.PI / 4, rand+Mathf.PI / 2, rand+3 * Mathf.PI / 4,  rand+Mathf.PI , rand+5 * Mathf.PI / 4,
+             rand+6 * Mathf.PI / 4, rand+7 * Mathf.PI / 4, rand+2 * Mathf.PI , rand+9 * Mathf.PI / 4, rand+10 * Mathf.PI / 4,rand+ 11 * Mathf.PI / 4, rand+Mathf.PI / 8, rand+3 * Mathf.PI / 8, rand+5 * Mathf.PI / 8, rand+7 * Mathf.PI / 8};
 
             for(int i=0;i<16;i++){
                 // generate bullet
@@ -64,7 +65,9 @@ public class SlowTurret : AttackTurret
                 // else if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
                 // else if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;
                 obj = Instantiate(bulletPrefab, transform.position + bulletOffset, Quaternion.identity, GameObject.Find("/Bullets").transform);
+                obj.transform.localScale /= 1.3f;
                 bulletComponent = obj.GetComponent<Bullet>();
+                bulletComponent.maintainTime = 0.5f;
 
                 // adjust angles
                 direction.x = x * Mathf.Cos(shootAngles[i]) - y * Mathf.Sin(shootAngles[i]);
