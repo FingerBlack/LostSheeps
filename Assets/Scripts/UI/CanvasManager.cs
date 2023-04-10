@@ -78,6 +78,7 @@ public class CanvasManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Set the time scale to one to unpause the game
     }
+    
 
     // Update is called once per frame
     void Update()
