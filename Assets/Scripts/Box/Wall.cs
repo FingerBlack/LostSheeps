@@ -14,11 +14,13 @@ public class Wall : MonoBehaviour
     public float HP;
     public Vector3Int direction;
     private Vector3Int origCellPos;
+    [SerializeField] private Vector3 spriteOffset;
+
     void Start()
     { 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>();
         origCellPos = floorGrid.WorldToCell(transform.position);
-        transform.position = floorGrid.GetCellCenterWorld(origCellPos);
+        transform.position = floorGrid.GetCellCenterWorld(origCellPos) + spriteOffset;//+ new Vector3(0.02f, -0.15f, 0.0f);
     }
 
     // Update is called once per frame

@@ -20,7 +20,9 @@ public class Box : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite targetedBox;
     public Sprite normalBox;
+    [SerializeField] private Vector3 spriteOffset;
     // public GameObject targetedLayer;
+    
     void Start()
     { 
         // targetedLayer.SetActive(false);
@@ -29,7 +31,7 @@ public class Box : MonoBehaviour
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
 
         origCellPos = floorGrid.WorldToCell(transform.position);
-        transform.position = floorGrid.GetCellCenterWorld(origCellPos);
+        transform.position = floorGrid.GetCellCenterWorld(origCellPos) + spriteOffset;//+ new Vector3(0.02f, -0.15f, 0.0f);
     }
 
     // Update is called once per frame
@@ -47,9 +49,9 @@ public class Box : MonoBehaviour
     {
         PlayingStats.pushCount();
         Vector3Int targetCellPos = origCellPos + direction;
-        Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);
+        Vector3 targetPos = floorGrid.GetCellCenterWorld(targetCellPos);//new Vector3(0.02f, -0.15f, 0.0f);
 
-        Physics2D.OverlapCircle(targetPos, 0.1f,filter,results);
+        Physics2D.OverlapCircle(targetPos, 0.1f, filter, results);
         bool isOccupied=false;
         foreach( Collider2D result in results)
         {   
@@ -73,6 +75,7 @@ public class Box : MonoBehaviour
             isMoving = true;
             float elapsedTime = 0;
             Vector3 origPos = transform.position;
+            targetPos += spriteOffset;
             while(elapsedTime < timeToMove){
                 transform.position = Vector3.Lerp(origPos, targetPos, (elapsedTime / timeToMove));
                 elapsedTime += Time.deltaTime;
