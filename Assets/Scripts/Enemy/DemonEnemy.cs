@@ -37,6 +37,7 @@ public class DemonEnemy : Enemy
     void Update()
     {   
         if(!canvasManager.ifStart){
+            enemyAgent.speed=0;
             return;
         }
         

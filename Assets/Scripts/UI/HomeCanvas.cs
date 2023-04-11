@@ -10,6 +10,7 @@ public class HomeCanvas : MonoBehaviour
     public List<int> levels=new List<int>{2,0,0,0,0,0,0};
     public CanvasManager canvasManager;
     public static HomeCanvas instance;
+
     void Start()
     {   
         //

@@ -211,7 +211,12 @@ public class CanvasManager : MonoBehaviour
         //valuePanel.SetActive(true);
         if (SceneManager.GetActiveScene().name!="Home"){
             cardPanel.SetActive(true);
-            cardPanel1.SetActive(true);
+            int level=(int.Parse( SceneManager.GetActiveScene().name));
+
+            if(homeCanvas.levels[4]==1||level==4){
+                cardPanel1.SetActive(true);
+            }
+            
             menu.SetActive(true);
             componentCounterPanel.SetActive(true);
         }

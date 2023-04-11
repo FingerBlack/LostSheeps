@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using UnityEngine.SceneManagement;
 public abstract class Turret : MonoBehaviour
 {
     // ============================== variables ==============================
@@ -20,7 +20,7 @@ public abstract class Turret : MonoBehaviour
     protected ContactFilter2D filter; 
     // colliding list
     protected List<Collider2D> results;
-    
+    public HomeCanvas homeCanvas;
     // ========== combination related variables ==========
     protected bool isCombinable;
     [Tooltip("move towards combination target if exists")]
@@ -54,7 +54,7 @@ public abstract class Turret : MonoBehaviour
         // varying initialization
         healthPoint = 50.0f;
         isCombinable = false;
-
+        homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         // fixed initialization
         map = GameObject.Find("Grid").GetComponent<Grid>();        
         boxComponent = transform.parent.gameObject.GetComponent<Box>();
@@ -180,17 +180,19 @@ public abstract class Turret : MonoBehaviour
 
         print("turretCount " + turretCount);
         print("radarcount" + radarCount);
-
+        int level=(int.Parse( SceneManager.GetActiveScene().name));
         // get plant kind this combination will change into
-        if(turretCount == 3){
+        if(turretCount == 3&&(homeCanvas.levels[5]==1||(homeCanvas.levels[5]==2&&level==5))){
             transferCode = TransferCode.FourShotTurret;      
-        } else if(turretCount==2 && radarCount==1){
+        } else if(turretCount==2 && radarCount==1&&(homeCanvas.levels[6]==1||(homeCanvas.levels[6]==2&&level==6))){
             transferCode = TransferCode.ThreeWayTurret;
-        } else if(turretCount==1 && radarCount==2){
+        } else if(turretCount==1 && radarCount==2&&(homeCanvas.levels[7]==1||(homeCanvas.levels[7]==2&&level==7))){
             transferCode = TransferCode.SlowTurret;
-        } else if(radarCount == 3){
+        } else if(radarCount == 3&&(homeCanvas.levels[8]==1||(homeCanvas.levels[8]==2&&level==8))){
             transferCode = TransferCode.LargeRadar;
-        } 
+        }else{
+            return false;
+        }
         /*else{
             Debug.Log("no combination");
         }*/

@@ -15,10 +15,10 @@ public class EnemySpawnerSpawner : MonoBehaviour
     public float rangeSize;
     private int level;
     private CanvasManager canvasManager;
-    private List<int> totalExistEnemiesLevel=new List<int>{ 10, 20, 30,40,50,60};
-    private List<int> totalEnemiesLevel=new List<int>{ 3, 4, 5,6,7,8};
-    private List<float> rateLevel=new List<float>{ 10f, 5f, 3f,2f,1f};
-    private List<float> timeLevel=new List<float>{ 7f, 5f, 4f,3f,2f};
+    private List<int> totalExistEnemiesLevel=new List<int>{ 10, 20, 30,40,50,60,90};
+    private List<int> totalEnemiesLevel=new List<int>{ 3, 4, 5,6,7,8,15};
+    private List<float> rateLevel=new List<float>{ 10f, 5f, 3f,2f,1f,1f};
+    private List<float> timeLevel=new List<float>{ 7f, 5f, 4f,3f,2f,1f};
 
     public GameObject enemySpawner;
     void Start()

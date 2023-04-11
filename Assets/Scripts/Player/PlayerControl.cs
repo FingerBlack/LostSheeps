@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 using UnityEngine.Tilemaps;
 using Proyecto26;
+using UnityEngine.SceneManagement;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     public GameObject radar;  // Plant Kind
     public GameObject horiBox;
     public GameObject vertBox;
-    
+    public HomeCanvas homeCanvas;
     public int seedNumber;
     public float horiInput;
     public float vertInput;
@@ -70,6 +71,7 @@ public class PlayerControl : MonoBehaviour
         action = "None";
         //timeToMove=0.2f;
         //seedNumber=0; //initiate the peaNumber.
+        homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         currentHp = maxHp;
         speed = 2.5f; //Remember to Set the Speed on Start 
         vertSpeed = 2.5f;  //Remember to Set the Speed on Start 
@@ -220,10 +222,17 @@ public class PlayerControl : MonoBehaviour
                 }
             }
         }
+        int level=-1;
+        string name=SceneManager.GetActiveScene().name;
+        if(name!="Home"){
+            
+            level=(int.Parse(name ));
+        }
+        
         if(Input.GetKeyDown(KeyCode.Alpha1)){  //Whatif press the #1.
             plant = turret;
         }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){ //Whatif press the #2.
+        if(Input.GetKeyDown(KeyCode.Alpha2)&&(homeCanvas.levels[4]==1||(homeCanvas.levels[4]==2&&level==4))){ //Whatif press the #2.
             plant = radar;
 
         }
