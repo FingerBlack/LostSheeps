@@ -37,8 +37,10 @@ public class DemonEnemy : Enemy
     void Update()
     {   
         if(!canvasManager.ifStart){
-            enemyAgent.speed=0;
+            enemyAgent.isStopped = true;
             return;
+        }else{
+            enemyAgent.isStopped = false;
         }
         
         wanderInterval -= Time.deltaTime;
