@@ -57,7 +57,8 @@ public class CanvasManager : MonoBehaviour
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
         //navigation.SetActive(false);
-        
+
+
     }
 
     // Update is called once per frame
@@ -116,6 +117,7 @@ public class CanvasManager : MonoBehaviour
                                 }*/
 
                 updateLevelScore();
+
 
             }
 
@@ -197,6 +199,7 @@ public class CanvasManager : MonoBehaviour
 
         update2to1Level(3, 4, 6);
         update2to1Level(3, 4, 7);
+
 
 
     }
