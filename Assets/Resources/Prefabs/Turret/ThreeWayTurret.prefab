@@ -191,7 +191,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
   bulletPrefabNormal: {fileID: 1287289377089405327, guid: 6d04e4dd2089bfe4b8fd7dd9f603c265, type: 3}
   bulletPrefabSlow: {fileID: 1287289377089405327, guid: 1ccc722f051d17b4181c8a2453d6c027, type: 3}
-  bulletPrefabFrozen: {fileID: 1287289377089405327, guid: 1ccc722f051d17b4181c8a2453d6c027, type: 3}
+  bulletPrefabFrozen: {fileID: 2856873096870518874, guid: cae1e75fcd4e34f7caf85f857172a7a8, type: 3}
   basicShootPeriod: 0
   shootTimer: 0
   shootRange: 0

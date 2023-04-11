@@ -10,6 +10,7 @@ public class LargeRadar : BuffTurret
 
         healthPoint = 50.0f;
         isCombinable = false;
+        buffBulletType = BulletType.Frozen;
     
         buffValue=1.5f;
     }

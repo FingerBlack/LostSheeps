@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowBullet : Bullet
+public class FrozenBullet : Bullet
 {
     void Start()
     {
@@ -28,15 +28,16 @@ public class SlowBullet : Bullet
         {
             if (result.gameObject.TryGetComponent<Enemy>(out Enemy enemy))
             {
-                if(!enemy.isFrozen){
-                    enemy.healthPoint -= 1.0f;
-                    enemy.isSlowed = true;
-                    enemy.slowedTime = 0;
-                    
-                    PlayingStats.damageToEnemy(source, 1.0f.ToString(), enemy.GetType().Name);
-                    Destroy(gameObject);
-                    break;
-                }
+                enemy.healthPoint -= 1.0f;
+                // set frozen status, make sure no conflict between slow and frozen
+                enemy.isSlowed = false;
+                enemy.slowedTime = 0;
+                enemy.isFrozen = true;
+                enemy.frozenTime = 0;
+                
+                PlayingStats.damageToEnemy(source, 1.0f.ToString(), enemy.GetType().Name);
+                Destroy(gameObject);
+                break;
             }
         }
     }

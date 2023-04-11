@@ -19,11 +19,17 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] protected float currentSpeed;
     [SerializeField] protected float normalSpeed;
     [SerializeField] protected float slowedSpeed;
+    // set frozen speed
+    [SerializeField] protected float frozenSpeed;
     public bool isSlowed;
+    public bool isFrozen;
     [Tooltip("slow effect period")]
     [SerializeField] protected float slowDuration;
     [Tooltip("timer used for check slowed status")]
     public float slowedTime;
+    // frozen time and duration
+    [SerializeField] protected float frozenDuration;
+    public float frozenTime;
     [SerializeField] protected GameObject player;
     [SerializeField] protected CanvasManager canvasManager;
     public Image hpImage;
@@ -46,6 +52,9 @@ public abstract class Enemy : MonoBehaviour
         normalSpeed = 2.0f;
         slowedSpeed = 0.2f;
         slowDuration = 5.0f;
+        // frozen varibales
+        frozenSpeed = 0.0f;
+        frozenDuration = 1.0f;
         //chasingRange = 5.0f;
 
         // fixed initialization
@@ -76,6 +85,22 @@ public abstract class Enemy : MonoBehaviour
         else{
             slowedTime = 0;
             isSlowed = false;
+            enemyAgent.speed = normalSpeed;
+        }
+    }
+
+    // in Update(), if this enemy is frozen, call this method
+    protected virtual void CheckFrozen()
+    {
+        if(frozenTime < frozenDuration){
+
+            enemyAgent.speed=frozenSpeed;
+            currentSpeed = frozenSpeed;
+            frozenTime += Time.deltaTime;
+        }
+        else{
+            frozenTime = 0;
+            isFrozen = false;
             enemyAgent.speed = normalSpeed;
         }
     }
