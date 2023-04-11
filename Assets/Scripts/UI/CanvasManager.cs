@@ -66,7 +66,8 @@ public class CanvasManager : MonoBehaviour
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
         //navigation.SetActive(false);
-        
+
+
     }
 
 
@@ -142,9 +143,19 @@ public class CanvasManager : MonoBehaviour
         if(ifEnd){//success
             int level=(int.Parse( SceneManager.GetActiveScene().name));
             homeCanvas.levels[level]=1;
-            if(level+1<homeCanvas.levels.Count)
-                if( homeCanvas.levels[level+1]==0)
-                    homeCanvas.levels[level+1]=2;
+            if (level + 1 < homeCanvas.levels.Count)
+            {
+                //0-2 +1,3->5,4->8, 3&4->6&7
+                /*                if (homeCanvas.levels[level + 1] == 0)
+                                {
+                                    homeCanvas.levels[level + 1] = 2;
+                                }*/
+
+                updateLevelScore();
+
+
+            }
+
             ifStart =false;
             nextLevel.SetActive(true);
             //valuePanel.SetActive(false);
@@ -206,5 +217,48 @@ public class CanvasManager : MonoBehaviour
         }
         
         ifStart=true;
+    }
+
+    void updateLevelScore()
+    {
+        update1to1Level(0, 1);
+        update1to1Level(1, 2);
+
+        update1to1Level(2, 3);
+        update1to1Level(2, 4);
+
+        update1to1Level(3, 5);
+        update1to1Level(4, 8);
+        update1to1Level(3, 9);
+        update1to1Level(4, 9);
+
+        update2to1Level(3, 4, 6);
+        update2to1Level(3, 4, 7);
+
+
+
+    }
+
+    void update1to1Level(int pre, int act)
+    {
+        if (homeCanvas.levels[pre] == 1)
+        {
+            if (homeCanvas.levels[act] == 0)
+            {
+                homeCanvas.levels[act] = 2;
+            }
+
+        }
+    }
+    void update2to1Level(int pre,int pre2, int act)
+    {
+        if (homeCanvas.levels[pre] == 1 && homeCanvas.levels[pre2] == 1)
+        {
+            if (homeCanvas.levels[act] == 0)
+            {
+                homeCanvas.levels[act] = 2;
+            }
+
+        }
     }
 }

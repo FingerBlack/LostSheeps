@@ -53,6 +53,7 @@ public class UIPopup : MonoBehaviour
         if(playerIsAround)
         {
             this.spriteRenderer.enabled = false;
+            gameObject.SetActive(false);
             viewed = 1;
             canvasManager.ifStart = true;
         }
