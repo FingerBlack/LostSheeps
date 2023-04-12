@@ -78,7 +78,7 @@ public abstract class Turret : MonoBehaviour
     {
         transferGameObject = new GameObject[4] {
             Resources.Load("Prefabs/Buff/LargeRadar") as GameObject, 
-            Resources.Load("Prefabs/Turret/SlowTurret") as GameObject,
+            Resources.Load("Prefabs/Turret/SixteenTurret") as GameObject,
             Resources.Load("Prefabs/Turret/ThreeWayTurret") as GameObject,
             Resources.Load("Prefabs/Turret/FourShotTurret") as GameObject
         };
