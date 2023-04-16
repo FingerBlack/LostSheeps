@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     private List<Collider2D> results;// Collider Detect Tools.
     
     public Vector3Int playerDirection; // 0 up; 1 up-right; 2 right; 3 down-right; 4 down; 5 down-left; 6 left; 7 up-left;
+    public Animator anim;
 
     public CanvasManager canvasManager;
     public Vector3Int playerGridPos;
@@ -144,10 +145,10 @@ public class PlayerControl : MonoBehaviour
             }
         }
         updateTarget();
-    //=============================================================================================================
-    // All Input setting are here, learn these code and expand these codes in the future.
-    //=============================================================================================================
-        
+        //=============================================================================================================
+        // All Input setting are here, learn these code and expand these codes in the future.
+        //=============================================================================================================
+        updateAnim(horiInput,vertInput);
 
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in Grid Space
 
@@ -317,15 +318,16 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void updateSprite(){
-        if(playerDirection == Vector3Int.left){
+/*        if(playerDirection == Vector3Int.left){
             spriteRenderer.sprite=l;
         } else if(playerDirection == Vector3Int.right){
-            spriteRenderer.sprite=r;
+            *//*spriteRenderer.sprite=r;*//*
+            anim.SetFloat("Horizontal", 1);
         } else if(playerDirection == Vector3Int.up){
             spriteRenderer.sprite=f;
         } else if(playerDirection == Vector3Int.down){
             spriteRenderer.sprite=b;
-        }
+        }*/
     }
 
     private void updateTarget(){
@@ -355,5 +357,11 @@ public class PlayerControl : MonoBehaviour
                 box.setTargeted(false);
             }
         }
+    }
+
+    void updateAnim(float hori, float vert) {
+        anim.SetFloat("Horizontal", hori);
+        anim.SetFloat("Vertical", vert);
+
     }
 }
