@@ -51,6 +51,12 @@ public class PlayerControl : MonoBehaviour
     public Sprite b;
     public Sprite f;
     private bool inputEnabled = true;
+
+    private AudioSource playerAudio;
+    [SerializeField] private AudioClip pushSound;
+    [SerializeField] private AudioClip pickSound;
+    [SerializeField] private AudioClip buildSound;
+
     public void EnableInput()
     {
         inputEnabled = true;
@@ -94,6 +100,9 @@ public class PlayerControl : MonoBehaviour
         dY = -1f; //initiate the direction
         targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0); //initiate the target position in Grid Space
         targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
+
+        // sound related
+        playerAudio = GetComponent<AudioSource>();
     }
     //=============================================================================================================
     // Update is called once per frame
@@ -181,6 +190,7 @@ public class PlayerControl : MonoBehaviour
             foreach( Collider2D result in results)
             {
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
+                    playerAudio.PlayOneShot(pushSound, 1.0f);
                     box.direction=playerDirection;
                     box.action="move";
                     // box.setTargeted(false);
@@ -204,6 +214,7 @@ public class PlayerControl : MonoBehaviour
                         }
                         else{
                             if(plant==turret && seedNumber>0){
+                                playerAudio.PlayOneShot(buildSound, 0.1f);
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<AttackTurret>().GetType().Name);
@@ -211,6 +222,7 @@ public class PlayerControl : MonoBehaviour
                                 
                             }
                             if(plant==radar && seedNumber>0){
+                                playerAudio.PlayOneShot(buildSound, 0.1f);
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<BuffTurret>().GetType().Name);
@@ -244,6 +256,7 @@ public class PlayerControl : MonoBehaviour
         {
             if (result.gameObject.TryGetComponent<Seed>(out Seed seed))
             {
+                playerAudio.PlayOneShot(pickSound, 0.3f);
                 seedNumber += 1;
                 
                 PlayingStats.pickCount(seed.GetType().Name);
