@@ -39,7 +39,9 @@ public class UIPopup : MonoBehaviour
             canvasManager.ifStart = false;
         }
 
-
+        if(Input.GetKeyDown(KeyCode.E)){
+             OnClick();
+        }
     }
 
     void checkPlayerAround()

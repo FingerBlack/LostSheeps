@@ -67,7 +67,7 @@ public class CanvasManager : MonoBehaviour
         occupiedFloors=GameObject.Find("OccupiedFloors");
         //navigation.SetActive(false);
 
-
+        OnClick();
     }
 
 
@@ -84,7 +84,7 @@ public class CanvasManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             if (Time.timeScale == 0f)
@@ -157,12 +157,13 @@ public class CanvasManager : MonoBehaviour
             }
 
             ifStart =false;
-            nextLevel.SetActive(true);
+            //nextLevel.SetActive(true);
             //valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);
             menu.SetActive(false);
             componentCounterPanel.SetActive(false);
+            SceneManager.LoadScene( "Home");
             
         }else if(ifRestart){//fail
             
