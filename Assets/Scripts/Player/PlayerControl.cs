@@ -38,6 +38,7 @@ public class PlayerControl : MonoBehaviour
     private List<Collider2D> results;// Collider Detect Tools.
     
     public Vector3Int playerDirection; // 0 up; 1 up-right; 2 right; 3 down-right; 4 down; 5 down-left; 6 left; 7 up-left;
+    public Animator anim;
 
     public CanvasManager canvasManager;
     public Vector3Int playerGridPos;
@@ -51,12 +52,6 @@ public class PlayerControl : MonoBehaviour
     public Sprite b;
     public Sprite f;
     private bool inputEnabled = true;
-
-    private AudioSource playerAudio;
-    [SerializeField] private AudioClip pushSound;
-    [SerializeField] private AudioClip pickSound;
-    [SerializeField] private AudioClip buildSound;
-
     public void EnableInput()
     {
         inputEnabled = true;
@@ -100,9 +95,6 @@ public class PlayerControl : MonoBehaviour
         dY = -1f; //initiate the direction
         targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0); //initiate the target position in Grid Space
         targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
-
-        // sound related
-        playerAudio = GetComponent<AudioSource>();
     }
     //=============================================================================================================
     // Update is called once per frame
@@ -153,10 +145,10 @@ public class PlayerControl : MonoBehaviour
             }
         }
         updateTarget();
-    //=============================================================================================================
-    // All Input setting are here, learn these code and expand these codes in the future.
-    //=============================================================================================================
-        
+        //=============================================================================================================
+        // All Input setting are here, learn these code and expand these codes in the future.
+        //=============================================================================================================
+        updateAnim(horiInput,vertInput);
 
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in Grid Space
 
@@ -190,7 +182,6 @@ public class PlayerControl : MonoBehaviour
             foreach( Collider2D result in results)
             {
                 if(result.gameObject.TryGetComponent<Box>(out Box box)){
-                    playerAudio.PlayOneShot(pushSound, 1.0f);
                     box.direction=playerDirection;
                     box.action="move";
                     // box.setTargeted(false);
@@ -214,7 +205,6 @@ public class PlayerControl : MonoBehaviour
                         }
                         else{
                             if(plant==turret && seedNumber>0){
-                                playerAudio.PlayOneShot(buildSound, 0.1f);
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<AttackTurret>().GetType().Name);
@@ -222,7 +212,6 @@ public class PlayerControl : MonoBehaviour
                                 
                             }
                             if(plant==radar && seedNumber>0){
-                                playerAudio.PlayOneShot(buildSound, 0.1f);
                                 GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<BuffTurret>().GetType().Name);
@@ -256,7 +245,6 @@ public class PlayerControl : MonoBehaviour
         {
             if (result.gameObject.TryGetComponent<Seed>(out Seed seed))
             {
-                playerAudio.PlayOneShot(pickSound, 0.3f);
                 seedNumber += 1;
                 
                 PlayingStats.pickCount(seed.GetType().Name);
@@ -330,15 +318,16 @@ public class PlayerControl : MonoBehaviour
     }
 
     private void updateSprite(){
-        if(playerDirection == Vector3Int.left){
+/*        if(playerDirection == Vector3Int.left){
             spriteRenderer.sprite=l;
         } else if(playerDirection == Vector3Int.right){
-            spriteRenderer.sprite=r;
+            *//*spriteRenderer.sprite=r;*//*
+            anim.SetFloat("Horizontal", 1);
         } else if(playerDirection == Vector3Int.up){
             spriteRenderer.sprite=f;
         } else if(playerDirection == Vector3Int.down){
             spriteRenderer.sprite=b;
-        }
+        }*/
     }
 
     private void updateTarget(){
@@ -368,5 +357,11 @@ public class PlayerControl : MonoBehaviour
                 box.setTargeted(false);
             }
         }
+    }
+
+    void updateAnim(float hori, float vert) {
+        anim.SetFloat("Horizontal", hori);
+        anim.SetFloat("Vertical", vert);
+
     }
 }
