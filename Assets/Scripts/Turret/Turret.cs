@@ -40,6 +40,7 @@ public abstract class Turret : MonoBehaviour
 
     [Tooltip("possible tranform object, initial in scene")]
     [SerializeField] protected GameObject[] transferGameObject;
+
     //bullet type
     public enum BulletType
     {

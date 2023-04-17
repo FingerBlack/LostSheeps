@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 2eefd00fc87710d4391929fea29ea9ed, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 48139fdcea985c24383983d9910763cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -369,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 50
   gridPosition: {x: 8, y: -42, z: 0}
+  homeCanvas: {fileID: 0}
   combinationTarget: {fileID: 0}
   transferGameObject: []
   targetEnemy: {fileID: 0}
@@ -383,3 +384,4 @@ MonoBehaviour:
   bulletBuffTimer: 0
   buff: {fileID: 1499632011692130483}
   canvasManager: {fileID: 0}
+  directionalSprites: []

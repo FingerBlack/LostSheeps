@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8539321876677869035}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.01, z: -0.06598809}
+  m_LocalPosition: {x: -0.072, y: 0.417, z: -0.06598809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -160,7 +160,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -728157835, guid: 7ed784251993f8745988bcb89d867711, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a7b0604b4cff78e4199f31ab4805b75e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthPoint: 0
   gridPosition: {x: 0, y: 0, z: 0}
+  homeCanvas: {fileID: 0}
   combinationTarget: {fileID: 0}
   transferGameObject: []
   targetEnemy: {fileID: 0}
@@ -199,6 +200,15 @@ MonoBehaviour:
   bulletBuffTimer: 0
   buff: {fileID: 0}
   canvasManager: {fileID: 0}
+  directionalSprites:
+  - {fileID: 21300000, guid: b04bad8fd8e153241931be96dafbc472, type: 3}
+  - {fileID: 21300000, guid: e61decccf98029b41a807adb4e2a8ecc, type: 3}
+  - {fileID: 21300000, guid: 224b62490ec9de049a3b491e40c8dbbf, type: 3}
+  - {fileID: 21300000, guid: 610ebbaaa649d2b4c8be44f03f5425f5, type: 3}
+  - {fileID: 21300000, guid: a7b0604b4cff78e4199f31ab4805b75e, type: 3}
+  - {fileID: 21300000, guid: f9100d534aaf2b540adac56d29371b70, type: 3}
+  - {fileID: 21300000, guid: 746e0280eee8fec489afea0e70aae2fb, type: 3}
+  - {fileID: 21300000, guid: a36c2a3839df4034aab4cc02edc917a2, type: 3}
 --- !u!114 &-998584583364247106
 MonoBehaviour:
   m_ObjectHideFlags: 0
