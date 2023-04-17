@@ -25,10 +25,10 @@ public class ThreeWayTurret : AttackTurret
 
          if(bulletBuffTimer > 0.01f){
             buff.SetActive(true);
-            sprite.color=new Color(1f,190f/255f,190f/255f,1f);
+            spriteRenderer.color=new Color(1f,190f/255f,190f/255f,1f);
             bulletBuffTimer -= 0.01f;
         }else{
-            sprite.color=new Color(1f,1f,1f,1f);
+            spriteRenderer.color=new Color(1f,1f,1f,1f);
             buff.SetActive(false);
             base.bulletType = BulletType.Normal;
             bulletPrefab = bulletPrefabNormal;
@@ -45,6 +45,8 @@ public class ThreeWayTurret : AttackTurret
 
     protected override void ShootEnemy()
     {
+        base.changeDirection();
+        
         // shoot every period of time
         shootTimer += Time.deltaTime;
         if(shootTimer > basicShootPeriod / (1.0f + bulletBuffTimer))

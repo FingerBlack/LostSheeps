@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 88117204, guid: 669475a5dc2fc174b9f1818efa6c61c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c1456c849066eb349949dc44199b3573, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,22 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563d26ce0509db4398cfb7b4874d614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  ifmove: 0
-  speed: 0
-  map: {fileID: 0}
-  up: {fileID: 0}
-  down: {fileID: 0}
-  left: {fileID: 0}
-  right: {fileID: 0}
-  upRight: {fileID: 0}
-  downRight: {fileID: 0}
-  upLeft: {fileID: 0}
-  downLeft: {fileID: 0}
+  healthPoint: 0
   gridPosition: {x: 0, y: 0, z: 0}
-  transferGameObject1: {fileID: 0}
-  transferGameObject2: {fileID: 0}
-  transferGameObject3: {fileID: 0}
+  homeCanvas: {fileID: 0}
+  combinationTarget: {fileID: 0}
+  transferGameObject: []
 --- !u!114 &-5552159213050815489
 MonoBehaviour:
   m_ObjectHideFlags: 0

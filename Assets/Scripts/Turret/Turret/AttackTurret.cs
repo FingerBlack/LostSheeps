@@ -21,17 +21,21 @@ public abstract class AttackTurret : Turret
     public float bulletBuffTimer;
     public GameObject buff;
     public CanvasManager canvasManager;
-    protected SpriteRenderer sprite;
+    protected SpriteRenderer spriteRenderer;
     // change bullte type
     protected BulletType bulletType;
+
+    [Tooltip("sprites of each direction, up -> upleft -> left -> downleft ... -> upright")]
+    [SerializeField] protected Sprite[] directionalSprites;
+
     // ============================== general methods ==============================
     // general initialization, call this function first in Start() then modify varying variables
     protected override void Init()
     {
         base.Init();
-        sprite=GetComponent<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         buff=transform.GetChild(0).gameObject;
-        canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
+        canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
         // varying initialization
         bulletOffset = new Vector3(0f, 1.0f, 0.0f);
         basicShootPeriod = 1.0f;
@@ -57,17 +61,19 @@ public abstract class AttackTurret : Turret
                     targetEnemy = result.gameObject;
                     continue;
                 }
-                float dis1 = Vector3.Distance(transform.position,targetEnemy.transform.position);
-                float dis2 = Vector3.Distance(transform.position,result.gameObject.transform.position);
+                float dis1 = Vector3.Distance(transform.position, targetEnemy.transform.position);
+                float dis2 = Vector3.Distance(transform.position, result.gameObject.transform.position);
                 if(dis2 < dis1){
                     targetEnemy = result.gameObject;
                 }
             }
-        }
+        } 
     }
 
     protected virtual void ShootEnemy()
     {
+        changeDirection();
+
         // shoot every period of time
         if(!canvasManager.ifStart){
             return ;
@@ -106,5 +112,25 @@ public abstract class AttackTurret : Turret
         if(bulletType == BulletType.Slow) bulletPrefab = bulletPrefabSlow;
         else if(bulletType == BulletType.Normal) bulletPrefab = bulletPrefabNormal;
         if(bulletType == BulletType.Frozen) bulletPrefab = bulletPrefabFrozen;
+    }
+
+    protected virtual void changeDirection(){
+        // change turret sprite to face enemy
+        Vector2[] directions = { Vector2.up, new Vector2(-0.707f, 0.707f), 
+                                 Vector2.left, new Vector2(-0.707f, -0.707f), 
+                                 Vector2.down, new Vector2(0.707f, -0.707f), 
+                                 Vector2.right, new Vector2(0.707f, 0.707f) };
+        float maxVal = 0.0f;
+        int destinationIndex = 0;
+        Vector2 facing = targetEnemy.transform.position - transform.position;
+        for(int i=0;i<8;i++){
+            float dotProduct = Vector2.Dot(directions[i], facing);
+            if(dotProduct > maxVal){
+                maxVal = dotProduct;
+                destinationIndex = i;
+            }
+        }
+
+        spriteRenderer.sprite = directionalSprites[destinationIndex];
     }
 }
