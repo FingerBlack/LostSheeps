@@ -17,7 +17,7 @@ public abstract class Bullet : MonoBehaviour
         // initialize here will override instantiate from turret
         //TargetPos = Vector3.zero;
         //speed = 0.0f;
-        maintainTime = 2.0f;
+        maintainTime = 1.0f;
         timeCount = 0.0f;
         filter = new ContactFilter2D().NoFilter(); //initiate the Collider Detect Tools.
         results = new List<Collider2D>(); //initiate the Collider Detect Tools.
