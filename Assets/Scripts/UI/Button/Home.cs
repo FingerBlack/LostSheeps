@@ -9,8 +9,7 @@ public class Home : MonoBehaviour
     public GameObject enemies;
     void Start()
     {
-        //GetComponent<Button>().onClick.AddListener(OnClick);
-        //OnClick();
+        GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
     // Update is called once per frame
