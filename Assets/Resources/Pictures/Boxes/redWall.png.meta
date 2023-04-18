@@ -120,12 +120,12 @@ TextureImporter:
       name: redWall_0
       rect:
         serializedVersion: 2
-        x: 578
+        x: 575
         y: 1014
         width: 55
-        height: 98
+        height: 123
       alignment: 9
-      pivot: {x: 0.44538686, y: 0.096155904}
+      pivot: {x: 0.4937045, y: 0.08319142}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
