@@ -49,9 +49,8 @@ public class UIPopup : MonoBehaviour
         string name=SceneManager.GetActiveScene().name;
 
         if(name=="Home"){
-            if(canvasManager.ifStart == false){
-            return;
-        }
+        //    if(canvasManager.ifStart == false){
+        //    return;
             if(homeCanvas.levels[3]==1&&homeCanvas.levels[4]==2){
                 playerIsAround = true;
 
