@@ -185,7 +185,7 @@ MonoBehaviour:
   horiBox: {fileID: 0}
   vertBox: {fileID: 0}
   homeCanvas: {fileID: 0}
-  seedNumber: 1
+  seedNumber: 0
   horiInput: 0
   vertInput: 0
   horiDis: 0
@@ -216,7 +216,6 @@ MonoBehaviour:
   pushSound: {fileID: 8300000, guid: ca5bc75199e20854c97f2b12d6b4c4c3, type: 3}
   pickSound: {fileID: 8300000, guid: 96f25cb695e91b540b2322dad384491e, type: 3}
   buildSound: {fileID: 8300000, guid: 601b636b450700d40a1ab40fa0987473, type: 3}
-  stepSound: {fileID: 8300000, guid: 5b5dc78f1d0cacd4fb9f0f62ad4b8d20, type: 3}
 --- !u!50 &2853620171554428228
 Rigidbody2D:
   serializedVersion: 4

@@ -14,6 +14,7 @@ public class EnemySpawnerSpawner : MonoBehaviour
     public float range;
     public float rangeSize;
     private int level;
+    private float bufferTime;
     private CanvasManager canvasManager;
     private List<int> totalExistEnemiesLevel=new List<int>{ 10, 20, 30,40,50,60,90};
     private List<int> totalEnemiesLevel=new List<int>{ 3, 4, 5,6,7,8,15};
@@ -28,7 +29,8 @@ public class EnemySpawnerSpawner : MonoBehaviour
         player=GameObject.Find("Player");
         timeCount=0;
         timePeirod=4f;
-        spawners=GameObject.Find("Spawners");
+        bufferTime = 15f;
+        spawners =GameObject.Find("Spawners");
         //enemy=Resources.Load("Prefabs/Enemy") as GameObject;
         range=10f;
         rangeSize=5f;
@@ -42,9 +44,10 @@ public class EnemySpawnerSpawner : MonoBehaviour
         }
         level=(int)(canvasManager.timeCount/30f);
         timeCount+=Time.deltaTime;
-        timePeirod=timeLevel[level];
+        bufferTime -= Time.deltaTime;
+        timePeirod =timeLevel[level];
         //float enemySpeed=enemySpeedLevel[level];
-        if(timeCount>timePeirod){
+        if(timeCount>timePeirod && bufferTime<0){
             timeCount=0;
 
             float radius=Random.Range(range,range+rangeSize);
