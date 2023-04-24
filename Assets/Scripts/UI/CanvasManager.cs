@@ -59,9 +59,9 @@ public class CanvasManager : MonoBehaviour
         cardPanel=transform.GetChild(2).gameObject;
         cardPanel1=transform.GetChild(3).gameObject;
         nextLevel=transform.GetChild(4).gameObject;
-        restart=transform.GetChild(5).gameObject;
-        menu=transform.GetChild(6).gameObject;
-        componentCounterPanel=transform.GetChild(7).gameObject;
+        restart=transform.Find("Restart").gameObject;
+        menu=transform.Find("menu").gameObject;
+        componentCounterPanel=transform.Find("Component Counter").gameObject;
         componentCounterText=componentCounterPanel.transform.GetChild(1).gameObject;
         playerControl=GameObject.Find("Player").GetComponent<PlayerControl>();
         occupiedFloors=GameObject.Find("OccupiedFloors");
