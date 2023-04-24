@@ -97,7 +97,7 @@ public class Dialogue : MonoBehaviour
 
             if(representLevel == 12)
                 StartCoroutine(fadeout());
-            if(appearOnce == true)
+            if(representLevel == 0 || representLevel == 11 || representLevel == 12)
                 GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>().shouldDialogueAppears[representLevel] = false;
         }
     }

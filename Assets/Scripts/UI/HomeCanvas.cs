@@ -13,12 +13,15 @@ public class HomeCanvas : MonoBehaviour
     public static HomeCanvas instance;
     public bool firstWin;
     public bool isInStoryLine;
+    private GameObject deathCanvas;
 
     void Start()
     {   
         firstWin = true;
         isInStoryLine = true;
 
+        deathCanvas = GameObject.Find("DeathCanvas");
+        deathCanvas.SetActive(false);
         //
         //timeNeed=300f;
         //canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
@@ -124,5 +127,10 @@ public class HomeCanvas : MonoBehaviour
 
         instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void deathTrigger()
+    {
+        deathCanvas.SetActive(true);
     }
 }

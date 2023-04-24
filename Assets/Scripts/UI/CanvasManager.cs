@@ -34,10 +34,9 @@ public class CanvasManager : MonoBehaviour
     public GameObject navigation;
 
     private GameObject helpMenu;
-
+    
     void Awake()
     {
-        
         //helpMenu.SetActive(false);
     }
     void Start()
@@ -143,6 +142,7 @@ public class CanvasManager : MonoBehaviour
         if(ifEnd){//success
             int level=(int.Parse( SceneManager.GetActiveScene().name));
             homeCanvas.levels[level]=1;
+            GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>().shouldDialogueAppears[level+1] = false;
 
             if(homeCanvas.firstWin && level==9){
                 homeCanvas.firstWin = false;
@@ -174,7 +174,8 @@ public class CanvasManager : MonoBehaviour
         }else if(ifRestart){//fail
             
             ifStart =false;
-            restart.SetActive(true);
+            //restart.SetActive(true);
+            homeCanvas.deathTrigger();
             //valuePanel.SetActive(false);
             cardPanel.SetActive(false);
             cardPanel1.SetActive(false);

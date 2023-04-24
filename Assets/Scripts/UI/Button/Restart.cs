@@ -17,7 +17,7 @@ public class Restart : MonoBehaviour
     {
         
     }
-    void OnClick(){
+    public void OnClick(){
         PlayingStats.onLevelFail();
         SceneManager.LoadScene( SceneManager.GetActiveScene().name);
     }
