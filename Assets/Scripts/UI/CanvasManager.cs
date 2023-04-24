@@ -43,7 +43,7 @@ public class CanvasManager : MonoBehaviour
     void Start()
     {   
         //timeNeed=300f;
-        helpMenu = transform.Find("HelpMenu").gameObject;
+        helpMenu = transform.Find("HelpMenu1").gameObject;
         homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         timeCount=0f;
         wasInCapture = false;
