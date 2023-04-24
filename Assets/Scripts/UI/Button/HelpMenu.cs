@@ -21,12 +21,27 @@ public class HelpMenu : MonoBehaviour
     {
         Time.timeScale = 0f; // Set the time scale to zero to pause the game
     }
-    void OnClick()
+        void UnpauseGame()
+    {
+        Time.timeScale = 1f; // Set the time scale to one to unpause the game
+    }
+    private bool isHelpMenuActive = false;
+void OnClick()
+{
+    // 切换布尔变量的值
+    isHelpMenuActive = !isHelpMenuActive;
+
+    if (isHelpMenuActive)
     {
         PauseGame();
-       
-        helpMenu.SetActive(true);
-        
-        
+    } 
+    else 
+    {
+        UnpauseGame();
     }
+    
+    //启用或禁用helpMenu
+    helpMenu.SetActive(isHelpMenuActive);
+}
+
 }
