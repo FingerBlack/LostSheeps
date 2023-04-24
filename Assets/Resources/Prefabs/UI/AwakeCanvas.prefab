@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 5338657361052396706}
   - component: {fileID: 5338657361052396705}
   - component: {fileID: 5338657361052396704}
-  - component: {fileID: 5338657361052396708}
   m_Layer: 5
   m_Name: AwakeCanvas
   m_TagString: Untagged
@@ -212,9 +211,9 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_ReferenceResolution: {x: 1921, y: 1081}
+  m_ScreenMatchMode: 1
+  m_MatchWidthOrHeight: 0.492
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -237,19 +236,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &5338657361052396708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5338657361052396735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57f69c88c02dc4e49a91bd36f2ec543f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInStoryLine: 0
 --- !u!1 &5338657361099637617
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,7 +383,6 @@ GameObject:
   - component: {fileID: 5338657361232713325}
   - component: {fileID: 5338657361232713616}
   - component: {fileID: 5338657361232713327}
-  - component: {fileID: 5338657361232713326}
   m_Layer: 5
   m_Name: Story
   m_TagString: Untagged
@@ -465,27 +450,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5338657361232713326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5338657361232713324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22e6d9f673d5bf140b3fd119128c92fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  representLevel: -1
-  textComponent: {fileID: 5338657361099637619}
-  lines:
-  - 'In a kingdom far far away, this once peaceful land is invaded by horrible slimes... '
-  - 'Swords and arrows cannot harm these bouncy creatures. Luckily, some ancient
-    turrets are found can effectively damage them. '
-  - 'To defeat these enemies, the only hope is on the one last turret engineer in
-    this country... '
-  - ...
-  textSpeed: 0.01
-  dialogueEnded: 0
-  appearOnce: 0
