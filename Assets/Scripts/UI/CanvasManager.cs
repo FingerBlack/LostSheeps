@@ -34,7 +34,7 @@ public class CanvasManager : MonoBehaviour
     public GameObject navigation;
 
     private GameObject helpMenu;
-
+    private GameObject helpMenu1;
     void Awake()
     {
         
@@ -44,7 +44,8 @@ public class CanvasManager : MonoBehaviour
     {   
         //timeNeed=300f;
         helpMenu = transform.Find("HelpMenu").gameObject;
-        homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
+        helpMenu1 = transform.Find("HelpMenu1").gameObject;
+        homeCanvas =GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         timeCount=0f;
         wasInCapture = false;
         //set timeNeed
@@ -91,6 +92,7 @@ public class CanvasManager : MonoBehaviour
             {
                 UnpauseGame();
                 helpMenu.SetActive(false);
+                helpMenu1.SetActive(false);
             }
             else
             {
