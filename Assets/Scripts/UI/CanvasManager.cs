@@ -143,6 +143,12 @@ public class CanvasManager : MonoBehaviour
         if(ifEnd){//success
             int level=(int.Parse( SceneManager.GetActiveScene().name));
             homeCanvas.levels[level]=1;
+
+            if(homeCanvas.firstWin && level==9){
+                homeCanvas.firstWin = false;
+                homeCanvas.shouldDialogueAppears[11] = true;
+            }
+
             if (level + 1 < homeCanvas.levels.Count)
             {
                 //0-2 +1,3->5,4->8, 3&4->6&7

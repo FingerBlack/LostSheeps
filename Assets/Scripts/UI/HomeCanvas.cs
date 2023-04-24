@@ -8,11 +8,17 @@ public class HomeCanvas : MonoBehaviour
 {
     // Start is called before the first frame update
     public List<int> levels=new List<int>{2,0,0,0,0,0,0};
+    public List<bool> shouldDialogueAppears;
     public CanvasManager canvasManager;
     public static HomeCanvas instance;
+    public bool firstWin;
+    public bool isInStoryLine;
 
     void Start()
     {   
+        firstWin = true;
+        isInStoryLine = true;
+
         //
         //timeNeed=300f;
         //canvasManager=GameObject.Find("Canvas").GetComponent<CanvasManager>();
@@ -39,7 +45,12 @@ public class HomeCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        
+        /*if(Input.GetKeyDown(KeyCode.L)){
+            for(int i=0;i<10;i++){
+                levels[i] = 1;
+            }
+        }*/
+
         //canvasManager.ifStart=true;
         // if(timeCount>timeNeed-0.2f){
         //     PlayingStats.onLevelSuccess();

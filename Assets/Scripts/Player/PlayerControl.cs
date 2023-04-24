@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour
     public Animator anim;
 
     public CanvasManager canvasManager;
+    public Dialogue dialogueUI;
     public Vector3Int playerGridPos;
     public Vector3Int targetrGridPos;
     public Vector3Int isMovingDirection;
@@ -77,6 +78,8 @@ public class PlayerControl : MonoBehaviour
         //timeToMove=0.2f;
         //seedNumber=0; //initiate the peaNumber.
         homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
+        if(GameObject.Find("DialogueCanvas"))
+            dialogueUI = GameObject.Find("DialogueCanvas").transform.GetChild(0).GetComponent<Dialogue>();
         currentHp = maxHp;
         speed = 2.5f; //Remember to Set the Speed on Start 
         vertSpeed = 2.5f;  //Remember to Set the Speed on Start 
@@ -105,10 +108,11 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!canvasManager.ifStart || !inputEnabled){
+        // if dialogue UI exists and has not ended, diable player movement
+        if(!canvasManager.ifStart || !inputEnabled || (dialogueUI && !dialogueUI.dialogueEnded)){
             return;
         }
-
+        
         //HP UI
         hpImage.fillAmount = currentHp/maxHp;
 
