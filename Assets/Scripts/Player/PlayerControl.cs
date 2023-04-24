@@ -215,7 +215,7 @@ public class PlayerControl : MonoBehaviour
                         else{
                             if(plant==turret && seedNumber>0){
                                 playerAudio.PlayOneShot(buildSound, 0.1f);
-                                GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,-0.1f,0f),Quaternion.identity,result.gameObject.transform);
+                                GameObject obj=Instantiate(plant, result.gameObject.transform.position-new Vector3(0f,0.001f,0f),Quaternion.identity,result.gameObject.transform);
                                 seedNumber-=1;
                                 PlayingStats.plantCount(obj.GetComponent<AttackTurret>().GetType().Name);
                                 box.CheckNeighbors();
