@@ -8,6 +8,7 @@ public class DemonEnemy : Enemy
     public bool debug;
     [SerializeField] private float wanderInterval = 0.0f;
     //public CanvasManager canvasManager;
+    public bool ifHasPath=false;
     void Start()
     {
         base.Init();
@@ -49,9 +50,10 @@ public class DemonEnemy : Enemy
         if (timeSinceLastSet >= setDestinationInterval)
         {
             timeSinceLastSet = 0.0f;
+            ifHasPath= HasValidPathToDestination(enemyAgent, player.transform.position);
             float distanceFromPlayer = (transform.position - player.transform.position).magnitude;
 
-            if (distanceFromPlayer < chasingRange && HasValidPathToDestination(enemyAgent, player.transform.position))
+            if (distanceFromPlayer < chasingRange &&ifHasPath )
             {
                 wanderInterval = 3.0f;
                 isWandering = false;
@@ -59,7 +61,7 @@ public class DemonEnemy : Enemy
             }
             else
             {
-                if (distanceFromPlayer >= chasingRange && !isWandering && !HasValidPathToDestination(enemyAgent, player.transform.position))
+                if (distanceFromPlayer >= chasingRange && !isWandering && !ifHasPath)
                 {
                     if (wanderInterval <= 0.0f)
                     {
@@ -81,7 +83,7 @@ public class DemonEnemy : Enemy
                 }
                 else
                 {
-                    if (HasValidPathToDestination(enemyAgent, player.transform.position))
+                    if (ifHasPath)
                     {
                         enemyAgent.SetDestination(player.transform.position);
                         enemyAgent.isStopped = false;
