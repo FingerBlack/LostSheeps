@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class HelpMenu : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject helpMenu;
+    public GameObject helpMenu0;
+    public GameObject helpMenu1;
     void Start()
     {
         GetComponent<Button>().onClick.AddListener(OnClick);
@@ -14,7 +15,16 @@ public class HelpMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        if(Input.GetKeyDown(KeyCode.E)){
+            if (helpMenu0.activeSelf==true){
+                helpMenu0.SetActive(false);
+                helpMenu1.SetActive(true);
+            }else if (helpMenu1.activeSelf==true){
+                helpMenu1.SetActive(false);
+                UnpauseGame();
+            }
+        }
 
     }
     void PauseGame()
@@ -29,20 +39,18 @@ public class HelpMenu : MonoBehaviour
 void OnClick()
 {
         
-    bool isHelpMenuActive = helpMenu.activeSelf;
+    bool isHelpMenuActive0 = helpMenu0.activeSelf;
+    bool isHelpMenuActive1 = helpMenu1.activeSelf;
         
 
-    if (!isHelpMenuActive)
+    if (!isHelpMenuActive0&&!isHelpMenuActive1)
     {
         PauseGame();
+         //启用或禁用helpMenu
+        helpMenu0.SetActive(true);
     } 
-    else 
-    {
-        UnpauseGame();
-    }
     
-    //启用或禁用helpMenu
-    helpMenu.SetActive(!isHelpMenuActive);
+   
 }
 
 }

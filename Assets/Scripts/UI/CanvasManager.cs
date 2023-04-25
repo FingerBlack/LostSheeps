@@ -87,22 +87,22 @@ public class CanvasManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (Time.timeScale == 0f)
-            {
-                UnpauseGame();
-                helpMenu.SetActive(false);
-                helpMenu1.SetActive(false);
-            }
-            else
-            {
+        // if (Input.GetKeyDown(KeyCode.Tab))
+        // {
+        //     if (Time.timeScale == 0f)
+        //     {
+        //         UnpauseGame();
+        //         helpMenu.SetActive(false);
+        //         helpMenu1.SetActive(false);
+        //     }
+        //     else
+        //     {
                 
-                PauseGame();
-                helpMenu.SetActive(true);
+        //         PauseGame();
+        //         helpMenu.SetActive(true);
                 
-            }
-        }
+        //     }
+        // }
 
         // if (ifStart)
         // {
@@ -222,18 +222,25 @@ public class CanvasManager : MonoBehaviour
         
         //valuePanel.SetActive(true);
         if (SceneManager.GetActiveScene().name!="Home"){
-            cardPanel.SetActive(true);
+            //cardPanel.SetActive(true);
             int level=(int.Parse( SceneManager.GetActiveScene().name));
 
             if(homeCanvas.levels[4]==1||level==4){
+
                 cardPanel1.SetActive(true);
             }
+
+            if(homeCanvas.levels[3]==1||level==3){
+
+                cardPanel.SetActive(true);
+            }
+            
             
             menu.SetActive(true);
             componentCounterPanel.SetActive(true);
         }
         
-        //ifStart=true;
+        ifStart=true;
     }
 
     void updateLevelScore()

@@ -13,7 +13,14 @@ public class IfClickOnHelpMenu : MonoBehaviour,IPointerClickHandler
 
         panel2.SetActive(false);
     }
-
+        void update()
+    {
+        
+        if(Input.GetKeyDown(KeyCode.E)){
+            panel1.SetActive(false);
+            panel2.SetActive(true);
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

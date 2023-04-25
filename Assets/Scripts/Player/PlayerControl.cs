@@ -92,7 +92,7 @@ public class PlayerControl : MonoBehaviour
         f = Resources.Load<Sprite>("Pictures/Player/f");
         turret = Resources.Load("Prefabs/Turret/Turret") as GameObject; //Load Plant pea
         radar = Resources.Load("Prefabs/Buff/Radar") as GameObject; //Load Plant cherry
-        plant = turret;
+        
         //HP=1000f; // Set HP 
         floorGrid = GameObject.Find("Grid").GetComponent<Grid>(); // initate the Map
         playerGridPos = floorGrid.WorldToCell(transform.position); //Find the Player position in GridSpace
@@ -103,6 +103,18 @@ public class PlayerControl : MonoBehaviour
         targetrGridPos = playerGridPos + new Vector3Int(0, -1, 0); //initiate the target position in Grid Space
         targetWorldPos = floorGrid.GetCellCenterWorld(targetrGridPos); //initiate the target position in World Space
         playerAudio = GetComponent<AudioSource>();
+        plant = turret;
+        int level=-1;
+        string name=SceneManager.GetActiveScene().name;
+        if(name!="Home"){
+            
+            level=(int.Parse(name ));
+        }
+        if((homeCanvas.levels[3]!=1&&(homeCanvas.levels[4]==2&&level==4))){ //Whatif press the #2.
+            plant = radar;
+
+        }
+
     }
     //=============================================================================================================
     // Update is called once per frame
