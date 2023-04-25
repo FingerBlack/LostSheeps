@@ -233,7 +233,7 @@ public class CanvasManager : MonoBehaviour
             componentCounterPanel.SetActive(true);
         }
         
-        ifStart=true;
+        //ifStart=true;
     }
 
     void updateLevelScore()

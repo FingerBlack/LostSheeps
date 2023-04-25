@@ -14,12 +14,13 @@ public class Dialogue : MonoBehaviour
     [SerializeField] private bool appearOnce;
     private HomeCanvas homeCanvas;
     private GameObject homeDialogue;
+    public CanvasManager canvasManager;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        print(representLevel);
-
+        canvasManager = GameObject.Find("Canvas").GetComponent<CanvasManager>();
         homeCanvas = GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
 
         if(representLevel == 12){
@@ -28,6 +29,8 @@ public class Dialogue : MonoBehaviour
         }
 
         if(GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>().shouldDialogueAppears[representLevel]) {
+            canvasManager.ifStart = false;
+
             gameObject.SetActive(true);
 
             if(lines.Length == 0){
@@ -40,6 +43,7 @@ public class Dialogue : MonoBehaviour
             dialogueEnded = false;
         }
         else{
+            canvasManager.ifStart = true;
             dialogueEnded = true;
             gameObject.SetActive(false);
         }
@@ -90,8 +94,10 @@ public class Dialogue : MonoBehaviour
             StartCoroutine(TypeLine());
         }
         else{
-            if(representLevel != 12)
+            if(representLevel != 12){
                 gameObject.SetActive(false);
+                canvasManager.ifStart = true;
+            }
 
             dialogueEnded = true;
 
