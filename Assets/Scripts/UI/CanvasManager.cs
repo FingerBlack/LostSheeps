@@ -34,15 +34,18 @@ public class CanvasManager : MonoBehaviour
     public GameObject navigation;
 
     private GameObject helpMenu;
-    
+    private GameObject helpMenu1;
+
     void Awake()
     {
         //helpMenu.SetActive(false);
     }
     void Start()
-    {   
+    {
         //timeNeed=300f;
-        helpMenu = transform.Find("HelpMenu1").gameObject;
+        helpMenu = transform.Find("HelpMenu").gameObject;
+        helpMenu1 = transform.Find("HelpMenu1").gameObject;
+        
         homeCanvas=GameObject.Find("HomeCanvas").GetComponent<HomeCanvas>();
         timeCount=0f;
         wasInCapture = false;
@@ -90,6 +93,7 @@ public class CanvasManager : MonoBehaviour
             {
                 UnpauseGame();
                 helpMenu.SetActive(false);
+                helpMenu1.SetActive(false);
             }
             else
             {

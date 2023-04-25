@@ -25,13 +25,14 @@ public class HelpMenu : MonoBehaviour
     {
         Time.timeScale = 1f; // Set the time scale to one to unpause the game
     }
-    private bool isHelpMenuActive = false;
+   
 void OnClick()
 {
-    // 切换布尔变量的值
-    isHelpMenuActive = !isHelpMenuActive;
+        
+    bool isHelpMenuActive = helpMenu.activeSelf;
+        
 
-    if (isHelpMenuActive)
+    if (!isHelpMenuActive)
     {
         PauseGame();
     } 
@@ -41,7 +42,7 @@ void OnClick()
     }
     
     //启用或禁用helpMenu
-    helpMenu.SetActive(isHelpMenuActive);
+    helpMenu.SetActive(!isHelpMenuActive);
 }
 
 }
